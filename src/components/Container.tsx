@@ -1,8 +1,8 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import Box from '@mui/material/Box';
 
 interface Props {
-	children: React.ReactNode;
+	children: ReactNode;
 	// All other props
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	[x: string]: any;

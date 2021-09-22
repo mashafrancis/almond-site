@@ -1,4 +1,3 @@
-import React from 'react';
 import Slider from 'react-slick';
 import { alpha, useTheme } from '@mui/material/styles';
 import Card from '@mui/material/Card';

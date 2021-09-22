@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';

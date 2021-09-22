@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React from 'react';
+import { Children } from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
@@ -121,7 +121,7 @@ MyDocument.getInitialProps = async (ctx) => {
 		...initialProps,
 		// Styles fragment is rendered after the app and page rendering finish.
 		styles: [
-			...React.Children.toArray(initialProps.styles),
+			...Children.toArray(initialProps.styles),
 			...emotionStyleTags,
 		],
 	};

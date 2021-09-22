@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useTheme } from '@mui/material/styles';

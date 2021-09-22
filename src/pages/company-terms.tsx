@@ -1,4 +1,3 @@
-import React from 'react';
 import CompanyTerms from 'views/CompanyTerms';
 
 const CompanyTermsPage = (): JSX.Element => {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';

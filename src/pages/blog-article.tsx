@@ -1,4 +1,3 @@
-import React from 'react';
 import BlogArticle from 'views/BlogArticle';
 
 const BlogArticlePage = (): JSX.Element => {

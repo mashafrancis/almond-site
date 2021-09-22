@@ -1,4 +1,3 @@
-import React from 'react';
 import IndexView from 'views/IndexView';
 
 const IndexPage = (): JSX.Element => {

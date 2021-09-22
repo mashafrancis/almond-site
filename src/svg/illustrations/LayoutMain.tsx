@@ -1,5 +1,3 @@
-import React from 'react';
-
 const LayoutMain = ({
 	width = 94,
 	height = 94,

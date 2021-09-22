@@ -1,4 +1,3 @@
-import React from 'react';
 import Ecommerce from 'views/Ecommerce';
 
 const EcommercePage = (): JSX.Element => {

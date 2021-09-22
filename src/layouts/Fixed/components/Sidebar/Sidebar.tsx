@@ -1,4 +1,3 @@
-import React from 'react';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import { SidebarNav } from './components';
