@@ -9,7 +9,6 @@ import Slide from '@mui/material/Slide';
 
 import Container from 'components/Container';
 import { Topbar, Sidebar, Footer } from './components';
-import pages from '../navigation';
 
 interface HideOnScrollProps {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -59,7 +58,7 @@ const Fluid = ({ children }: Props): JSX.Element => {
 					elevation={1}
 				>
 					<Container maxWidth={1} paddingY={{ xs: 1, sm: 1.5 }}>
-						<Topbar onSidebarOpen={handleSidebarOpen} pages={pages} />
+						<Topbar onSidebarOpen={handleSidebarOpen} />
 					</Container>
 				</AppBar>
 			</HideOnScroll>
@@ -67,7 +66,6 @@ const Fluid = ({ children }: Props): JSX.Element => {
 				onClose={handleSidebarClose}
 				open={open}
 				variant="temporary"
-				pages={pages}
 			/>
 			<main>
 				<Box height={{ xs: 58, sm: 66 }} />

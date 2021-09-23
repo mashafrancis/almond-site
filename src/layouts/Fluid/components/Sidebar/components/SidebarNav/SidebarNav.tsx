@@ -5,24 +5,14 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
 import NavItem from './components/NavItem';
+import pages from "../../../../../navigation";
 
 interface Props {
-	pages: {
-		landings: Array<PageItem>;
-		secondary: Array<PageItem>;
-		account: Array<PageItem>;
-	};
 	// eslint-disable-next-line @typescript-eslint/ban-types
 	onClose: () => void;
 }
 
-const SidebarNav = ({ pages, onClose }: Props): JSX.Element => {
-	const {
-		landings: landingPages,
-		secondary: secondaryPages,
-		account: accountPages,
-	} = pages;
-
+const SidebarNav = ({ onClose }: Props): JSX.Element => {
 	return (
 		<Box>
 			<Box
@@ -36,15 +26,7 @@ const SidebarNav = ({ pages, onClose }: Props): JSX.Element => {
 			</Box>
 			<Box paddingX={2} paddingBottom={2}>
 				<Box>
-					<NavItem title={'Landings'} items={landingPages} />
-				</Box>
-				<Divider sx={{ marginBottom: 2 }} />
-				<Box>
-					<NavItem title={'Pages'} items={secondaryPages} />
-				</Box>
-				<Divider sx={{ marginBottom: 2 }} />
-				<Box>
-					<NavItem title={'Account'} items={accountPages} />
+					<NavItem title={'Landings'} items={pages} />
 				</Box>
 				<Divider sx={{ marginBottom: 2 }} />
 				<Box marginTop={1}>
