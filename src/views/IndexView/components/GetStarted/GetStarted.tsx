@@ -21,7 +21,7 @@ const GetStarted = (): JSX.Element => {
 					fontWeight: 700,
 				}}
 			>
-				Get started with theFront today
+				Get started with almond today
 			</Typography>
 			<Typography
 				variant="h6"
@@ -30,8 +30,7 @@ const GetStarted = (): JSX.Element => {
 				sx={{ fontWeight: 400 }}
 				align={'center'}
 			>
-				Build a beautiful, modern website with flexible, fully customizable,
-				atomic Material-UI components.
+				Take control of your food and what you eat
 			</Typography>
 			<Box
 				display="flex"
@@ -45,10 +44,10 @@ const GetStarted = (): JSX.Element => {
 					variant="contained"
 					color="primary"
 					size="large"
-					fullWidth={isMd ? false : true}
+					fullWidth={!isMd}
 					href={'/home'}
 				>
-					View pages
+					View store
 				</Button>
 				<Box
 					marginTop={{ xs: 2, sm: 0 }}
@@ -61,9 +60,9 @@ const GetStarted = (): JSX.Element => {
 						variant="outlined"
 						color="primary"
 						size="large"
-						fullWidth={isMd ? false : true}
+						fullWidth={!isMd}
 					>
-						Documentation
+						Resources
 					</Button>
 				</Box>
 			</Box>

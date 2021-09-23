@@ -40,7 +40,7 @@ const Form = (): JSX.Element => {
 		password: '',
 	};
 
-	const onSubmit = (values) => {
+	const onSubmit = (values: any) => {
 		return values;
 	};
 
@@ -53,16 +53,6 @@ const Form = (): JSX.Element => {
 	return (
 		<Box>
 			<Box marginBottom={4}>
-				<Typography
-					sx={{
-						textTransform: 'uppercase',
-						fontWeight: 'medium',
-					}}
-					gutterBottom
-					color={'text.secondary'}
-				>
-					Signup
-				</Typography>
 				<Typography
 					variant="h4"
 					sx={{

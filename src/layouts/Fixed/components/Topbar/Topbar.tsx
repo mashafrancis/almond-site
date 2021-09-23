@@ -3,8 +3,7 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import { alpha, useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
-
-import { ThemeModeToggler } from './components';
+import { DarkModeToggler } from '@components/atoms';
 
 interface Props {
 	// eslint-disable-next-line @typescript-eslint/ban-types
@@ -57,7 +56,7 @@ const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
 					</Link>
 				</Box>
 				<Box marginLeft={3}>
-					<ThemeModeToggler />
+					<DarkModeToggler />
 				</Box>
 				<Box marginLeft={3}>
 					<Button
@@ -74,7 +73,7 @@ const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
 			</Box>
 			<Box sx={{ display: { xs: 'flex', md: 'none' } }} alignItems={'center'}>
 				<Box marginRight={2}>
-					<ThemeModeToggler />
+					<DarkModeToggler />
 				</Box>
 				<Button
 					onClick={() => onSidebarOpen()}

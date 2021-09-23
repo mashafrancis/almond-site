@@ -19,7 +19,7 @@ const NavItem = ({ title, id, items }: Props): JSX.Element => {
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [openedPopoverId, setOpenedPopoverId] = useState(null);
 
-	const handleClick = (event, popoverId) => {
+	const handleClick = (event: any, popoverId: any) => {
 		setAnchorEl(event.target);
 		setOpenedPopoverId(popoverId);
 	};

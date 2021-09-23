@@ -20,6 +20,9 @@ const getTheme = (mode: PaletteMode): Theme =>
 				appBar: 1200,
 				drawer: 1300,
 			},
+			shape: {
+				borderRadius: 8,
+			},
 			components: {
 				MuiButton: {
 					styleOverrides: {

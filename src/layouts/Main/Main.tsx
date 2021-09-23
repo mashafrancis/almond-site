@@ -1,33 +1,99 @@
-import { useState } from 'react';
-import * as React from 'react';
+import React, {
+	ReactElement,
+	ReactNode,
+	MouseEvent,
+	useState,
+	cloneElement,
+} from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-import AppBar from '@mui/material/AppBar';
-import Slide from '@mui/material/Slide';
+import {
+	Slide,
+	Box,
+	Toolbar,
+	useScrollTrigger,
+	AppBar,
+	Divider,
+	Fab,
+	Zoom,
+} from '@mui/material';
 
 import Container from 'components/Container';
 import { Topbar, Sidebar, Footer } from './components';
 import pages from '../navigation';
+import { KeyboardArrowUpRounded } from '@mui/icons-material';
 
 interface Props {
-	children: React.ReactNode;
+	children: ReactNode;
 }
 
-interface HideOnScrollProps {
+interface AppBarOnScrollProps {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	children: React.ReactElement<any, any>;
+	children: ReactElement<any, any>;
+	window?: () => Window;
+	isMobileView?: boolean;
 }
 
-const HideOnScroll = ({ children }: HideOnScrollProps): JSX.Element => {
-	const trigger = useScrollTrigger();
+interface ScrollTopProps {
+	window?: () => Window;
+	children: ReactElement;
+}
 
-	return (
+function ElevationScroll({
+	children,
+	window,
+	isMobileView,
+}: AppBarOnScrollProps) {
+	// Note that you normally won't need to set the window ref as useScrollTrigger
+	// will default to window.
+	// This is only being set here because the demo is in an iframe.
+	const trigger = useScrollTrigger({
+		disableHysteresis: true,
+		threshold: 0,
+		target: window ? window() : undefined,
+	});
+
+	return isMobileView ? (
 		<Slide appear={false} direction="down" in={!trigger}>
 			{children}
 		</Slide>
+	) : (
+		cloneElement(children, {
+			elevation: trigger ? 4 : 0,
+		})
+	);
+}
+
+const ScrollTop = ({ window, children }: ScrollTopProps) => {
+	const trigger = useScrollTrigger({
+		target: window ? window() : undefined,
+		disableHysteresis: true,
+		threshold: 100,
+	});
+
+	const handleClick = (event: MouseEvent<HTMLDivElement>) => {
+		const anchor = (
+			(event.target as HTMLDivElement).ownerDocument || document
+		).querySelector('#back-to-top-anchor');
+
+		if (anchor) {
+			anchor.scrollIntoView({
+				behavior: 'smooth',
+				block: 'center',
+			});
+		}
+	};
+
+	return (
+		<Zoom in={trigger}>
+			<Box
+				onClick={handleClick}
+				role="presentation"
+				sx={{ position: 'fixed', bottom: 16, right: 16 }}
+			>
+				{children}
+			</Box>
+		</Zoom>
 	);
 };
 
@@ -51,19 +117,22 @@ const Main = ({ children }: Props): JSX.Element => {
 
 	return (
 		<Box>
-			<HideOnScroll>
+			<ElevationScroll isMobileView={isMd}>
 				<AppBar
 					position={'fixed'}
 					sx={{
 						backgroundColor: theme.palette.background.paper,
 					}}
-					elevation={1}
+					elevation={0}
 				>
-					<Container paddingY={{ xs: 1, sm: 1.5 }}>
-						<Topbar onSidebarOpen={handleSidebarOpen} pages={pages} />
-					</Container>
+					<Toolbar>
+						<Container paddingY={{ xs: 1, sm: 1.5 }}>
+							<Topbar onSidebarOpen={handleSidebarOpen} />
+						</Container>
+					</Toolbar>
 				</AppBar>
-			</HideOnScroll>
+			</ElevationScroll>
+			<div id="back-to-top-anchor" />
 			<Sidebar
 				onClose={handleSidebarClose}
 				open={open}
@@ -75,6 +144,11 @@ const Main = ({ children }: Props): JSX.Element => {
 				{children}
 				<Divider />
 			</main>
+			<ScrollTop>
+				<Fab color="secondary" size="small" aria-label="scroll back to top">
+					<KeyboardArrowUpRounded />
+				</Fab>
+			</ScrollTop>
 			<Container paddingY={4}>
 				<Footer />
 			</Container>

@@ -7,68 +7,57 @@ import Grid from '@mui/material/Grid';
 
 const mock = [
 	{
-		title: 'Built for developers',
+		title: 'Built for home',
 		subtitle:
-			'theFront is built to make your life easier. Variables, build tooling, documentation, and reusable components.',
+			'Almond is built for use at the comfort of your home with little expense.',
 		icon: (
 			<svg
-				height={24}
-				width={24}
 				xmlns="http://www.w3.org/2000/svg"
-				fill="none"
+				height="36px"
 				viewBox="0 0 24 24"
-				stroke="currentColor"
+				width="36px"
+				fill="currentColor"
 			>
-				<path
-					strokeLinecap="round"
-					strokeLinejoin="round"
-					strokeWidth={2}
-					d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
-				/>
+				<path d="M0 0h24v24H0V0z" fill="none" />
+				<path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3zm5 15h-2v-6H9v6H7v-7.81l5-4.5 5 4.5V18z" />
+				<path d="M7 10.19V18h2v-6h6v6h2v-7.81l-5-4.5z" opacity=".3" />
 			</svg>
 		),
 	},
 	{
-		title: 'Designed to be modern',
+		title: 'Designed for space',
 		subtitle:
-			'Designed with the latest design trends in mind. theFront feels modern, minimal, and beautiful.',
+			'Designed for limited space with no compromise of quality and quantity.',
 		icon: (
 			<svg
-				height={24}
-				width={24}
 				xmlns="http://www.w3.org/2000/svg"
-				fill="none"
+				height="36px"
 				viewBox="0 0 24 24"
-				stroke="currentColor"
+				width="36px"
+				fill="currentColor"
 			>
-				<path
-					strokeLinecap="round"
-					strokeLinejoin="round"
-					strokeWidth={2}
-					d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
-				/>
+				<path d="M0 0h24v24H0V0z" fill="none" />
+				<circle cx="15.17" cy="9.17" opacity=".3" r="5" />
+				<circle cx="4.5" cy="9.5" r="1.5" />
+				<path d="M15.17 2.17c-3.87 0-7 3.13-7 7 0 3.47 2.52 6.34 5.83 6.89V20H6v-3h1v-4c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v4h1v5h16v-2h-3v-3.88c3.47-.41 6.17-3.36 6.17-6.95 0-3.87-3.13-7-7-7zm0 12c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" />
 			</svg>
 		),
 	},
 	{
-		title: 'Documentation for everything',
+		title: 'Monitoring of growth',
 		subtitle:
-			"We've written extensive documentation for components and tools, so you never have to reverse engineer anything.",
+			'We have an intelligent engine to take care of the plant growth in the background.',
 		icon: (
 			<svg
-				height={24}
-				width={24}
 				xmlns="http://www.w3.org/2000/svg"
-				fill="none"
+				height="36px"
 				viewBox="0 0 24 24"
-				stroke="currentColor"
+				width="36px"
+				fill="currentColor"
 			>
-				<path
-					strokeLinecap="round"
-					strokeLinejoin="round"
-					strokeWidth={2}
-					d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-				/>
+				<path d="M0 0h24v24H0V0z" fill="none" />
+				<path d="M18 10h4v7h-4z" opacity=".3" />
+				<path d="M23 8h-6c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm-1 9h-4v-7h4v7zM4 6h18V4H4c-1.1 0-2 .9-2 2v11H0v3h14v-3H4V6z" />
 			</svg>
 		),
 	},
@@ -89,7 +78,7 @@ const Services = (): JSX.Element => {
 							fontWeight: 700,
 						}}
 					>
-						Build accessible React apps with speed
+						Feed your family with ease
 					</Typography>
 					<Typography
 						variant="h6"
@@ -98,8 +87,8 @@ const Services = (): JSX.Element => {
 						sx={{ fontWeight: 400 }}
 						align={'center'}
 					>
-						Build a beautiful, modern website with flexible, fully
-						customizable, atomic Material-UI components.
+						Almond is your food companion to grow your food healthily
+						throughout the season.
 					</Typography>
 				</Box>
 			</Box>

@@ -7,7 +7,6 @@ import {
 	Features,
 	QuickStart,
 	Services,
-	Benefits,
 	Hero,
 } from './components';
 
@@ -30,14 +29,11 @@ const IndexView = (): JSX.Element => {
 						position: 'relative',
 					}}
 				>
-					<Container maxWidth={600}>
+					<Container>
 						<QuickStart />
 					</Container>
 					<Container>
 						<Features />
-					</Container>
-					<Container>
-						<Benefits />
 					</Container>
 					<Box
 						component={'svg'}

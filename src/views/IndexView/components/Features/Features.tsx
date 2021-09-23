@@ -37,7 +37,9 @@ const Features = (): JSX.Element => {
 	});
 
 	const [viewPortEntered, setViewPortEntered] = useState(false);
-	const setViewPortVisibility = (isVisible) => {
+	const setViewPortVisibility = (
+		isVisible: boolean | ((prevState: boolean) => boolean)
+	) => {
 		if (viewPortEntered) {
 			return;
 		}
@@ -51,17 +53,15 @@ const Features = (): JSX.Element => {
 				<Grid item xs={12} md={6} data-aos={isMd ? 'fade-right' : 'fade-up'}>
 					<Box marginBottom={4}>
 						<Typography sx={{ fontWeight: 700 }} variant={'h4'} gutterBottom>
-							The powerful and flexible theme for all kinds of businesses
+							Try one of our produce.
 						</Typography>
 						<Typography
 							variant={'h6'}
 							component={'p'}
 							color={'text.secondary'}
 						>
-							Whether you're creating a subscription service, an on-demand
-							marketplace, an e-commerce store, or a portfolio showcase,
-							theFront helps you create the best possible product for your
-							users.
+							With our hydroponics home farm, we grow sweet strawberries,
+							perfect for eating anytime.
 						</Typography>
 					</Box>
 					<Grid container spacing={2}>
@@ -105,7 +105,7 @@ const Features = (): JSX.Element => {
 							height={1}
 							width={1}
 							minHeight={300}
-							image="https://assets.maccarianagency.com/backgrounds/img4.jpg"
+							image="https://storage.googleapis.com/static.almondhydroponics.com/static/images/hydroponic-strawberries.jpg"
 						/>
 					</Box>
 				</Grid>

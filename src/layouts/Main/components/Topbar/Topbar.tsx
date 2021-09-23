@@ -1,29 +1,49 @@
+import Link from 'next/link';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
 import { alpha, useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
-
-import { NavItem, ThemeModeToggler } from './components';
+// components
+import { DarkModeToggler } from '@components/atoms';
+import authService from '@utils/auth';
+import CustomAvatar from '@components/molecules/CustomAvatar';
+import Logo from '@components/atoms/Logo';
 
 interface Props {
 	// eslint-disable-next-line @typescript-eslint/ban-types
 	onSidebarOpen: () => void;
-	pages: {
-		landings: Array<PageItem>;
-		secondary: Array<PageItem>;
-		account: Array<PageItem>;
-	};
 }
 
-const Topbar = ({ onSidebarOpen, pages }: Props): JSX.Element => {
+const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
 	const theme = useTheme();
-	const { mode } = theme.palette;
-	const {
-		landings: landingPages,
-		secondary: secondaryPages,
-		account: accountPages,
-	} = pages;
+
+	const renderAuthButtons = () => (
+		<>
+			{authService.isAuthenticated() ? (
+				<Box marginLeft={3}>
+					<CustomAvatar />
+				</Box>
+			) : (
+				<>
+					<Box marginLeft={3}>
+						<Link href="/login">
+							<Button variant="outlined" size="small">
+								Login
+							</Button>
+						</Link>
+					</Box>
+
+					<Box marginLeft={3}>
+						<Link href="/register">
+							<Button variant="contained" color="primary" size="small">
+								Get started
+							</Button>
+						</Link>
+					</Box>
+				</>
+			)}
+		</>
+	);
 
 	return (
 		<Box
@@ -32,82 +52,45 @@ const Topbar = ({ onSidebarOpen, pages }: Props): JSX.Element => {
 			alignItems={'center'}
 			width={1}
 		>
-			<Box
-				display={'flex'}
-				component="a"
-				href="/"
-				title="theFront"
-				width={{ xs: 100, md: 120 }}
-			>
-				<Box
-					component={'img'}
-					src={
-						mode === 'light'
-							? 'https://assets.maccarianagency.com/the-front/logos/logo.svg'
-							: 'https://assets.maccarianagency.com/the-front/logos/logo-negative.svg'
-					}
-					height={1}
-					width={1}
-				/>
+			<Box sx={{ display: { xs: 'flex', md: 'none' } }} alignItems={'center'}>
+				<Logo displayText />
 			</Box>
 			<Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-				<Box>
-					<NavItem
-						title={'Landings'}
-						id={'landing-pages'}
-						items={landingPages}
-					/>
-				</Box>
+				<Logo displayText />
 				<Box marginLeft={3}>
-					<NavItem
-						title={'Pages'}
-						id={'secondary-pages'}
-						items={secondaryPages}
-					/>
-				</Box>
-				<Box marginLeft={3}>
-					<NavItem
-						title={'Account'}
-						id={'account-pages'}
-						items={accountPages}
-					/>
-				</Box>
-				<Box marginLeft={3}>
-					<Link
-						underline="none"
-						component="a"
-						href="/docs/introduction"
-						color="text.primary"
-					>
-						Documentation
+					<Link href="/resources">
+						<Button sx={{ color: '#2d3748' }} variant="text">
+							Resources
+						</Button>
 					</Link>
 				</Box>
+
 				<Box marginLeft={3}>
-					<ThemeModeToggler />
-				</Box>
-				<Box marginLeft={3}>
-					<Button
-						variant="contained"
-						color="primary"
-						component="a"
-						target="blank"
-						href="https://material-ui.com/store/items/the-front-landing-page/"
-						size="large"
-					>
-						Purchase now
-					</Button>
+					<Link href="/store">
+						<Button sx={{ color: '#2d3748' }} variant="text">
+							Store
+						</Button>
+					</Link>
 				</Box>
 			</Box>
+
+			<Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
+				{renderAuthButtons()}
+				<Box marginLeft={3}>
+					<DarkModeToggler />
+				</Box>
+			</Box>
+
 			<Box sx={{ display: { xs: 'flex', md: 'none' } }} alignItems={'center'}>
 				<Box marginRight={2}>
-					<ThemeModeToggler />
+					<DarkModeToggler />
 				</Box>
 				<Button
 					onClick={() => onSidebarOpen()}
 					aria-label="Menu"
 					variant={'outlined'}
 					sx={{
-						borderRadius: 2,
+						borderRadius: 1,
 						minWidth: 'auto',
 						padding: 1,
 						borderColor: alpha(theme.palette.divider, 0.2),

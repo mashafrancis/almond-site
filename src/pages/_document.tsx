@@ -120,9 +120,6 @@ MyDocument.getInitialProps = async (ctx) => {
 	return {
 		...initialProps,
 		// Styles fragment is rendered after the app and page rendering finish.
-		styles: [
-			...Children.toArray(initialProps.styles),
-			...emotionStyleTags,
-		],
+		styles: [...Children.toArray(initialProps.styles), ...emotionStyleTags],
 	};
 };

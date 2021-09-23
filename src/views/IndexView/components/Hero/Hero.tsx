@@ -1,81 +1,13 @@
-import Typed from 'react-typed';
+import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { alpha, useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 
 import Container from 'components/Container';
-
-const images = [
-	{
-		group: [
-			{
-				cover:
-					'https://assets.maccarianagency.com/screenshots/the-front/img2.png',
-				coverDark:
-					'https://assets.maccarianagency.com/screenshots/the-front/img2--dark.png',
-			},
-			{
-				cover:
-					'https://assets.maccarianagency.com/screenshots/the-front/img3.png',
-				coverDark:
-					'https://assets.maccarianagency.com/screenshots/the-front/img3--dark.png',
-			},
-		],
-	},
-	{
-		group: [
-			{
-				cover:
-					'https://assets.maccarianagency.com/screenshots/the-front/img13.png',
-				coverDark:
-					'https://assets.maccarianagency.com/screenshots/the-front/img13--dark.png',
-			},
-			{
-				cover:
-					'https://assets.maccarianagency.com/screenshots/the-front/img10.png',
-				coverDark:
-					'https://assets.maccarianagency.com/screenshots/the-front/img10--dark.png',
-			},
-			{
-				cover:
-					'https://assets.maccarianagency.com/screenshots/the-front/img9.png',
-				coverDark:
-					'https://assets.maccarianagency.com/screenshots/the-front/img9--dark.png',
-			},
-		],
-	},
-	{
-		group: [
-			{
-				cover:
-					'https://assets.maccarianagency.com/screenshots/the-front/img6.png',
-				coverDark:
-					'https://assets.maccarianagency.com/screenshots/the-front/img6--dark.png',
-			},
-			{
-				cover:
-					'https://assets.maccarianagency.com/screenshots/the-front/img24.png',
-				coverDark:
-					'https://assets.maccarianagency.com/screenshots/the-front/img24--dark.png',
-			},
-			{
-				cover:
-					'https://assets.maccarianagency.com/screenshots/the-front/img17.png',
-				coverDark:
-					'https://assets.maccarianagency.com/screenshots/the-front/img17--dark.png',
-			},
-			{
-				cover:
-					'https://assets.maccarianagency.com/screenshots/the-front/img12.png',
-				coverDark:
-					'https://assets.maccarianagency.com/screenshots/the-front/img12--dark.png',
-			},
-		],
-	},
-];
 
 const Hero = (): JSX.Element => {
 	const theme = useTheme();
@@ -83,146 +15,134 @@ const Hero = (): JSX.Element => {
 		defaultMatches: true,
 	});
 
+	const LeftSide = () => (
+		<Box data-aos={isMd ? 'fade-right' : 'fade-up'}>
+			<Box marginBottom={2}>
+				<Typography variant="h3" color="text.primary" sx={{ fontWeight: 700 }}>
+					Grow your food{' '}
+				</Typography>
+				<Typography
+					color={'primary'}
+					component={'span'}
+					variant="h3"
+					sx={{ fontWeight: 700 }}
+				>
+					healthy.
+				</Typography>
+			</Box>
+			<Box marginBottom={3}>
+				<Typography variant="h6" component="p" color="text.secondary">
+					Focus on the safe production of fresh food from your own home all
+					year round.
+				</Typography>
+			</Box>
+			<Button variant="contained" color="primary" size="large">
+				Visit our store
+			</Button>
+		</Box>
+	);
+
+	const RightSide = (): JSX.Element => {
+		return (
+			<Box
+				sx={{
+					height: { xs: 'auto', md: 1 },
+					'& img': {
+						objectFit: 'cover',
+					},
+					'& .lazy-load-image-loaded': {
+						height: 1,
+						width: 1,
+					},
+				}}
+			>
+				<Box
+					component={LazyLoadImage}
+					effect="blur"
+					src="https://storage.googleapis.com/static.almondhydroponics.com/static/images/hydroponics.webp"
+					srcSet="https://storage.googleapis.com/static.almondhydroponics.com/static/images/hydroponics.webp 2x"
+					height={{ xs: 'auto', md: 1 }}
+					maxHeight={{ xs: 300, md: 1 }}
+					width={1}
+					maxWidth={1}
+				/>
+			</Box>
+		);
+	};
+
 	return (
 		<Box
 			sx={{
-				backgroundImage: `linear-gradient(to bottom, ${alpha(
-					theme.palette.background.paper,
-					0
-				)}, ${alpha(theme.palette.alternate.main, 1)} 100%)`,
-				backgroundRepeat: 'repeat-x',
-				position: 'relative',
+				width: 1,
+				height: 1,
+				overflow: 'hidden',
+				backgroundColor: theme.palette.alternate.main,
 			}}
 		>
-			<Box paddingY={{ xs: 0, sm: '4rem', md: '8rem' }}>
-				<Container>
-					<Box maxWidth={{ xs: 1, sm: '50%' }}>
-						<Typography
-							variant="h3"
-							color="text.primary"
-							gutterBottom
+			<Container paddingX={0} paddingY={0} maxWidth={{ sm: 1, md: 1236 }}>
+				<Box
+					display={'flex'}
+					flexDirection={{ xs: 'column', md: 'row' }}
+					position={'relative'}
+					minHeight={{ md: 600 }}
+				>
+					<Box
+						width={1}
+						order={{ xs: 2, md: 1 }}
+						display={'flex'}
+						alignItems={'center'}
+					>
+						<Container>
+							<LeftSide />
+						</Container>
+					</Box>
+					<Box
+						sx={{
+							flex: { xs: '0 0 100%', md: '0 0 50%' },
+							position: 'relative',
+							maxWidth: { xs: '100%', md: '50%' },
+							order: { xs: 1, md: 2 },
+						}}
+					>
+						<Box
 							sx={{
-								fontWeight: 700,
+								width: { xs: 1, md: '50vw' },
+								height: '100%',
+								position: 'relative',
 							}}
 						>
-							Turn your ideas
-							<br />
-							into a{' '}
-							<Typography
-								color={'primary'}
-								component={'span'}
-								variant={'inherit'}
-							>
-								<Typed
-									strings={['startup.', 'future.', 'success.']}
-									typeSpeed={80}
-									loop={true}
-								/>
-							</Typography>
-						</Typography>
-						<Typography
-							variant="h6"
-							component="p"
-							color="text.secondary"
-							sx={{ fontWeight: 400 }}
-						>
-							theFront will make your product look modern and professional
-							while saving you precious time.
-						</Typography>
-						<Box
-							display="flex"
-							flexDirection={{ xs: 'column', sm: 'row' }}
-							alignItems={{ xs: 'stretched', sm: 'flex-start' }}
-							marginTop={4}
-						>
-							<Button
-								component={'a'}
-								variant="contained"
-								color="primary"
-								size="large"
-								fullWidth={isMd ? false : true}
-								href={'/home'}
-							>
-								View pages
-							</Button>
 							<Box
-								marginTop={{ xs: 2, sm: 0 }}
-								marginLeft={{ sm: 2 }}
-								width={{ xs: '100%', md: 'auto' }}
+								sx={{
+									width: '100%',
+									height: '100%',
+									overflow: 'hidden',
+								}}
 							>
-								<Button
-									component={'a'}
-									href={'/docs/introduction'}
-									variant="outlined"
-									color="primary"
-									size="large"
-									fullWidth={isMd ? false : true}
+								<Box
+									sx={{
+										overflow: 'hidden',
+										left: '0%',
+										width: 1,
+										height: 1,
+										position: { xs: 'relative', md: 'absolute' },
+										clipPath: {
+											xs: 'none',
+											md: 'polygon(10% 0%, 100% 0, 100% 100%, 0% 100%)',
+										},
+										shapeOutside: {
+											xs: 'none',
+											md: 'polygon(10% 0%, 100% 0, 100% 100%, 0% 100%)',
+										},
+									}}
 								>
-									Documentation
-								</Button>
+									<RightSide />
+								</Box>
 							</Box>
 						</Box>
 					</Box>
-				</Container>
-				<Box
-					sx={{
-						transform: 'rotate(-20deg)',
-						display: { xs: 'none', sm: 'block' },
-					}}
-				>
-					<Box
-						display={'flex'}
-						width={'50rem'}
-						left={'50%'}
-						top={0}
-						position={'absolute'}
-						sx={{ transform: 'translate3d(20%, -50%, 0)' }}
-					>
-						{images.map((item, i) => (
-							<Box key={i} marginTop={{ sm: -(i * 16) }} marginX={1}>
-								{item.group.map((g, j) => (
-									<Box
-										key={j}
-										padding={1}
-										bgcolor={'background.paper'}
-										borderRadius={3}
-										boxShadow={3}
-										marginTop={2}
-									>
-										<Box
-											component={LazyLoadImage}
-											effect="blur"
-											src={
-												theme.palette.mode === 'dark' ? g.coverDark : g.cover
-											}
-											height={1}
-											width={1}
-											maxWidth={320}
-										/>
-									</Box>
-								))}
-							</Box>
-						))}
-					</Box>
 				</Box>
-			</Box>
-			<Box
-				component={'svg'}
-				preserveAspectRatio="none"
-				xmlns="http://www.w3.org/2000/svg"
-				x="0px"
-				y="0px"
-				viewBox="0 0 1920 100.1"
-				sx={{
-					width: '100%',
-					marginBottom: theme.spacing(-1),
-				}}
-			>
-				<path
-					fill={theme.palette.background.paper}
-					d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"
-				></path>
-			</Box>
+			</Container>
+			<Divider />
 		</Box>
 	);
 };

@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import * as React from 'react';
+import { ReactElement, ReactNode, useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
@@ -14,7 +13,7 @@ import pages from '../navigation';
 
 interface HideOnScrollProps {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	children: React.ReactElement<any, any>;
+	children: ReactElement<any, any>;
 }
 
 const HideOnScroll = ({ children }: HideOnScrollProps): JSX.Element => {
@@ -28,7 +27,7 @@ const HideOnScroll = ({ children }: HideOnScrollProps): JSX.Element => {
 };
 
 interface Props {
-	children: React.ReactNode;
+	children: ReactNode;
 }
 
 const Fluid = ({ children }: Props): JSX.Element => {

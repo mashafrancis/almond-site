@@ -13,7 +13,7 @@
     "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "noImplicitThis": true,
     "strictNullChecks": true,
     "preserveConstEnums": true,
@@ -28,7 +28,12 @@
     "isolatedModules": true,
     "noFallthroughCasesInSwitch": true,
     "outDir": "./dist",
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@utils/*": ["utils/*"],
+      "@modules/*": ["store/modules/*"]
+    }
   },
   "include": [
     "next-env.d.ts",

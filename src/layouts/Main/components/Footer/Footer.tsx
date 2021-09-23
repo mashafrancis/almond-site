@@ -1,14 +1,11 @@
+import Link from 'next/link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import { useTheme } from '@mui/material/styles';
+import Logo from '@components/atoms/Logo';
 
 const Footer = (): JSX.Element => {
-	const theme = useTheme();
-	const { mode } = theme.palette;
-
 	return (
 		<Grid container spacing={2}>
 			<Grid item xs={12}>
@@ -19,58 +16,30 @@ const Footer = (): JSX.Element => {
 					width={1}
 					flexDirection={{ xs: 'column', sm: 'row' }}
 				>
-					<Box
-						display={'flex'}
-						component="a"
-						href="/"
-						title="theFront"
-						width={80}
-					>
-						<Box
-							component={'img'}
-							src={
-								mode === 'light'
-									? 'https://assets.maccarianagency.com/the-front/logos/logo.svg'
-									: 'https://assets.maccarianagency.com/the-front/logos/logo-negative.svg'
-							}
-							height={1}
-							width={1}
-						/>
-					</Box>
+					<Logo displayText />
 					<Box display="flex" flexWrap={'wrap'} alignItems={'center'}>
-						<Box marginTop={1} marginRight={2}>
-							<Link
-								underline="none"
-								component="a"
-								href="/"
-								color="text.primary"
-								variant={'subtitle2'}
-							>
-								Home
+						<Box marginLeft={3}>
+							<Link href="/">
+								<Button sx={{ color: '#2d3748' }} variant="text" size="small">
+									Home
+								</Button>
 							</Link>
 						</Box>
-						<Box marginTop={1} marginRight={2}>
-							<Link
-								underline="none"
-								component="a"
-								href="/docs/introduction"
-								color="text.primary"
-								variant={'subtitle2'}
-							>
-								Documentation
+
+						<Box marginLeft={3}>
+							<Link href="/resources">
+								<Button sx={{ color: '#2d3748' }} variant="text" size="small">
+									Resources
+								</Button>
 							</Link>
 						</Box>
-						<Box marginTop={1}>
-							<Button
-								variant="outlined"
-								color="primary"
-								component="a"
-								target="blank"
-								href="https://material-ui.com/store/items/the-front-landing-page/"
-								size="small"
-							>
-								Purchase now
-							</Button>
+
+						<Box marginLeft={3}>
+							<Link href="/store">
+								<Button variant="outlined" size="small">
+									Store
+								</Button>
+							</Link>
 						</Box>
 					</Box>
 				</Box>
@@ -82,7 +51,7 @@ const Footer = (): JSX.Element => {
 					color="text.secondary"
 					gutterBottom
 				>
-					&copy; theFront. 2021, Maccarian. All rights reserved
+					&copy; almond. 2021. All rights reserved
 				</Typography>
 				<Typography
 					align={'center'}
