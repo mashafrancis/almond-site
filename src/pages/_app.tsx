@@ -3,6 +3,8 @@ import Head from 'next/head';
 import { AppProps } from 'next/app';
 import { EmotionCache } from '@emotion/utils';
 import { CacheProvider } from '@emotion/react';
+import {Provider} from "react-redux";
+import store from "../store";
 
 import Page from '../components/Page';
 import createEmotionCache from '../createEmotionCache';
@@ -28,6 +30,7 @@ export default function App({
 	emotionCache = clientSideEmotionCache,
 }: Props): JSX.Element {
 	return (
+		<Provider store={store}>
 		<CacheProvider value={emotionCache}>
 			<Head>
 				<meta
@@ -40,5 +43,6 @@ export default function App({
 				<Component {...pageProps} />
 			</Page>
 		</CacheProvider>
+		</Provider>
 	);
 }

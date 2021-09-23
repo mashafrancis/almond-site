@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 // helpers
 import authService from '@utils/auth';
 import { token } from '../testHelpers';
+import mock = jest.mock;
 
 describe('AuthService object', () => {
 	beforeEach(() => {

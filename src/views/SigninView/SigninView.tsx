@@ -6,7 +6,7 @@ import Main from 'layouts/Main';
 import Container from 'components/Container';
 import { Form } from './components';
 
-const SigninCover = (): JSX.Element => {
+const SigninView = (): JSX.Element => {
 	const theme = useTheme();
 	return (
 		<Main>
@@ -114,4 +114,4 @@ const SigninCover = (): JSX.Element => {
 	);
 };
 
-export default SigninCover;
+export default SigninView;

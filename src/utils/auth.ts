@@ -31,7 +31,7 @@ const authService: any = {
 		this.logoutUser();
 		localStorage.setItem(
 			'sessionError',
-			'Your session has expired, please log in to continue.'
+			'Your session has expired, please log in to continue.',
 		);
 		localStorage.setItem('locationReferrer', referrer);
 		window.location.replace('/');
