@@ -2,12 +2,12 @@ import Link from 'next/link';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { alpha, useTheme } from '@mui/material/styles';
-import MenuIcon from '@mui/icons-material/Menu';
 // components
 import { DarkModeToggler } from '@components/atoms';
 import authService from '@utils/auth';
 import CustomAvatar from '@components/molecules/CustomAvatar';
 import Logo from '@components/atoms/Logo';
+import { ShortTextRounded } from '@mui/icons-material';
 
 interface Props {
 	// eslint-disable-next-line @typescript-eslint/ban-types
@@ -82,21 +82,20 @@ const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
 			</Box>
 
 			<Box sx={{ display: { xs: 'flex', md: 'none' } }} alignItems={'center'}>
-				<Box marginRight={2}>
-					<DarkModeToggler />
-				</Box>
+				<DarkModeToggler />
 				<Button
 					onClick={() => onSidebarOpen()}
 					aria-label="Menu"
-					variant={'outlined'}
+					variant={'text'}
 					sx={{
 						borderRadius: 1,
 						minWidth: 'auto',
 						padding: 1,
+						marginLeft: 2,
 						borderColor: alpha(theme.palette.divider, 0.2),
 					}}
 				>
-					<MenuIcon />
+					<ShortTextRounded />
 				</Button>
 			</Box>
 		</Box>

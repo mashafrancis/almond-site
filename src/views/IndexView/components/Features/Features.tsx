@@ -9,23 +9,23 @@ import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import fancyId from '@utils/fancyId';
 
 const mock = [
 	{
 		title: 300,
 		subtitle:
-			'300 + component compositions, which will help you to build any page easily.',
+			'deliveries of our locally produced vermijuice with all nutrients.',
 		suffix: '+',
 	},
 	{
-		title: 45,
-		subtitle:
-			'45 + landing and supported pages to Build a professional website.',
+		title: 21,
+		subtitle: 'farms across all regions in Kenya and growing fast with us.',
 		suffix: '+',
 	},
 	{
 		title: 99,
-		subtitle: '99% of our customers rated 5-star our themes over 5 years.',
+		subtitle: 'of our customers rated 5-star our new way of growing.',
 		suffix: '%',
 	},
 ];
@@ -65,8 +65,8 @@ const Features = (): JSX.Element => {
 						</Typography>
 					</Box>
 					<Grid container spacing={2}>
-						{mock.map((item, i) => (
-							<Grid key={i} item xs={12} md={4}>
+						{mock.map((item) => (
+							<Grid key={fancyId()} item xs={12} md={4}>
 								<Typography variant="h4" color={'primary'} gutterBottom>
 									<VisibilitySensor
 										onChange={(isVisible) => setViewPortVisibility(isVisible)}
@@ -74,7 +74,7 @@ const Features = (): JSX.Element => {
 									>
 										<CountUp
 											redraw={false}
-											end={viewPortEntered ? item.title : 0}
+											end={viewPortEntered ? +item.title : 0}
 											start={0}
 											suffix={item.suffix}
 										/>

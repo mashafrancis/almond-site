@@ -90,7 +90,7 @@ const QuickStart = (): JSX.Element => {
 						<Box
 							component={'img'}
 							src={
-								'https://storage.googleapis.com/static.almondhydroponics.com/static/images/hydroponic-strawberries.jpg'
+								'https://storage.googleapis.com/static.almondhydroponics.com/static/images/showcase1.jpeg'
 							}
 							alt="..."
 							width={160}
@@ -130,7 +130,7 @@ const QuickStart = (): JSX.Element => {
 							width={300}
 							height={300}
 							src={
-								'https://storage.googleapis.com/static.almondhydroponics.com/static/images/hydroponic-strawberries.jpg'
+								'https://storage.googleapis.com/static.almondhydroponics.com/static/images/showcase3.jpeg'
 							}
 							alt="..."
 							marginTop={'-20%'}

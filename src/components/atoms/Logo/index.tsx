@@ -3,9 +3,8 @@ import { Stack, Typography } from '@mui/material';
 import { useTheme } from '@mui/system';
 import Box from '@mui/material/Box';
 
-const darkLogo =
-	'https://static.almondhydroponics.com/static/musings/logo-dark.png';
-const logo = 'https://static.almondhydroponics.com/static/musings/logo.png';
+const darkLogo = 'https://static.almondhydroponics.com/static/logo.png';
+const logo = 'https://static.almondhydroponics.com/static/logo.png';
 
 interface Props {
 	displayText?: boolean;

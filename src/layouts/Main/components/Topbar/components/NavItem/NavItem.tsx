@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
-import {useTheme} from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -13,7 +13,7 @@ interface Props {
 	items: Array<PageItem>;
 }
 
-const NavItem = ({title, id, items}: Props): JSX.Element => {
+const NavItem = ({ title, id, items }: Props): JSX.Element => {
 	const theme = useTheme();
 
 	const [anchorEl, setAnchorEl] = useState(null);

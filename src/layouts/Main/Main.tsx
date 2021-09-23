@@ -20,7 +20,6 @@ import {
 
 import Container from 'components/Container';
 import { Topbar, Sidebar, Footer } from './components';
-import pages from '../navigation';
 import { KeyboardArrowUpRounded } from '@mui/icons-material';
 
 interface Props {
@@ -126,19 +125,14 @@ const Main = ({ children }: Props): JSX.Element => {
 					elevation={0}
 				>
 					<Toolbar>
-						<Container paddingY={{ xs: 1, sm: 1.5 }}>
+						<Container paddingY={{ xs: 1, sm: 1.5 }} paddingX={{ xs: 0 }}>
 							<Topbar onSidebarOpen={handleSidebarOpen} />
 						</Container>
 					</Toolbar>
 				</AppBar>
 			</ElevationScroll>
 			<div id="back-to-top-anchor" />
-			<Sidebar
-				onClose={handleSidebarClose}
-				open={open}
-				variant="temporary"
-				pages={pages}
-			/>
+			<Sidebar onClose={handleSidebarClose} open={open} variant="temporary" />
 			<main>
 				<Box height={{ xs: 58, sm: 66 }} />
 				{children}

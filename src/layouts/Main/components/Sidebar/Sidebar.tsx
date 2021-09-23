@@ -7,14 +7,9 @@ interface Props {
 	onClose: () => void;
 	open: boolean;
 	variant: 'permanent' | 'persistent' | 'temporary' | undefined;
-	pages: {
-		landings: Array<PageItem>;
-		secondary: Array<PageItem>;
-		account: Array<PageItem>;
-	};
 }
 
-const Sidebar = ({ pages, open, variant, onClose }: Props): JSX.Element => {
+const Sidebar = ({ open, variant, onClose }: Props): JSX.Element => {
 	return (
 		<Drawer
 			anchor="left"
@@ -34,7 +29,7 @@ const Sidebar = ({ pages, open, variant, onClose }: Props): JSX.Element => {
 					padding: 1,
 				}}
 			>
-				<SidebarNav pages={pages} onClose={onClose} />
+				<SidebarNav onClose={onClose} />
 			</Box>
 		</Drawer>
 	);

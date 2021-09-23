@@ -76,9 +76,9 @@ const Hero = (): JSX.Element => {
 				width: 1,
 				height: 1,
 				overflow: 'hidden',
-				backgroundColor: theme.palette.alternate.main,
 			}}
 		>
+			<Divider />
 			<Container paddingX={0} paddingY={0} maxWidth={{ sm: 1, md: 1236 }}>
 				<Box
 					display={'flex'}
