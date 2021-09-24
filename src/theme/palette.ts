@@ -6,6 +6,10 @@ export const light = {
 		dark: '#edf1f7',
 	},
 	cardShadow: 'rgba(23, 70, 161, .11)',
+	common: {
+		black: '#000',
+		white: '#fff',
+	},
 	mode: 'light' as PaletteMode,
 	primary: {
 		main: '#318162',

@@ -32,7 +32,8 @@
     "paths": {
       "@components/*": ["components/*"],
       "@utils/*": ["utils/*"],
-      "@modules/*": ["store/modules/*"]
+      "@modules/*": ["store/modules/*"],
+      "@hooks/*": ["hooks/*"]
     }
   },
   "include": [
