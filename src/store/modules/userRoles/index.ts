@@ -278,7 +278,7 @@ export const editUserRole =
 			patch: (
 				arg0: string,
 				arg1: { _id: string }
-			) => Promise<{ data: { data: any, message: string } }>;
+			) => Promise<{ data: { data: any; message: string } }>;
 		}
 	) => {
 		const { _id } = updatedRolePayload;

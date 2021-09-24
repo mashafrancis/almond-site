@@ -1,5 +1,4 @@
 // next.config.js
-const withOffline = require('next-offline');
 const withPWA = require('next-pwa');
 const runtimeCaching = require('next-pwa/cache');
 const securityHeaders = [
@@ -25,10 +24,14 @@ const securityHeaders = [
 	},
 ];
 
-module.exports = withPWA(withOffline({
+module.exports = withPWA({
   pwa: {
     dest: 'public',
+    // disable: process.env.NODE_ENV === 'development',
     runtimeCaching,
+    // fallbacks: {
+    //   image: '/static/images/fallback.png',
+    // }
   },
 	images: {
 		// disableStaticImages: true,
@@ -41,30 +44,5 @@ module.exports = withPWA(withOffline({
 				headers: securityHeaders,
 			},
 		];
-	},
-    workboxOpts: {
-      swDest: process.env.NEXT_EXPORT
-        ? 'service-worker.js'
-        : 'static/service-worker.js',
-      runtimeCaching: [
-        {
-          urlPattern: /^https?.*/,
-          handler: 'NetworkFirst',
-          options: {
-            cacheName: 'offlineCache',
-            expiration: {
-              maxEntries: 200,
-            },
-          },
-        },
-      ],
-    },
-    async rewrites() {
-      return [
-        {
-          source: '/service-worker.js',
-          destination: '/_next/static/service-worker.js',
-        },
-      ]
-    },
-}));
+	}
+});

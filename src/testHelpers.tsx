@@ -1,10 +1,10 @@
-import {applyMiddleware, createStore} from "redux";
+import { applyMiddleware, createStore } from 'redux';
 import configureMockStore from 'redux-mock-store';
 import reducer from './store/rootReducer';
-import thunk from "redux-thunk";
-import {Provider} from "react-redux";
-import {render} from "@testing-library/react";
-import http from "@utils/http";
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import { render } from '@testing-library/react';
+import http from '@utils/http';
 
 const tokenString = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJy
 b2xlIjp7IlVzZXIiOiI1ZTQ3MDNkNjJmYWVlNjFkOGVkZTJkNjUiLCJBZG1pbiI6IjVlNTU1ODAxND
@@ -38,25 +38,25 @@ export const expiredToken = expiredTokenString.replace(/(\r\n|\n|\r)/gm, '');
  * @param {object} extraArgument 3rd argument to pass to thunks, after dispatch and getState
  */
 export const mockStore = (extraArgument: {}, initialState = {}) =>
-  createStore(
-    reducer,
-    initialState,
-    applyMiddleware(thunk.withExtraArgument(extraArgument)),
-  );
+	createStore(
+		reducer,
+		initialState,
+		applyMiddleware(thunk.withExtraArgument(extraArgument))
+	);
 
 /**
  * Mock for axios request.
  */
 export const axiosMock = (url, response, resolve = true) =>
-  new Proxy(
-    {},
-    {
-      get(target, key) {
-        return (URL, payload) =>
-          resolve ? Promise.resolve(response) : Promise.reject(response);
-      },
-    },
-  );
+	new Proxy(
+		{},
+		{
+			get(target, key) {
+				return (URL, payload) =>
+					resolve ? Promise.resolve(response) : Promise.reject(response);
+			},
+		}
+	);
 
 /**
  * Utility mock store that can be used for all instances where one is required
@@ -65,21 +65,21 @@ export const axiosMock = (url, response, resolve = true) =>
  * @param {Object} initialState
  */
 export const reduxMockStore = (mock = axiosMock('', {}), initialState = {}) =>
-  configureMockStore([thunk.withExtraArgument(mock)])(initialState);
+	configureMockStore([thunk.withExtraArgument(mock)])(initialState);
 
 export const renderWithRedux: any = (
-  ui: JSX.Element,
-  {
-    initialState,
-    extraArgument = {},
-    store = mockStore(extraArgument, initialState),
-    ...renderOptions
-  },
+	ui: JSX.Element,
+	{
+		initialState,
+		extraArgument = {},
+		store = mockStore(extraArgument, initialState),
+		...renderOptions
+	}
 ) => {
-  const Wrapper = ({ children }: any) => (
-    <Provider store={store}>{children}</Provider>
-  );
-  return render(ui, { wrapper: Wrapper, ...renderOptions });
+	const Wrapper = ({ children }: any) => (
+		<Provider store={store}>{children}</Provider>
+	);
+	return render(ui, { wrapper: Wrapper, ...renderOptions });
 };
 
 // export const renderWithRedux: any = (
@@ -124,19 +124,19 @@ export const renderWithRedux: any = (
  * @returns {jest.Expect}
  */
 export const dispatchMethodMock = (
-  store: { dispatch: (arg0: any) => Promise<any>; getActions: () => any },
-  thunk: any,
-  expectedActions: any,
+	store: { dispatch: (arg0: any) => Promise<any>; getActions: () => any },
+	thunk: any,
+	expectedActions: any
 ): any =>
-  store.dispatch(thunk).then(() => {
-    expect(store.getActions()).toEqual(expectedActions);
-  });
+	store.dispatch(thunk).then(() => {
+		expect(store.getActions()).toEqual(expectedActions);
+	});
 
 /**
  * Use this if you want to run assertions only after all promises have resolved.
  */
 export const flushPromises = () =>
-  new Promise((resolve) => setImmediate(resolve));
+	new Promise((resolve) => setImmediate(resolve));
 
 /**
  * Adds a mock adapter to the http axios instance
@@ -147,16 +147,16 @@ export const flushPromises = () =>
  * @returns {void}
  */
 export const axiosMockAdapter = (response: any, error: any) => {
-  http.defaults.adapter = (config) =>
-    new Promise((resolve, reject) => {
-      if (error) {
-        error.config = config;
-        reject(error);
-      }
+	http.defaults.adapter = (config) =>
+		new Promise((resolve, reject) => {
+			if (error) {
+				error.config = config;
+				reject(error);
+			}
 
-      response.config = config;
-      resolve(response);
-    });
+			response.config = config;
+			resolve(response);
+		});
 };
 
 /**
@@ -167,17 +167,17 @@ export const axiosMockAdapter = (response: any, error: any) => {
  * @returns {Object}
  */
 export const fullPermissionsState = (resource: any) => ({
-  user: {
-    permissions: {
-      [resource]: {
-        fullAccess: true,
-        edit: true,
-        delete: true,
-        view: true,
-        add: true,
-      },
-    },
-  },
+	user: {
+		permissions: {
+			[resource]: {
+				fullAccess: true,
+				edit: true,
+				delete: true,
+				view: true,
+				add: true,
+			},
+		},
+	},
 });
 
 /**
@@ -188,24 +188,24 @@ export const fullPermissionsState = (resource: any) => ({
  * @returns {Object}
  */
 export const viewOnlyPermissionsState = (resource: any) => ({
-  user: {
-    permissions: {
-      [resource]: {
-        fullAccess: false,
-        edit: false,
-        delete: false,
-        view: true,
-        add: false,
-      },
-    },
-  },
+	user: {
+		permissions: {
+			[resource]: {
+				fullAccess: false,
+				edit: false,
+				delete: false,
+				view: true,
+				add: false,
+			},
+		},
+	},
 });
 
 export const errorMessage = {
-  response: {
-    data: {
-      message: 'Errored schedule',
-    },
-    status: 400,
-  },
+	response: {
+		data: {
+			message: 'Errored schedule',
+		},
+		status: 400,
+	},
 };
