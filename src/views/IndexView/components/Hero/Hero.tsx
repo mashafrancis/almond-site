@@ -61,6 +61,7 @@ const Hero = (): JSX.Element => {
 					effect="blur"
 					src="https://storage.googleapis.com/static.almondhydroponics.com/static/images/hydroponics.webp"
 					srcSet="https://storage.googleapis.com/static.almondhydroponics.com/static/images/hydroponics.webp 2x"
+					alt="home-image"
 					height={{ xs: 'auto', md: 1 }}
 					maxHeight={{ xs: 300, md: 1 }}
 					width={1}

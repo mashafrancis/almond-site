@@ -30,10 +30,11 @@ const Logo = ({ displayText = false }: Props): JSX.Element => {
 				alignItems="center"
 				spacing={1}
 			>
-				<Box display={'flex'} title="almond" width={{ xs: 30, md: 30 }}>
+				<Box display={'flex'} title="almond" width={{ xs: 30, md: 30}}>
 					<Box
 						component={'img'}
 						src={mode === 'light' ? logo : darkLogo}
+						alt="logo"
 						height={1}
 						width={1}
 					/>

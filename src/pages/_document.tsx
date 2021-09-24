@@ -31,6 +31,7 @@ export default class MyDocument extends Document {
 						name="description"
 						content="Almond Hydroponics - Growing your plants smart."
 					/>
+					<link rel="manifest" href="/manifest.json" />
 					<meta
 						name="robots"
 						content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"
