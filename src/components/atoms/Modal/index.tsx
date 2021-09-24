@@ -3,7 +3,8 @@ import {
 	Button,
 	Dialog,
 	DialogActions,
-	DialogContent, DialogContentText,
+	DialogContent,
+	DialogContentText,
 	DialogTitle,
 	IconButton,
 	styled,
@@ -19,8 +20,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 		padding: theme.spacing(1),
 	},
 	'& .MuiDialog-paper': {
-		borderRadius: 12
-	}
+		borderRadius: 12,
+	},
 }));
 
 export interface DialogTitleProps {
@@ -29,25 +30,37 @@ export interface DialogTitleProps {
 	onClose: () => void;
 }
 
-const BootstrapDialogTitle = ({children, onClose, ...other}: DialogTitleProps) => (
-		<DialogTitle sx={{ m: 0, p: 2, backgroundColor: theme => theme.palette.primary.main, color: (theme) => theme.palette.common.white, }} {...other}>
-			{children}
-			{onClose ? (
-				<IconButton
-					aria-label="close"
-					onClick={onClose}
-					sx={{
-						position: 'absolute',
-						right: 8,
-						top: 8,
-						color: (theme) => theme.palette.common.white,
-					}}
-				>
-					<Close />
-				</IconButton>
-			) : null}
-		</DialogTitle>
-	);
+const BootstrapDialogTitle = ({
+	children,
+	onClose,
+	...other
+}: DialogTitleProps) => (
+	<DialogTitle
+		sx={{
+			m: 0,
+			p: 2,
+			backgroundColor: (theme) => theme.palette.primary.main,
+			color: (theme) => theme.palette.common.white,
+		}}
+		{...other}
+	>
+		{children}
+		{onClose ? (
+			<IconButton
+				aria-label="close"
+				onClick={onClose}
+				sx={{
+					position: 'absolute',
+					right: 8,
+					top: 8,
+					color: (theme) => theme.palette.common.white,
+				}}
+			>
+				<Close />
+			</IconButton>
+		) : null}
+	</DialogTitle>
+);
 
 const Modal = ({
 	isModalOpen,
@@ -73,22 +86,18 @@ const Modal = ({
 				{renderHeader}
 			</BootstrapDialogTitle>
 			<DialogContent dividers>
-				<DialogContentText
-					gutterBottom
-				>
-					{renderDialogText}
-				</DialogContentText>
+				<DialogContentText gutterBottom>{renderDialogText}</DialogContentText>
 				{renderContent}
 			</DialogContent>
 			<DialogActions>
 				<Button variant="text" color="primary" onClick={onDismiss}>
 					DISMISS
 				</Button>
-				{
-					disabled && <Button autoFocus onClick={onSubmit} disabled={disabled}>
+				{disabled && (
+					<Button autoFocus onClick={onSubmit} disabled={disabled}>
 						{submitButtonName}
 					</Button>
-				}
+				)}
 			</DialogActions>
 		</BootstrapDialog>
 	);

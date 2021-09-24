@@ -1,14 +1,14 @@
+import { useTheme } from '@mui/material/styles';
+import Link from '@mui/material/Link';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 import Main from 'layouts/Main';
 import Container from 'components/Container';
-import {useTheme} from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-import Button from "@mui/material/Button";
 
-const ServerError = (): JSX.Element => {
+const NotFound = (): JSX.Element => {
 	const theme = useTheme();
 	const isMd = useMediaQuery(theme.breakpoints.up('md'), {
 		defaultMatches: true,
@@ -42,7 +42,7 @@ const ServerError = (): JSX.Element => {
 									align={isMd ? 'left' : 'center'}
 									sx={{ fontWeight: 700 }}
 								>
-									500
+									404
 								</Typography>
 								<Typography
 									variant="h6"
@@ -50,11 +50,10 @@ const ServerError = (): JSX.Element => {
 									color="text.secondary"
 									align={isMd ? 'left' : 'center'}
 								>
-									We are experiencing an internal server problem. Please try
-									again later or{' '}
+									Oops! Looks like you followed a bad link.
 									<br />
 									If you think this is a problem with us, please{' '}
-									<Link href="mailto:almond.froyo@gmail.com" underline="none">
+									<Link href={''} underline="none">
 										tell us
 									</Link>
 								</Typography>
@@ -79,7 +78,7 @@ const ServerError = (): JSX.Element => {
 							<Box height={1} width={1} maxWidth={500}>
 								<Box
 									component={'img'}
-									src={"https://storage.googleapis.com/static.almondhydroponics.com/static/images/illustration_500.svg"}
+									src={"https://storage.googleapis.com/static.almondhydroponics.com/static/images/illustration_404.svg"}
 									width={1}
 									height={1}
 									sx={{
@@ -98,4 +97,4 @@ const ServerError = (): JSX.Element => {
 	);
 };
 
-export default ServerError;
+export default NotFound;

@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Box, Grid, TextField, Button } from '@mui/material';
 import { GoogleIcon, DividerWithText } from '@components/atoms';
-import {useDispatch} from "react-redux";
-import useFormState from "@hooks/useFormState";
-import {loginAccount} from "@modules/authentication";
-import validate from "validate.js";
+import { useDispatch } from 'react-redux';
+import useFormState from '@hooks/useFormState';
+import { loginAccount } from '@modules/authentication';
+import validate from 'validate.js';
 
 const schema = {
 	email: {
@@ -13,7 +13,7 @@ const schema = {
 		length: {
 			maximum: 300,
 		},
-	}
+	},
 };
 
 const Form = (): JSX.Element => {
