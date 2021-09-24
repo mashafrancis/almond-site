@@ -1,4 +1,4 @@
-import { QueryParams } from '../shared.interfaces';
+import { QueryParams } from '../types/shared.interfaces';
 
 /**
  * This helper function generates a url with query parameters

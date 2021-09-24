@@ -19,7 +19,7 @@ import {
 	USER_VERIFY_DEVICE_SUCCESS,
 } from '@modules/device/types';
 import { UserDetails } from '@modules/user/interfaces';
-import { ErrorObject } from '../../../shared.interfaces';
+import { ErrorObject } from '../../../types/shared.interfaces';
 
 export interface AddDeviceActionRequest {
 	type: ADD_DEVICE_REQUEST;

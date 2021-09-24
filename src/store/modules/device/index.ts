@@ -49,7 +49,7 @@ import { Dispatch, Reducer } from 'redux';
 import errorOnSnack from '@utils/errorOnSnack';
 import { displaySnackMessage } from '../snack';
 
-import { Action, ErrorObject } from '../../../shared.interfaces';
+import { Action, ErrorObject } from '../../../types/shared.interfaces';
 
 /**
  * Add a new device request

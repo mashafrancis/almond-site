@@ -14,7 +14,7 @@ import {
 	REDIRECT,
 } from '@modules/authentication/types';
 import { UserDetails } from '@modules/user/interfaces';
-import { ErrorObject } from '../../../shared.interfaces';
+import { ErrorObject } from '../../../types/shared.interfaces';
 
 export interface RedirectAction {
 	type: REDIRECT;

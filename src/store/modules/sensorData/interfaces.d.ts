@@ -12,7 +12,7 @@ import {
 	GET_WATER_TEMPERATURE_TREND_REQUEST,
 	GET_WATER_TEMPERATURE_TREND_SUCCESS,
 } from '@modules/sensorData/types';
-import { ErrorObject } from '../../../shared.interfaces';
+import { ErrorObject } from '../../../types/shared.interfaces';
 
 export interface GetSensorDataRequest {
 	type: GET_SENSOR_DATA_REQUEST;

@@ -19,7 +19,7 @@ import {
 	TOGGLE_PUMP_STATUS_REQUEST,
 	TOGGLE_PUMP_STATUS_SUCCESS,
 } from './types';
-import { ErrorObject } from '../../../shared.interfaces';
+import { ErrorObject } from '../../../types/shared.interfaces';
 
 export interface GetAllSchedulesActionRequest {
 	type: GET_SCHEDULES_REQUEST;

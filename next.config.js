@@ -1,5 +1,7 @@
 // next.config.js
-const withImages = require('next-images');
+const withOffline = require('next-offline');
+const withPWA = require('next-pwa');
+const runtimeCaching = require('next-pwa/cache');
 const securityHeaders = [
 	{
 		key: 'X-Content-Type-Options',
@@ -23,7 +25,11 @@ const securityHeaders = [
 	},
 ];
 
-module.exports = {
+module.exports = withPWA(withOffline({
+  pwa: {
+    dest: 'public',
+    runtimeCaching,
+  },
 	images: {
 		// disableStaticImages: true,
 		domains: ['static.almondhydroponics.com', 'assets.maccarianagency.com'],
@@ -36,4 +42,29 @@ module.exports = {
 			},
 		];
 	},
-};
+    workboxOpts: {
+      swDest: process.env.NEXT_EXPORT
+        ? 'service-worker.js'
+        : 'static/service-worker.js',
+      runtimeCaching: [
+        {
+          urlPattern: /^https?.*/,
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'offlineCache',
+            expiration: {
+              maxEntries: 200,
+            },
+          },
+        },
+      ],
+    },
+    async rewrites() {
+      return [
+        {
+          source: '/service-worker.js',
+          destination: '/_next/static/service-worker.js',
+        },
+      ]
+    },
+}));

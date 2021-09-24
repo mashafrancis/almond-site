@@ -11,7 +11,7 @@ import {
 	EDIT_USER_ROLE_REQUEST,
 	EDIT_USER_ROLE_SUCCESS,
 } from './types';
-import { ErrorObject } from '../../../shared.interfaces';
+import { ErrorObject } from '../../../types/shared.interfaces';
 
 export interface GetUserDetailsActionRequest {
 	type: GET_USER_DETAILS_REQUEST;

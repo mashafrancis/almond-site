@@ -12,7 +12,7 @@ import {
 } from '@modules/analytics/types';
 import { Action, AnyAction, Dispatch, Reducer } from 'redux';
 import errorOnSnack from '@utils/errorOnSnack';
-import { ErrorObject } from '../../../shared.interfaces';
+import { ErrorObject } from '../../../types/shared.interfaces';
 
 /**
  * Get admin statistics request

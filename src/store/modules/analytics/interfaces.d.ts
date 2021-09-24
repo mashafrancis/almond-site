@@ -3,7 +3,7 @@ import {
 	GET_ADMIN_STATS_REQUEST,
 	GET_ADMIN_STATS_SUCCESS,
 } from '@modules/analytics/types';
-import { ErrorObject } from '../../../shared.interfaces';
+import { ErrorObject } from '../../../types/shared.interfaces';
 
 export interface GetAdminStatsRequest {
 	type: GET_ADMIN_STATS_REQUEST;

@@ -34,7 +34,7 @@ import {
 	GET_USER_ROLES_SUCCESS,
 	State,
 } from './types';
-import { Action, ErrorObject } from '../../../shared.interfaces';
+import { Action, ErrorObject } from '../../../types/shared.interfaces';
 
 /**
  * Create user roles request action creator

@@ -12,7 +12,7 @@ import {
 	EDIT_USER_ROLES_REQUEST,
 	EDIT_USER_ROLES_FAILURE,
 } from './types';
-import { ErrorObject } from '../../../shared.interfaces';
+import { ErrorObject } from '../../../types/shared.interfaces';
 
 export interface GetUserRolesActionRequest {
 	type: GET_USER_ROLES_REQUEST;

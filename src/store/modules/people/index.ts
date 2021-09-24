@@ -24,7 +24,7 @@ import {
 	UPDATE_PERSON_DETAILS_SUCCESS,
 } from './types';
 
-import { ErrorObject } from '../../../shared.interfaces';
+import { ErrorObject } from '../../../types/shared.interfaces';
 
 /**
  * Get userDetails request action creator

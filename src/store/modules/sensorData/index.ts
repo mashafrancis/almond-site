@@ -34,7 +34,7 @@ import {
 import { Action, AnyAction, Dispatch, Reducer } from 'redux';
 import generateUrlWithQuery from '@utils/generateUrlWithQuery';
 import influxHttp from '@utils/influxHttp';
-import { ErrorObject, QueryParams } from '../../../shared.interfaces';
+import { ErrorObject, QueryParams } from '../../../types/shared.interfaces';
 
 /**
  * Get air temperature trend request
