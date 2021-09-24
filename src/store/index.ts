@@ -18,7 +18,7 @@ const composeEnhancers = composeWithDevTools({ trace: true, traceLimit: 25 });
 const reduxMiddleware = [thunk.withExtraArgument(cachedHttp)];
 
 const devMiddleware = composeEnhancers(
-	applyMiddleware(...reduxMiddleware, reduxImmutableStateInvariant()),
+	applyMiddleware(...reduxMiddleware, reduxImmutableStateInvariant())
 );
 const prodMiddleware = applyMiddleware(...reduxMiddleware);
 

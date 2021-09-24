@@ -71,7 +71,7 @@ export const getSchedulesRequest = (): GetAllSchedulesActionRequest => ({
  * @returns {GetAllSchedulesActionSuccess}
  */
 export const getSchedulesSuccess = (
-	schedules: Schedule[],
+	schedules: Schedule[]
 ): GetAllSchedulesActionSuccess => ({
 	schedules,
 	type: GET_SCHEDULES_SUCCESS,
@@ -83,7 +83,7 @@ export const getSchedulesSuccess = (
  * @returns {GetAllSchedulesActionSuccess}
  */
 export const getSchedulesFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): GetAllSchedulesActionFailure => ({
 	errors,
 	type: GET_SCHEDULES_FAILURE,
@@ -105,7 +105,7 @@ export const addScheduleRequest = (): AddScheduleActionRequest => ({
  * @returns {AddScheduleActionSuccess}
  */
 export const addScheduleSuccess = (
-	schedule: NewSchedule,
+	schedule: NewSchedule
 ): AddScheduleActionSuccess => ({
 	schedule,
 	type: ADD_SCHEDULES_SUCCESS,
@@ -117,7 +117,7 @@ export const addScheduleSuccess = (
  * @returns {AddSchedulesActionFailure}
  */
 export const addScheduleFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): AddSchedulesActionFailure => ({
 	errors,
 	type: ADD_SCHEDULES_FAILURE,
@@ -140,7 +140,7 @@ export const deleteSingleScheduleRequest =
  * @param id
  */
 export const deleteSingleScheduleSuccess = (
-	id: string,
+	id: string
 ): DeleteScheduleActionSuccess => ({
 	id,
 	type: DELETE_SCHEDULE_SUCCESS,
@@ -152,7 +152,7 @@ export const deleteSingleScheduleSuccess = (
  * @returns {DeleteScheduleActionFailure}
  */
 export const deleteSingleScheduleFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): DeleteScheduleActionFailure => ({
 	errors,
 	type: DELETE_SCHEDULE_FAILURE,
@@ -177,7 +177,7 @@ export const editScheduleRequest = (): EditScheduleActionRequest => ({
  */
 export const editScheduleSuccess = (
 	id: string,
-	schedule: NewSchedule,
+	schedule: NewSchedule
 ): EditScheduleActionSuccess => ({
 	id,
 	schedule,
@@ -190,7 +190,7 @@ export const editScheduleSuccess = (
  * @returns {EditScheduleActionFailure}
  */
 export const editScheduleFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): EditScheduleActionFailure => ({
 	errors,
 	type: EDIT_SCHEDULE_FAILURE,
@@ -212,7 +212,7 @@ export const togglePumpStatusRequest = (): TogglePumpStatusActionRequest => ({
  * @param enabled
  */
 export const togglePumpStatusSuccess = (
-	enabled: boolean,
+	enabled: boolean
 ): TogglePumpStatusActionSuccess => ({
 	enabled,
 	type: TOGGLE_PUMP_STATUS_SUCCESS,
@@ -224,7 +224,7 @@ export const togglePumpStatusSuccess = (
  * @returns {GetAllSchedulesActionSuccess}
  */
 export const togglePumpStatusFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): TogglePumpStatusActionFailure => ({
 	errors,
 	type: TOGGLE_PUMP_STATUS_FAILURE,
@@ -246,7 +246,7 @@ export const getPumpStatusRequest = (): GetPumpStatusActionRequest => ({
  * @param enabled
  */
 export const getPumpStatusSuccess = (
-	enabled: boolean,
+	enabled: boolean
 ): GetPumpStatusActionSuccess => ({
 	enabled,
 	type: GET_PUMP_STATUS_SUCCESS,
@@ -258,7 +258,7 @@ export const getPumpStatusSuccess = (
  * @returns {GetAllSchedulesActionSuccess}
  */
 export const getPumpStatusFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): GetPumpStatusActionFailure => ({
 	errors,
 	type: GET_PUMP_STATUS_FAILURE,
@@ -277,9 +277,9 @@ export const getAllSchedules =
 		http: {
 			get: (
 				arg0: string,
-				arg1: { cache: boolean },
+				arg1: { cache: boolean }
 			) => Promise<{ data: { data: any } }>;
-		},
+		}
 	) => {
 		dispatch(getSchedulesRequest());
 		return http
@@ -307,7 +307,7 @@ export const addNewSchedule =
 		getState: any,
 		http: {
 			post: (arg0: string, arg1: SchedulePayload) => Promise<{ data: any }>;
-		},
+		}
 	) => {
 		dispatch(addScheduleRequest());
 		return http
@@ -334,7 +334,7 @@ export const deleteSingleSchedule =
 	(
 		dispatch: Dispatch,
 		getState: any,
-		http: { delete: (arg0: string) => Promise<{ data: { message: any } }> },
+		http: { delete: (arg0: string) => Promise<{ data: { message: any } }> }
 	) => {
 		dispatch(deleteSingleScheduleRequest());
 		return http
@@ -363,7 +363,7 @@ export const editSchedule =
 		getState: any,
 		http: {
 			patch: (arg0: string, arg1: SchedulePayload) => Promise<{ data: any }>;
-		},
+		}
 	) => {
 		dispatch(editScheduleRequest());
 		return http
@@ -392,7 +392,7 @@ export const togglePump =
 		getState: any,
 		http: {
 			put: (arg0: string, arg1: { enabled: any }) => Promise<{ data: any }>;
-		},
+		}
 	) => {
 		dispatch(togglePumpStatusRequest());
 		return http
@@ -417,7 +417,7 @@ export const togglePump =
 				errorOnSnack(
 					error,
 					dispatch,
-					`turning pump ${payload.enabled ? 'ON' : 'OFF'}`,
+					`turning pump ${payload.enabled ? 'ON' : 'OFF'}`
 				);
 				dispatch(togglePumpStatusFailure(error));
 			});
@@ -434,7 +434,7 @@ export const getPumpStatus =
 		getState: any,
 		http: {
 			get: (arg0: string) => Promise<{ data: { data: { enabled: boolean } } }>;
-		},
+		}
 	) => {
 		dispatch(getPumpStatusRequest());
 		return http
@@ -465,9 +465,9 @@ export const toggleScheduleStatus =
 		http: {
 			put: (
 				arg0: string,
-				arg1: any,
+				arg1: any
 			) => Promise<{ data: { data: Schedule; message: string } }>;
-		},
+		}
 	) => {
 		dispatch(editScheduleRequest());
 		return http
@@ -494,7 +494,7 @@ export const schedulesInitialState = {
 
 export const reducer: Reducer<State, Action> = (
 	state: State = schedulesInitialState,
-	action: AnyAction,
+	action: AnyAction
 ) => {
 	switch (action.type) {
 		case GET_SCHEDULES_REQUEST:
@@ -543,7 +543,7 @@ export const reducer: Reducer<State, Action> = (
 				...state,
 				isLoading: action.isLoading,
 				schedules: [...state.schedules].filter(
-					(schedule) => action.id !== schedule._id,
+					(schedule) => action.id !== schedule._id
 				),
 				errors: null,
 			};
@@ -568,7 +568,7 @@ export const reducer: Reducer<State, Action> = (
 								...schedule,
 								...action.schedule,
 						  }
-						: schedule,
+						: schedule
 				),
 				errors: null,
 			};

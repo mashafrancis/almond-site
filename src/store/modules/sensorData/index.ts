@@ -34,7 +34,6 @@ import {
 import { Action, AnyAction, Dispatch, Reducer } from 'redux';
 import generateUrlWithQuery from '@utils/generateUrlWithQuery';
 import influxHttp from '@utils/influxHttp';
-import { displaySnackMessage } from '@modules/snack';
 import { ErrorObject, QueryParams } from '../../../shared.interfaces';
 
 /**
@@ -52,7 +51,7 @@ export const getSensorDataRequest = (): GetSensorDataRequest => ({
  * @returns {GetAirTemperatureDataRequest}
  */
 export const getSensorDataSuccess = (
-	sensorData: SensorData,
+	sensorData: SensorData
 ): GetSensorDataSuccess => ({
 	sensorData,
 	type: GET_SENSOR_DATA_SUCCESS,
@@ -65,7 +64,7 @@ export const getSensorDataSuccess = (
  * @returns {GetSensorDataFailure}
  */
 export const getSensorDataFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): GetSensorDataFailure => ({
 	errors,
 	type: GET_SENSOR_DATA_FAILURE,
@@ -88,7 +87,7 @@ export const getAirTemperatureTrendRequest =
  * @returns {GetAirTemperatureDataSuccess}
  */
 export const getAirTemperatureTrendSuccess = (
-	airTemperatureTrend: ChartDataTrend[],
+	airTemperatureTrend: ChartDataTrend[]
 ): GetAirTemperatureDataSuccess => ({
 	airTemperatureTrend,
 	type: GET_AIR_TEMPERATURE_TREND_SUCCESS,
@@ -101,7 +100,7 @@ export const getAirTemperatureTrendSuccess = (
  * @returns {GetAirTemperatureDataFailure}
  */
 export const getAirTemperatureTrendFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): GetAirTemperatureDataFailure => ({
 	errors,
 	type: GET_AIR_TEMPERATURE_TREND_FAILURE,
@@ -124,7 +123,7 @@ export const getWaterTemperatureTrendRequest =
  * @returns {GetWaterTemperatureDataSuccess}
  */
 export const getWaterTemperatureTrendSuccess = (
-	waterTemperatureTrend: ChartDataTrend[],
+	waterTemperatureTrend: ChartDataTrend[]
 ): GetWaterTemperatureDataSuccess => ({
 	waterTemperatureTrend,
 	type: GET_WATER_TEMPERATURE_TREND_SUCCESS,
@@ -137,7 +136,7 @@ export const getWaterTemperatureTrendSuccess = (
  * @returns {GetAirTemperatureDataFailure}
  */
 export const getWaterTemperatureTrendFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): GetWaterTemperatureDataFailure => ({
 	errors,
 	type: GET_WATER_TEMPERATURE_TREND_FAILURE,
@@ -160,7 +159,7 @@ export const getPlantHumidityTrendRequest =
  * @returns {GetPlantHumidityDataFailure}
  */
 export const getPlantHumidityTrendSuccess = (
-	plantHumidityTrend: ChartDataTrend[],
+	plantHumidityTrend: ChartDataTrend[]
 ): GetPlantHumidityDataSuccess => ({
 	plantHumidityTrend,
 	type: GET_PLANT_HUMIDITY_TREND_SUCCESS,
@@ -173,7 +172,7 @@ export const getPlantHumidityTrendSuccess = (
  * @returns {GetPlantHumidityDataFailure}
  */
 export const getPlantHumidityTrendFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): GetPlantHumidityDataFailure => ({
 	errors,
 	type: GET_PLANT_HUMIDITY_TREND_FAILURE,
@@ -186,7 +185,7 @@ export const getPlantHumidityTrendFailure = (
  * @returns {GetSensorDataSuccess}
  */
 export const getSensorDataFromMqtt = (
-	data: SensorData,
+	data: SensorData
 ): GetSensorDataSuccess => getSensorDataSuccess(data);
 
 export const getSensorDataFromInflux = () => (dispatch: Dispatch) => {
@@ -222,8 +221,8 @@ export const getAirTemperatureTrend =
 						data.map((element) => ({
 							x: element._time,
 							y: element._value,
-						})) ?? [],
-					),
+						})) ?? []
+					)
 				);
 			})
 			.catch((error) => {
@@ -291,7 +290,7 @@ export const sensorDataInitialState = {
 
 export const reducer: Reducer<State, Action> = (
 	state: State = sensorDataInitialState,
-	action: AnyAction,
+	action: AnyAction
 ) => {
 	switch (action.type) {
 		case GET_SENSOR_DATA_SUCCESS:

@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 const errorOnSnack = (
 	error: { response: any },
 	dispatch: Dispatch,
-	customMessage?: string,
+	customMessage?: string
 ) => {
 	let message;
 	let errorMessage =
@@ -20,7 +20,7 @@ const errorOnSnack = (
 	}
 
 	return dispatch(
-		displaySnackMessage(error?.response ? message : errorMessage, 'error'),
+		displaySnackMessage(error?.response ? message : errorMessage, 'error')
 	);
 };
 

@@ -29,7 +29,7 @@ describe('ClassNameFormatter function', () => {
 				'form-group': true,
 				'form-group--hidden': false,
 			},
-			'input',
+			'input'
 		);
 
 		expect(className).toEqual('form-group input');

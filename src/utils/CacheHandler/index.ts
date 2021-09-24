@@ -13,7 +13,7 @@ class CacheHandler {
 	 */
 	static extractUrlEndpoint = (
 		url: string,
-		apiBaseUrl: string = process.env.ALMOND_API as string,
+		apiBaseUrl: string = process.env.ALMOND_API as string
 	): string => {
 		let baselessUrl = url.replace(apiBaseUrl, '');
 

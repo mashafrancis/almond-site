@@ -9,7 +9,7 @@ import { DISPLAY_SNACK_MESSAGE } from './types';
  */
 export const displaySnackMessage = (
 	message: string,
-	severity?: Severity,
+	severity?: Severity
 ): DisplaySnackMessageAction => ({
 	snack: {
 		message,

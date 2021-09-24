@@ -58,7 +58,7 @@ export const createAccountSuccess = (): CreateAccountActionSuccess => ({
  * @returns {CreateAccountActionFailure}
  */
 export const createAccountFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): CreateAccountActionFailure => ({
 	errors,
 	type: CREATE_ACCOUNT_FAILURE,
@@ -79,7 +79,7 @@ export const loginAccountRequest = (): LoginActionRequest => ({
  * @returns {LoginActionSuccess}
  */
 export const loginAccountSuccess = (
-	user: UserDetails,
+	user: UserDetails
 ): LoginActionSuccess => ({
 	user,
 	type: LOGIN_SUCCESS,
@@ -87,7 +87,7 @@ export const loginAccountSuccess = (
 });
 
 export const loginAccountFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): LoginActionFailure => ({
 	errors,
 	type: LOGIN_FAILURE,
@@ -117,7 +117,7 @@ export const passwordResetSuccess = (): PasswordResetActionSuccess => ({
  * @returns {PasswordResetActionFailure}
  */
 export const passwordResetFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): PasswordResetActionFailure => ({
 	errors,
 	type: PASSWORD_RESET_FAILURE,
@@ -147,7 +147,7 @@ export const passwordChangeSuccess = (): PasswordChangeActionSuccess => ({
  * @returns {PasswordChangeActionFailure}
  */
 export const passwordChangeFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): PasswordChangeActionFailure => ({
 	errors,
 	type: PASSWORD_CHANGE_FAILURE,
@@ -172,7 +172,7 @@ export const createAccount =
 				errorOnSnack(
 					error,
 					dispatch,
-					'creating your new account. Kindly try again.',
+					'creating your new account. Kindly try again.'
 				);
 			});
 	};
@@ -197,7 +197,7 @@ export const loginAccount =
 				errorOnSnack(
 					error,
 					dispatch,
-					'login in to your account. Kindly try again.',
+					'login in to your account. Kindly try again.'
 				);
 			});
 	};
@@ -248,7 +248,7 @@ export const userAccountInitialState = {
 
 export const reducer: Reducer<State, Action> = (
 	state: State = userAccountInitialState,
-	action: AnyAction,
+	action: AnyAction
 ) => {
 	switch (action.type) {
 		case CREATE_ACCOUNT_REQUEST:

@@ -62,11 +62,7 @@ const Fluid = ({ children }: Props): JSX.Element => {
 					</Container>
 				</AppBar>
 			</HideOnScroll>
-			<Sidebar
-				onClose={handleSidebarClose}
-				open={open}
-				variant="temporary"
-			/>
+			<Sidebar onClose={handleSidebarClose} open={open} variant="temporary" />
 			<main>
 				<Box height={{ xs: 58, sm: 66 }} />
 				{children}

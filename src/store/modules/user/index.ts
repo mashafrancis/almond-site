@@ -49,7 +49,7 @@ export const getUserDetailsRequest = (): GetUserDetailsActionRequest => ({
  * @returns {GetUserDetailsActionSuccess}
  */
 export const getUserDetailsSuccess = (
-	userDetails: UserDetails,
+	userDetails: UserDetails
 ): GetUserDetailsActionSuccess => ({
 	userDetails,
 	isFetchingDetails: false,
@@ -61,7 +61,7 @@ export const getUserDetailsSuccess = (
  * @returns {GetUserDetailsActionFailure}
  */
 export const getUserDetailsFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): GetUserDetailsActionFailure => ({
 	errors,
 	isFetchingDetails: false,
@@ -78,7 +78,7 @@ export const editUserDetailsRequest = (): EditUserDetailsActionRequest => ({
  * @returns {EditUserDetailsActionSuccess}
  */
 export const editUserDetailsSuccess = (
-	userDetails: UserDetails,
+	userDetails: UserDetails
 ): EditUserDetailsActionSuccess => ({
 	userDetails,
 	isLoading: false,
@@ -90,7 +90,7 @@ export const editUserDetailsSuccess = (
  * @returns {EditUserDetailsActionFailure}
  */
 export const editUserDetailsFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): EditUserDetailsActionFailure => ({
 	errors,
 	isLoading: false,
@@ -107,7 +107,7 @@ export const editUserRoleRequest = (): EditUserRoleActionRequest => ({
  * @returns {EditUserRoleActionSuccess}
  */
 export const editUserRoleSuccess = (
-	userDetails: UserDetails,
+	userDetails: UserDetails
 ): EditUserRoleActionSuccess => ({
 	userDetails,
 	isLoading: false,
@@ -119,7 +119,7 @@ export const editUserRoleSuccess = (
  * @returns {EditUserRoleActionFailure}
  */
 export const editUserRoleFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): EditUserRoleActionFailure => ({
 	errors,
 	isLoading: false,
@@ -141,7 +141,7 @@ export const getUserDetails =
 	(
 		dispatch: Dispatch,
 		getState: any,
-		http: { get: (arg0: string) => Promise<{ data: { data: UserDetails } }> },
+		http: { get: (arg0: string) => Promise<{ data: { data: UserDetails } }> }
 	) => {
 		dispatch(getUserDetailsRequest());
 		return http
@@ -170,9 +170,9 @@ export const editUserDetails =
 		http: {
 			put: (
 				arg0: string,
-				arg1: any,
+				arg1: any
 			) => Promise<{ data: { data: any; message: any } }>;
-		},
+		}
 	) => {
 		dispatch(editUserDetailsRequest());
 		return http
@@ -202,9 +202,9 @@ export const editUserRole =
 		http: {
 			put: (
 				arg0: string,
-				arg1: any,
+				arg1: any
 			) => Promise<{ data: { data: any; message: any } }>;
-		},
+		}
 	) => {
 		dispatch(editUserRoleRequest());
 		return http
@@ -247,7 +247,7 @@ export const userInitialState = {
  */
 export const reducer = (
 	state: State = userInitialState,
-	action: AnyAction,
+	action: AnyAction
 ) => {
 	switch (action.type) {
 		case GET_USER_DETAILS_REQUEST:

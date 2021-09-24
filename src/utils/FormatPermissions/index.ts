@@ -18,7 +18,7 @@ import { fullAccess, noAccess, noAccessPermissions } from './fixtures';
  * @returns {FormattedPermission} formattedPermission
  */
 const getFormattedPermission = (
-	accessLevelPermissions: Permission[],
+	accessLevelPermissions: Permission[]
 ): FormattedPermission =>
 	accessLevelPermissions.reduce((formattedPermission, permission) => {
 		const permissionType = camelCase(permission.type);
@@ -55,7 +55,7 @@ const getFormattedPermission = (
 const formatPermissions = (role: UserRole): FormattedPermissions =>
 	role.resourceAccessLevels.reduce((resources, accessLevel) => {
 		const formattedPermission = getFormattedPermission(
-			accessLevel.permissions,
+			accessLevel.permissions
 		);
 
 		return {

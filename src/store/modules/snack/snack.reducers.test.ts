@@ -13,11 +13,11 @@ describe('The Snack Reducer', () => {
 		const displaySnackMessageAction = displaySnackMessage(snackMessage);
 		const newSnackMessageState = reducer(
 			snackMessageDefaultState,
-			displaySnackMessageAction,
+			displaySnackMessageAction
 		) as any;
 
 		expect(newSnackMessageState.message).toEqual(
-			'Time schedule created successfully',
+			'Time schedule created successfully'
 		);
 	});
 });

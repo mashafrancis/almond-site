@@ -40,7 +40,7 @@ describe('User reducer', () => {
 			const editUserDetailsSuccessAction = editUserDetailsSuccess(data);
 			const userState = reducer(
 				userInitialState,
-				editUserDetailsSuccessAction,
+				editUserDetailsSuccessAction
 			);
 
 			expect(userState.errors).toBe(null);
@@ -51,7 +51,7 @@ describe('User reducer', () => {
 				editUserDetailsFailure(errorMessage);
 			const userState = reducer(
 				userInitialState,
-				editUserDetailsFailureAction,
+				editUserDetailsFailureAction
 			);
 
 			expect(userState.errors).toBe(errorMessage);

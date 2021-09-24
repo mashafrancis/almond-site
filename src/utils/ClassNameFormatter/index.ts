@@ -11,7 +11,7 @@ import { ClassConditions } from './interfaces';
  */
 const classNameFormatter = (
 	classConditions: ClassConditions,
-	otherClasses?: string,
+	otherClasses?: string
 ) => {
 	const className = Object.keys(classConditions)
 		.reduce((formattedClasses, currentClass) => {

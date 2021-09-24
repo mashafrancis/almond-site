@@ -4,7 +4,7 @@ import { RedirectAction } from '@modules/redirect/interfaces.d';
 
 export const redirect = (
 	redirectLink: string,
-	redirectMessage: string,
+	redirectMessage: string
 ): RedirectAction => ({
 	type: REDIRECT,
 	redirectLink,

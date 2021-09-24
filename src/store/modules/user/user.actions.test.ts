@@ -124,7 +124,7 @@ describe('User module actions', () => {
 			return dispatchMethodMock(
 				store,
 				editUserDetails(userId, editedUserDetailsPayload),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -166,7 +166,7 @@ describe('User module actions', () => {
 			return dispatchMethodMock(
 				store,
 				editUserDetails(userId, editedUserDetailsPayload),
-				expectedActions,
+				expectedActions
 			);
 		});
 	});

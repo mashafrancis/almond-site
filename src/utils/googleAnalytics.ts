@@ -1,5 +1,5 @@
 // react libraries
-import * as ReactGA from 'react-ga';
+import ReactGA from 'react-ga';
 
 /**
  * This function Initializes tracking Id for google analytics to push data
@@ -13,7 +13,21 @@ export const initializeGA = (): void =>
 /**
  * This function logs the page that is being viewed
  *
- * @param {String} pathname
  * @returns void
  */
-export const logPageView = (pathname: string) => ReactGA.pageview(pathname);
+export const logPageView = () => {
+	ReactGA.set({ page: window.location.pathname })
+	ReactGA.pageview(window.location.pathname);
+}
+
+export const logEvent = (category = '', action = '') => {
+	if (category && action) {
+		ReactGA.event({ category, action })
+	}
+}
+
+export const logException = (description = '', fatal = false) => {
+	if (description) {
+		ReactGA.exception({ description, fatal })
+	}
+}

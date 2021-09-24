@@ -43,7 +43,7 @@ describe('Device reducer', () => {
 			const addNewDeviceRequestAction = addDeviceRequest();
 			const deviceState = reducer(
 				deviceInitialState,
-				addNewDeviceRequestAction,
+				addNewDeviceRequestAction
 			);
 
 			expect(deviceState.isLoading).toBeTruthy();
@@ -54,7 +54,7 @@ describe('Device reducer', () => {
 			const addNewDeviceSuccessAction = addDeviceSuccess(devicePayload);
 			const deviceState = reducer(
 				deviceInitialState,
-				addNewDeviceSuccessAction,
+				addNewDeviceSuccessAction
 			);
 
 			expect(deviceState.isLoading).toBeFalsy();
@@ -65,7 +65,7 @@ describe('Device reducer', () => {
 			const addNewDeviceFailureAction = addDeviceFailure(errorMessage);
 			const deviceState = reducer(
 				deviceInitialState,
-				addNewDeviceFailureAction,
+				addNewDeviceFailureAction
 			);
 
 			expect(deviceState.isLoading).toBeFalsy();
@@ -78,7 +78,7 @@ describe('Device reducer', () => {
 			const userVerifyDeviceRequestAction = verifyDeviceRequest();
 			const deviceState = reducer(
 				deviceInitialState,
-				userVerifyDeviceRequestAction,
+				userVerifyDeviceRequestAction
 			);
 
 			expect(deviceState.isLoading).toBeTruthy();
@@ -90,7 +90,7 @@ describe('Device reducer', () => {
 				verifyDeviceSuccess(deviceIdPayload);
 			const deviceState = reducer(
 				deviceInitialState,
-				userVerifyDeviceSuccessAction,
+				userVerifyDeviceSuccessAction
 			);
 
 			expect(deviceState.isLoading).toBeFalsy();
@@ -101,7 +101,7 @@ describe('Device reducer', () => {
 			const userVerifyDeviceFailureAction = verifyDeviceFailure(errorMessage);
 			const deviceState = reducer(
 				deviceInitialState,
-				userVerifyDeviceFailureAction,
+				userVerifyDeviceFailureAction
 			);
 
 			expect(deviceState.isLoading).toBeFalsy();
@@ -114,7 +114,7 @@ describe('Device reducer', () => {
 			const activateDeviceRequestAction = activateDeviceRequest();
 			const deviceState = reducer(
 				deviceInitialState,
-				activateDeviceRequestAction,
+				activateDeviceRequestAction
 			);
 
 			expect(deviceState.isLoading).toBeTruthy();
@@ -123,11 +123,11 @@ describe('Device reducer', () => {
 
 		it('should dispatch ACTIVATE_DEVICE_SUCCESS', () => {
 			const activateDeviceSuccessAction = activateDeviceSuccess(
-				activateDevicePayload,
+				activateDevicePayload
 			);
 			const deviceState = reducer(
 				deviceInitialState,
-				activateDeviceSuccessAction,
+				activateDeviceSuccessAction
 			);
 
 			expect(deviceState.isLoading).toBeFalsy();
@@ -138,7 +138,7 @@ describe('Device reducer', () => {
 			const activateDeviceFailureAction = activateDeviceFailure(errorMessage);
 			const deviceState = reducer(
 				deviceInitialState,
-				activateDeviceFailureAction,
+				activateDeviceFailureAction
 			);
 
 			expect(deviceState.isLoading).toBeFalsy();
@@ -177,7 +177,7 @@ describe('Device reducer', () => {
 			const deleteDeviceRequestAction = deleteSingleDeviceRequest();
 			const deviceState = reducer(
 				deviceInitialState,
-				deleteDeviceRequestAction,
+				deleteDeviceRequestAction
 			);
 
 			expect(deviceState.isLoading).toBeTruthy();
@@ -190,11 +190,11 @@ describe('Device reducer', () => {
 			};
 
 			const deleteDeviceSuccessAction = deleteSingleDeviceSuccess(
-				'5dfa0dcd53890575b993eb74',
+				'5dfa0dcd53890575b993eb74'
 			);
 			const deviceState = reducer(
 				deviceInitialState as any,
-				deleteDeviceSuccessAction,
+				deleteDeviceSuccessAction
 			);
 
 			expect(deviceState.isLoading).toBeFalsy();
@@ -207,7 +207,7 @@ describe('Device reducer', () => {
 				deleteSingleDeviceFailure(errorMessage);
 			const deviceState = reducer(
 				deviceInitialState,
-				deleteDeviceFailureAction,
+				deleteDeviceFailureAction
 			);
 
 			expect(deviceState.isLoading).toBeFalsy();
@@ -237,10 +237,10 @@ describe('Device reducer', () => {
 			const editDeviceSuccessAction = editDeviceSuccess(id, editDevicePayload);
 			const deviceState = reducer(
 				deviceInitialState as any,
-				editDeviceSuccessAction,
+				editDeviceSuccessAction
 			);
 			const updatedDevice = deviceState.devices.find(
-				(device) => device._id === editDevicePayload._id,
+				(device) => device._id === editDevicePayload._id
 			);
 
 			expect(deviceState.isLoading).toBeFalsy();

@@ -15,7 +15,7 @@ const capitalize = (paragraph: string) => {
 	const paragraphWithCapitalizedSentence = lowerCaseParagraph.replace(
 		unCapitalizedNewSentencePattern,
 		(match, symbolWithSpace, firstLetter) =>
-			symbolWithSpace + firstLetter.toUpperCase(),
+			symbolWithSpace + firstLetter.toUpperCase()
 	);
 
 	return (

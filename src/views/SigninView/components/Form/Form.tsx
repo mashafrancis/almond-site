@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
+import {GoogleIcon, DividerWithText} from "@components/atoms";
 
 const validationSchema = yup.object({
 	email: yup
@@ -36,6 +37,9 @@ const Form = (): JSX.Element => {
 		onSubmit,
 	});
 
+	const handleLogin = () =>
+		window.location.replace(`${process.env.ALMOND_API}/auth/google`);
+
 	return (
 		<Box>
 			<Box marginBottom={4}>
@@ -54,9 +58,21 @@ const Form = (): JSX.Element => {
 			<form onSubmit={formik.handleSubmit}>
 				<Grid container spacing={4}>
 					<Grid item xs={12}>
-						<Typography variant={'subtitle2'} sx={{ marginBottom: 2 }}>
-							Enter your email
-						</Typography>
+						<Button
+							size="large"
+							variant="outlined"
+							fullWidth
+							startIcon={<GoogleIcon />}
+							onClick={handleLogin}
+						>
+							Continue with Google
+						</Button>
+					</Grid>
+
+					<Grid item xs={12}>
+						<DividerWithText>OR</DividerWithText>
+					</Grid>
+					<Grid item xs={12}>
 						<TextField
 							label="Email *"
 							variant="outlined"
@@ -77,11 +93,6 @@ const Form = (): JSX.Element => {
 							width={1}
 							marginBottom={2}
 						>
-							<Box marginBottom={{ xs: 1, sm: 0 }}>
-								<Typography variant={'subtitle2'}>
-									Enter your password
-								</Typography>
-							</Box>
 							<Typography variant={'subtitle2'}>
 								<Link
 									component={'a'}

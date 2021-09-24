@@ -18,7 +18,7 @@ describe('People reducer:', () => {
 	describe('Get people', () => {
 		it('should dispatch GET_ALL_PEOPLE_SUCCESS', () => {
 			const getPeopleSuccessAction = getAllPeopleSuccess(
-				peopleResponse.data as any,
+				peopleResponse.data as any
 			);
 			const peopleState = reducer(peopleInitialState, getPeopleSuccessAction);
 
@@ -41,14 +41,14 @@ describe('People reducer:', () => {
 
 		it('should dispatch UPDATE_PERSON_DETAILS_SUCCESS', () => {
 			const updatePersonSuccessAction = updatePersonSuccess(
-				personToUpdate as any,
+				personToUpdate as any
 			);
 			const peopleState = reducer(
 				peopleInitialState as any,
-				updatePersonSuccessAction,
+				updatePersonSuccessAction
 			);
 			const updatedPerson = peopleState.people.find(
-				(person) => person._id === personToUpdate._id,
+				(person) => person._id === personToUpdate._id
 			);
 
 			expect(peopleState.errors).toBe(null);
@@ -60,7 +60,7 @@ describe('People reducer:', () => {
 			const updatePersonFailureAction = updatePersonFailure(errorMessage);
 			const peopleState = reducer(
 				peopleInitialState as any,
-				updatePersonFailureAction,
+				updatePersonFailureAction
 			);
 
 			expect(peopleState.errors).toBe(errorMessage);

@@ -14,7 +14,7 @@ import { AxiosInstance } from 'axios';
 const cacheAxiosInstance = (
 	axiosInstance: AxiosInstance,
 	defaultTtl: number,
-	cacheManager = CacheHandler,
+	cacheManager = CacheHandler
 ): any => {
 	const cacheMap = new Map();
 

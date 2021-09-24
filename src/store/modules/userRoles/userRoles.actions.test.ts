@@ -78,7 +78,7 @@ describe('User roles module actions', () => {
 			];
 			const http = axiosMock(
 				'/roles?include=permissions&include=resources',
-				mockResponse,
+				mockResponse
 			);
 			const store = reduxMockStore(http, userRoleInitialState);
 
@@ -120,7 +120,7 @@ describe('User roles module actions', () => {
 			const http = axiosMock(
 				'/roles?include=permissions&include=resources',
 				mockErrorResponse,
-				false,
+				false
 			);
 			const store = reduxMockStore(http, userRoleInitialState);
 
@@ -153,7 +153,7 @@ describe('User roles module actions', () => {
 			return dispatchMethodMock(
 				store,
 				createUserRole(userRoleTestData),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -195,7 +195,7 @@ describe('User roles module actions', () => {
 			return dispatchMethodMock(
 				store,
 				createUserRole(userRoleTestData),
-				expectedActions,
+				expectedActions
 			);
 		});
 	});
@@ -226,7 +226,7 @@ describe('User roles module actions', () => {
 			return dispatchMethodMock(
 				store,
 				editUserRole(userRoleTestData),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -265,14 +265,14 @@ describe('User roles module actions', () => {
 			const http = axiosMock(
 				`/roles/${userRoleTestData._id}`,
 				mockErrorResponse,
-				false,
+				false
 			);
 			const store = reduxMockStore(http, userRoleInitialState);
 
 			return dispatchMethodMock(
 				store,
 				editUserRole(userRoleTestData),
-				expectedActions,
+				expectedActions
 			);
 		});
 	});
@@ -314,14 +314,14 @@ describe('User roles module actions', () => {
 		const http = axiosMock(
 			`/roles/${userRoleTestData._id}`,
 			mockErrorResponse,
-			false,
+			false
 		);
 		const store = reduxMockStore(http, userRoleInitialState);
 
 		return dispatchMethodMock(
 			store,
 			editUserRole(userRoleTestData),
-			expectedActions,
+			expectedActions
 		);
 	});
 
@@ -355,7 +355,7 @@ describe('User roles module actions', () => {
 			return dispatchMethodMock(
 				store,
 				deleteUserRole('5e4703d62faee61d8ede2d65'),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -397,7 +397,7 @@ describe('User roles module actions', () => {
 			return dispatchMethodMock(
 				store,
 				deleteUserRole('5e4703d62faee61d8ede2d65'),
-				expectedActions,
+				expectedActions
 			);
 		});
 	});

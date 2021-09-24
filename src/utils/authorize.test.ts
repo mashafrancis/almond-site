@@ -33,7 +33,7 @@ describe('The authorize function', () => {
 	it('should enforce all accessLevels if an array of accessLevels are passed with the strict option', () => {
 		// setting the strict option to "true" enforces user has all accessLevels
 		expect(
-			authorize(['centers:add', 'people:edit'], { strict: true }),
+			authorize(['centers:add', 'people:edit'], { strict: true })
 		).toBeFalsy();
 	});
 });

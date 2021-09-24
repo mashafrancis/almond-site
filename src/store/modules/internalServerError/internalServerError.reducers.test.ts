@@ -16,7 +16,7 @@ describe('Internal Server Error Reducer', () => {
 
 		const newDisplayInternalServerErrorMessageState = reducer(
 			initialState,
-			displayInternalServerErrorMessageAction,
+			displayInternalServerErrorMessageAction
 		) as any;
 
 		expect(newDisplayInternalServerErrorMessageState).toEqual({ error: true });

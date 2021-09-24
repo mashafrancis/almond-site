@@ -1,7 +1,7 @@
-import SigninCover from 'views/SigninCover';
+import SigninView from '../views/SigninView';
 
-const SigninCoverPage = (): JSX.Element => {
-	return <SigninCover />;
+const SigninPage = (): JSX.Element => {
+	return <SigninView />;
 };
 
-export default SigninCoverPage;
+export default SigninPage;

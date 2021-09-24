@@ -78,7 +78,7 @@ describe('Time schedules module actions', () => {
 			return dispatchMethodMock(
 				store,
 				getAllSchedules(deviceId),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -117,14 +117,14 @@ describe('Time schedules module actions', () => {
 			const http = axiosMock(
 				`/schedules?device=${deviceId}`,
 				mockErrorResponse,
-				false,
+				false
 			);
 			const store = reduxMockStore(http, schedulesInitialState);
 
 			return dispatchMethodMock(
 				store,
 				getAllSchedules(deviceId),
-				expectedActions,
+				expectedActions
 			);
 		});
 	});
@@ -160,7 +160,7 @@ describe('Time schedules module actions', () => {
 			return dispatchMethodMock(
 				store,
 				addNewSchedule(schedulePayload),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -202,7 +202,7 @@ describe('Time schedules module actions', () => {
 			return dispatchMethodMock(
 				store,
 				addNewSchedule(schedulePayload),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -245,7 +245,7 @@ describe('Time schedules module actions', () => {
 			return dispatchMethodMock(
 				store,
 				addNewSchedule(schedulePayload),
-				expectedActions,
+				expectedActions
 			);
 		});
 	});
@@ -280,7 +280,7 @@ describe('Time schedules module actions', () => {
 			return dispatchMethodMock(
 				store,
 				deleteSingleSchedule(id),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -322,7 +322,7 @@ describe('Time schedules module actions', () => {
 			return dispatchMethodMock(
 				store,
 				deleteSingleSchedule(id),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -365,7 +365,7 @@ describe('Time schedules module actions', () => {
 			return dispatchMethodMock(
 				store,
 				deleteSingleSchedule(id),
-				expectedActions,
+				expectedActions
 			);
 		});
 	});
@@ -402,7 +402,7 @@ describe('Time schedules module actions', () => {
 			return dispatchMethodMock(
 				store,
 				editSchedule(id, editSchedulePayload.schedule),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -444,7 +444,7 @@ describe('Time schedules module actions', () => {
 			return dispatchMethodMock(
 				store,
 				editSchedule(id, schedulePayload),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -487,7 +487,7 @@ describe('Time schedules module actions', () => {
 			return dispatchMethodMock(
 				store,
 				editSchedule(id, schedulePayload),
-				expectedActions,
+				expectedActions
 			);
 		});
 	});
@@ -535,7 +535,7 @@ describe('Time schedules module actions', () => {
 			return dispatchMethodMock(
 				store,
 				togglePump(enabledStatus),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -577,7 +577,7 @@ describe('Time schedules module actions', () => {
 			return dispatchMethodMock(
 				store,
 				togglePump(enabledStatus),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -620,7 +620,7 @@ describe('Time schedules module actions', () => {
 			return dispatchMethodMock(
 				store,
 				togglePump(enabledStatus),
-				expectedActions,
+				expectedActions
 			);
 		});
 	});
@@ -651,7 +651,7 @@ describe('Time schedules module actions', () => {
 			return dispatchMethodMock(
 				store,
 				getPumpStatus(deviceId),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -691,14 +691,14 @@ describe('Time schedules module actions', () => {
 			const http = axiosMock(
 				`/pump?device=${deviceId}`,
 				mockErrorResponse,
-				false,
+				false
 			);
 			const store = reduxMockStore(http, schedulesInitialState);
 
 			return dispatchMethodMock(
 				store,
 				getPumpStatus(deviceId),
-				expectedActions,
+				expectedActions
 			);
 		});
 	});
@@ -735,7 +735,7 @@ describe('Time schedules module actions', () => {
 			return dispatchMethodMock(
 				store,
 				toggleScheduleStatus(id, enabledStatus),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -777,7 +777,7 @@ describe('Time schedules module actions', () => {
 			return dispatchMethodMock(
 				store,
 				toggleScheduleStatus(id, enabledStatus),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -820,7 +820,7 @@ describe('Time schedules module actions', () => {
 			return dispatchMethodMock(
 				store,
 				toggleScheduleStatus(id, enabledStatus),
-				expectedActions,
+				expectedActions
 			);
 		});
 	});

@@ -46,7 +46,7 @@ describe('Time Schedules reducer: ', () => {
 			const getSchedulesRequestAction = getSchedulesRequest();
 			scheduleState = reducer(
 				schedulesInitialState,
-				getSchedulesRequestAction,
+				getSchedulesRequestAction
 			);
 
 			expect(scheduleState.isLoading).toBeTruthy();
@@ -57,7 +57,7 @@ describe('Time Schedules reducer: ', () => {
 			const getSchedulesSuccessAction = getSchedulesSuccess(data);
 			scheduleState = reducer(
 				schedulesInitialState,
-				getSchedulesSuccessAction,
+				getSchedulesSuccessAction
 			);
 
 			expect(scheduleState.isLoading).toBeFalsy();
@@ -68,7 +68,7 @@ describe('Time Schedules reducer: ', () => {
 			const getSchedulesFailureAction = getSchedulesFailure(errorMessage);
 			scheduleState = reducer(
 				schedulesInitialState,
-				getSchedulesFailureAction,
+				getSchedulesFailureAction
 			);
 
 			expect(scheduleState.isLoading).toBeFalsy();
@@ -97,7 +97,7 @@ describe('Time Schedules reducer: ', () => {
 			const addSchedulesFailureAction = addScheduleFailure(errorMessage);
 			scheduleState = reducer(
 				schedulesInitialState,
-				addSchedulesFailureAction,
+				addSchedulesFailureAction
 			);
 
 			expect(scheduleState.isLoading).toBeFalsy();
@@ -110,7 +110,7 @@ describe('Time Schedules reducer: ', () => {
 			const editScheduleRequestAction = editScheduleRequest();
 			scheduleState = reducer(
 				schedulesInitialState,
-				editScheduleRequestAction,
+				editScheduleRequestAction
 			);
 
 			expect(scheduleState.isLoading).toBeTruthy();
@@ -124,14 +124,14 @@ describe('Time Schedules reducer: ', () => {
 
 			const editScheduleSuccessAction = editScheduleSuccess(
 				'5ede17f7184ccf003a2da68f',
-				editSchedulePayload.schedule,
+				editSchedulePayload.schedule
 			);
 			scheduleState = reducer(
 				scheduleInitialState as any,
-				editScheduleSuccessAction,
+				editScheduleSuccessAction
 			);
 			const updatedSchedule = scheduleState.schedules.find(
-				(schedule) => schedule._id === editSchedulePayload._id,
+				(schedule) => schedule._id === editSchedulePayload._id
 			);
 
 			expect(scheduleState.isLoading).toBeFalsy();
@@ -143,7 +143,7 @@ describe('Time Schedules reducer: ', () => {
 			const editSchedulesFailureAction = editScheduleFailure(errorMessage);
 			scheduleState = reducer(
 				schedulesInitialState,
-				editSchedulesFailureAction,
+				editSchedulesFailureAction
 			);
 
 			expect(scheduleState.isLoading).toBeFalsy();
@@ -156,7 +156,7 @@ describe('Time Schedules reducer: ', () => {
 			const deleteScheduleRequestAction = deleteSingleScheduleRequest();
 			scheduleState = reducer(
 				schedulesInitialState,
-				deleteScheduleRequestAction,
+				deleteScheduleRequestAction
 			);
 
 			expect(scheduleState.isLoading).toBeTruthy();
@@ -169,11 +169,11 @@ describe('Time Schedules reducer: ', () => {
 			};
 
 			const deleteScheduleSuccessAction = deleteSingleScheduleSuccess(
-				'5ede17f7184ccf003a2da68f',
+				'5ede17f7184ccf003a2da68f'
 			);
 			scheduleState = reducer(
 				scheduleInitialState as any,
-				deleteScheduleSuccessAction,
+				deleteScheduleSuccessAction
 			);
 
 			expect(scheduleState.isLoading).toBeFalsy();
@@ -186,7 +186,7 @@ describe('Time Schedules reducer: ', () => {
 				deleteSingleScheduleFailure(errorMessage);
 			scheduleState = reducer(
 				schedulesInitialState,
-				deleteScheduleFailureAction,
+				deleteScheduleFailureAction
 			);
 
 			expect(scheduleState.isLoading).toBeFalsy();
@@ -204,7 +204,7 @@ describe('Time Schedules reducer: ', () => {
 
 		it('should dispatch TOGGLE_PUMP_STATUS_SUCCESS', () => {
 			const togglePumpSuccessAction = togglePumpStatusSuccess(
-				enabledStatus.enabled,
+				enabledStatus.enabled
 			);
 			scheduleState = reducer(schedulesInitialState, togglePumpSuccessAction);
 
@@ -225,7 +225,7 @@ describe('Time Schedules reducer: ', () => {
 			const getPumpStatusRequestAction = getPumpStatusRequest();
 			scheduleState = reducer(
 				schedulesInitialState,
-				getPumpStatusRequestAction,
+				getPumpStatusRequestAction
 			);
 
 			expect(scheduleState.errors).toBe(null);
@@ -233,11 +233,11 @@ describe('Time Schedules reducer: ', () => {
 
 		it('should dispatch GET_PUMP_STATUS_SUCCESS', () => {
 			const getPumpStatusSuccessAction = getPumpStatusSuccess(
-				enabledStatus.enabled,
+				enabledStatus.enabled
 			);
 			scheduleState = reducer(
 				schedulesInitialState,
-				getPumpStatusSuccessAction,
+				getPumpStatusSuccessAction
 			);
 
 			expect(scheduleState.enabled).toEqual(enabledStatus.enabled);
@@ -248,7 +248,7 @@ describe('Time Schedules reducer: ', () => {
 			const getPumpStatusFailureAction = getPumpStatusFailure(errorMessage);
 			scheduleState = reducer(
 				schedulesInitialState,
-				getPumpStatusFailureAction,
+				getPumpStatusFailureAction
 			);
 
 			expect(scheduleState.errors).toEqual(errorMessage);

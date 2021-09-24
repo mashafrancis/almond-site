@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
 import NavItem from './components/NavItem';
-import pages from "../../../../../navigation";
+import pages from '../../../../../navigation';
 
 interface Props {
 	// eslint-disable-next-line @typescript-eslint/ban-types

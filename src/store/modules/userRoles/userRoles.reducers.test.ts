@@ -36,7 +36,7 @@ describe('User roles reducer:', () => {
 			const getUserRolesRequestAction = getUserRolesRequest();
 			const userRolesState = reducer(
 				userRoleInitialState,
-				getUserRolesRequestAction,
+				getUserRolesRequestAction
 			);
 
 			expect(userRolesState.isLoading).toBeTruthy();
@@ -47,7 +47,7 @@ describe('User roles reducer:', () => {
 			const getUserRolesSuccessAction = getUserRolesSuccess(userRolesResponse);
 			const userRolesState = reducer(
 				userRoleInitialState,
-				getUserRolesSuccessAction,
+				getUserRolesSuccessAction
 			);
 
 			expect(userRolesState.isLoading).toBeFalsy();
@@ -59,7 +59,7 @@ describe('User roles reducer:', () => {
 			const getUserRolesFailureAction = getUserRolesFailure(errorMessage);
 			const userRolesState = reducer(
 				userRoleInitialState,
-				getUserRolesFailureAction,
+				getUserRolesFailureAction
 			);
 
 			expect(userRolesState.isLoading).toBeFalsy();
@@ -72,7 +72,7 @@ describe('User roles reducer:', () => {
 			const createUserRolesRequestAction = createUserRoleRequest();
 			const userRolesState = reducer(
 				userRoleInitialState,
-				createUserRolesRequestAction,
+				createUserRolesRequestAction
 			);
 
 			expect(userRolesState.isLoading).toBeTruthy();
@@ -81,16 +81,16 @@ describe('User roles reducer:', () => {
 
 		it('should dispatch CREATE_USER_ROLES_SUCCESS', () => {
 			const createUserRolesSuccessAction = createUserRoleSuccess(
-				newUserRole as any,
+				newUserRole as any
 			);
 			const userRolesState = reducer(
 				userRoleInitialState,
-				createUserRolesSuccessAction,
+				createUserRolesSuccessAction
 			);
 
 			expect(userRolesState.isLoading).toBeFalsy();
 			expect(userRolesState.roles[0].description).toBe(
-				'Almond regular user with limited privileges',
+				'Almond regular user with limited privileges'
 			);
 			expect(userRolesState.errors).toBe(null);
 		});
@@ -99,7 +99,7 @@ describe('User roles reducer:', () => {
 			const createUserRolesFailureAction = createUserRoleFailure(errorMessage);
 			const userRolesState = reducer(
 				userRoleInitialState,
-				createUserRolesFailureAction,
+				createUserRolesFailureAction
 			);
 
 			expect(userRolesState.isLoading).toBeFalsy();
@@ -112,7 +112,7 @@ describe('User roles reducer:', () => {
 			const editUserRoleRequestAction = editUserRoleRequest();
 			const userRolesState = reducer(
 				userRoleInitialState,
-				editUserRoleRequestAction,
+				editUserRoleRequestAction
 			);
 
 			expect(userRolesState.isLoading).toBeTruthy();
@@ -136,14 +136,14 @@ describe('User roles reducer:', () => {
 
 			const editUserRolesSuccessAction = editUserRoleSuccess(
 				userRoleToUpdate,
-				userRoleToUpdate._id,
+				userRoleToUpdate._id
 			);
 			const userRolesState = reducer(
 				roleInitialState,
-				editUserRolesSuccessAction,
+				editUserRolesSuccessAction
 			);
 			const updatedUserRole = userRolesState.roles.find(
-				(role) => role._id === userRoleToUpdate._id,
+				(role) => role._id === userRoleToUpdate._id
 			);
 
 			expect(userRolesState.isLoading).toBeFalsy();
@@ -155,7 +155,7 @@ describe('User roles reducer:', () => {
 			const editUserRolesFailureAction = editUserRoleFailure(errorMessage);
 			const userRolesState = reducer(
 				userRoleInitialState,
-				editUserRolesFailureAction,
+				editUserRolesFailureAction
 			);
 
 			expect(userRolesState.isLoading).toBeFalsy();
@@ -168,7 +168,7 @@ describe('User roles reducer:', () => {
 			const deleteUserRoleRequestAction = deleteUserRolesRequest();
 			const userRolesState = reducer(
 				userRoleInitialState,
-				deleteUserRoleRequestAction,
+				deleteUserRoleRequestAction
 			);
 
 			expect(userRolesState.isLoading).toBeTruthy();
@@ -185,11 +185,11 @@ describe('User roles reducer:', () => {
 			};
 
 			const deleteUserRolesSuccessAction = deleteUserRolesSuccess(
-				'5e4703d62faee61d8ede2d65',
+				'5e4703d62faee61d8ede2d65'
 			);
 			const userRolesState = reducer(
 				roleInitialState,
-				deleteUserRolesSuccessAction,
+				deleteUserRolesSuccessAction
 			);
 
 			expect(userRolesState.isLoading).toBeFalsy();
@@ -201,7 +201,7 @@ describe('User roles reducer:', () => {
 			const editUserRolesFailureAction = deleteUserRolesFailure(errorMessage);
 			const userRolesState = reducer(
 				userRoleInitialState,
-				editUserRolesFailureAction,
+				editUserRolesFailureAction
 			);
 
 			expect(userRolesState.isLoading).toBeFalsy();

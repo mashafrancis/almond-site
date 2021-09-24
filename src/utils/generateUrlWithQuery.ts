@@ -9,7 +9,7 @@ import { QueryParams } from '../shared.interfaces';
 
 const generateUrlWithQuery = (
 	url: string,
-	queryParams: QueryParams = {},
+	queryParams: QueryParams = {}
 ): string => {
 	if (!queryParams) return url;
 	const queryKeys = Object.keys(queryParams);

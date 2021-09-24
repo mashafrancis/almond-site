@@ -6,7 +6,7 @@ describe('The capitalize function', () => {
 		const capitalizedParagraph = capitalize(paragraph);
 
 		expect(capitalizedParagraph).toEqual(
-			'Success. User has been given full access.',
+			'Success. User has been given full access.'
 		);
 	});
 });

@@ -28,7 +28,7 @@ export const getAdminStatsRequest = (): GetAdminStatsRequest => ({
  * @returns {GetAdminStatsSuccess}
  */
 export const getAdminStatsSuccess = (
-	data: StatsData,
+	data: StatsData
 ): GetAdminStatsSuccess => ({
 	data,
 	type: GET_ADMIN_STATS_SUCCESS,
@@ -40,7 +40,7 @@ export const getAdminStatsSuccess = (
  * @returns {GetAllDevicesActionRequest}
  */
 export const getAdminStatsFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): GetAdminStatsFailure => ({
 	errors,
 	type: GET_ADMIN_STATS_FAILURE,
@@ -55,9 +55,9 @@ export const getAdminStatistics =
 		http: {
 			get: (
 				arg0: string,
-				arg1: { cache: boolean },
+				arg1: { cache: boolean }
 			) => Promise<{ data: { data: any } }>;
-		},
+		}
 	) => {
 		dispatch(getAdminStatsRequest());
 		return http
@@ -85,7 +85,7 @@ export const analyticsInitialState = {
 
 export const reducer: Reducer<State, Action> = (
 	state: State = analyticsInitialState,
-	action: AnyAction,
+	action: AnyAction
 ) => {
 	switch (action.type) {
 		case GET_ADMIN_STATS_REQUEST:

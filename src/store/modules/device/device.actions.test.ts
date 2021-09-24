@@ -78,7 +78,7 @@ describe('Device module actions', () => {
 			return dispatchMethodMock(
 				store,
 				addNewDevice(deviceIdPayload),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -120,7 +120,7 @@ describe('Device module actions', () => {
 			return dispatchMethodMock(
 				store,
 				addNewDevice(deviceIdPayload),
-				expectedActions,
+				expectedActions
 			);
 		});
 	});
@@ -156,7 +156,7 @@ describe('Device module actions', () => {
 			return dispatchMethodMock(
 				store,
 				verifyUserDevice({ id }),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -198,7 +198,7 @@ describe('Device module actions', () => {
 			return dispatchMethodMock(
 				store,
 				verifyUserDevice({ id }),
-				expectedActions,
+				expectedActions
 			);
 		});
 	});
@@ -369,7 +369,7 @@ describe('Device module actions', () => {
 			return dispatchMethodMock(
 				store,
 				editDevice(id, deviceIdPayload),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -411,7 +411,7 @@ describe('Device module actions', () => {
 			return dispatchMethodMock(
 				store,
 				editDevice(id, deviceIdPayload),
-				expectedActions,
+				expectedActions
 			);
 		});
 	});

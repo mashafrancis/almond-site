@@ -17,7 +17,7 @@ const defaultConfig = { strict: false };
  */
 const authorize = (
 	accessLevels: string | string[],
-	{ strict } = defaultConfig,
+	{ strict } = defaultConfig
 ): any => {
 	let allowAccess = false;
 
@@ -37,7 +37,7 @@ const authorize = (
 
 	if (accessLevels instanceof Array) {
 		const permissions = accessLevels.map((accessLevel) =>
-			getAccess(accessLevel),
+			getAccess(accessLevel)
 		);
 
 		allowAccess = strict

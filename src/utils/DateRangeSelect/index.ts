@@ -17,7 +17,7 @@ import {
 const getDateRange = (
 	param: Param | unknown,
 	range?: DateRanges,
-	currentDateInView?: (date: string) => any,
+	currentDateInView?: (date: string) => any
 ): any => {
 	const Range = (date, rangeValue) => {
 		if (currentDateInView) {

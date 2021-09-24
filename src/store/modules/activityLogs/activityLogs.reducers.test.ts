@@ -21,7 +21,7 @@ describe('Activity logs reducer', () => {
 		const activityLogsAction = logActivity(activityLogs);
 		const activityLogsState = reducer(
 			activityLogsInitialState,
-			activityLogsAction,
+			activityLogsAction
 		);
 
 		expect(activityLogsState).toEqual(activityLogs);

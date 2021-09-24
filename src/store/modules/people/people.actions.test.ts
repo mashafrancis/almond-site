@@ -124,7 +124,7 @@ describe('People module actions', () => {
 			return dispatchMethodMock(
 				store,
 				updatePerson(personId, personUpdatePayload),
-				expectedActions,
+				expectedActions
 			);
 		});
 
@@ -166,7 +166,7 @@ describe('People module actions', () => {
 			return dispatchMethodMock(
 				store,
 				updatePerson(personId, personUpdatePayload),
-				expectedActions,
+				expectedActions
 			);
 		});
 	});

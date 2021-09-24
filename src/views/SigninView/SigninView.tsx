@@ -1,6 +1,7 @@
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import Main from 'layouts/Main';
 import Container from 'components/Container';
@@ -8,106 +9,53 @@ import { Form } from './components';
 
 const SigninView = (): JSX.Element => {
 	const theme = useTheme();
+	const isMd = useMediaQuery(theme.breakpoints.up('md'), {
+		defaultMatches: true,
+	});
+
 	return (
 		<Main>
 			<Box
-				sx={{
-					width: 1,
-					height: 1,
-					overflow: 'hidden',
-				}}
+				position={'relative'}
+				minHeight={'calc(100vh - 247px)'}
+				display={'flex'}
+				alignItems={'center'}
+				justifyContent={'center'}
+				height={1}
 			>
-				<Container paddingX={0} paddingY={0} maxWidth={{ sm: 1, md: 1236 }}>
-					<Box
-						display={'flex'}
-						flexDirection={{ xs: 'column', md: 'row' }}
-						position={'relative'}
-					>
-						<Box
-							width={1}
-							order={{ xs: 2, md: 1 }}
-							display={'flex'}
-							alignItems={'center'}
-						>
-							<Container>
-								<Form />
-							</Container>
-						</Box>
-						<Box
-							sx={{
-								flex: { xs: '0 0 100%', md: '0 0 50%' },
-								position: 'relative',
-								maxWidth: { xs: '100%', md: '50%' },
-								order: { xs: 1, md: 2 },
-								minHeight: { xs: 'auto', md: 'calc(100vh - 58px)' },
-							}}
-						>
-							<Box
-								sx={{
-									width: { xs: 1, md: '50vw' },
-									height: '100%',
-									position: 'relative',
-								}}
-							>
-								<Box
-									sx={{
-										width: '100%',
-										height: '100%',
-										overflow: 'hidden',
-									}}
-								>
+				<Container>
+					<Grid container spacing={6}>
+						{isMd ? (
+							<Grid item container justifyContent={'center'} xs={12} md={6}>
+								<Box height={1} width={1} maxWidth={500}>
 									<Box
+										component={'img'}
+										src={
+											'https://storage.googleapis.com/static.almondhydroponics.com/static/images/illustration_my_device.svg'
+										}
+										width={1}
+										height={1}
 										sx={{
-											overflow: 'hidden',
-											left: '0%',
-											width: 1,
-											height: 1,
-											position: { xs: 'relative', md: 'absolute' },
-											clipPath: {
-												xs: 'none',
-												md: 'polygon(10% 0%, 100% 0, 100% 100%, 0% 100%)',
-											},
-											shapeOutside: {
-												xs: 'none',
-												md: 'polygon(10% 0%, 100% 0, 100% 100%, 0% 100%)',
-											},
+											filter:
+												theme.palette.mode === 'dark'
+													? 'brightness(0.8)'
+													: 'none',
 										}}
-									>
-										<Box
-											sx={{
-												height: { xs: 'auto', md: 1 },
-												'& img': {
-													objectFit: 'cover',
-												},
-												'& .lazy-load-image-loaded': {
-													height: 1,
-													width: 1,
-												},
-											}}
-										>
-											<Box
-												component={LazyLoadImage}
-												effect="blur"
-												src={
-													'https://assets.maccarianagency.com/backgrounds/img18.jpg'
-												}
-												height={{ xs: 'auto', md: 1 }}
-												maxHeight={{ xs: 300, md: 1 }}
-												width={1}
-												maxWidth={1}
-												sx={{
-													filter:
-														theme.palette.mode === 'dark'
-															? 'brightness(0.7)'
-															: 'none',
-												}}
-											/>
-										</Box>
-									</Box>
+									/>
 								</Box>
-							</Box>
-						</Box>
-					</Box>
+							</Grid>
+						) : null}
+						<Grid
+							item
+							container
+							alignItems={'center'}
+							justifyContent={'center'}
+							xs={12}
+							md={6}
+						>
+							<Form />
+						</Grid>
+					</Grid>
 				</Container>
 			</Box>
 		</Main>

@@ -6,7 +6,7 @@ describe('CacheHandler class', () => {
 			const address = '/users?limit=10';
 
 			expect(
-				CacheHandler.extractUrlEndpoint(address, 'https://baseapi.url'),
+				CacheHandler.extractUrlEndpoint(address, 'https://baseapi.url')
 			).toBe('/users');
 		});
 
@@ -14,7 +14,7 @@ describe('CacheHandler class', () => {
 			const address = 'https://baseapi.url';
 
 			expect(
-				CacheHandler.extractUrlEndpoint(address, 'https://baseapi.url'),
+				CacheHandler.extractUrlEndpoint(address, 'https://baseapi.url')
 			).toBe('/');
 		});
 

@@ -7,12 +7,12 @@ import { Schedule } from '@modules/timeSchedules/interfaces';
  */
 const validateNewOneHourTime = (
 	schedules: string[],
-	newTime: string,
+	newTime: string
 ): boolean => {
 	if (schedules.length === 0) return true;
 
 	return schedules.every(
-		(schedule) => Math.abs(getDiff(newTime, schedule)) >= 3_600_000,
+		(schedule) => Math.abs(getDiff(newTime, schedule)) >= 3_600_000
 	);
 };
 
@@ -23,10 +23,10 @@ const validateNewOneHourTime = (
 const validateEditOneHourTime = (
 	schedules: Schedule[],
 	scheduleId: string,
-	editTime: string,
+	editTime: string
 ): boolean => {
 	const editScheduleIndex = schedules.findIndex(
-		(item) => item._id === scheduleId,
+		(item) => item._id === scheduleId
 	);
 	const timeBefore =
 		editScheduleIndex === 0 ? null : schedules[editScheduleIndex - 1].schedule;

@@ -18,7 +18,7 @@ describe('Sensor data reducer:', () => {
 			const getSensorSuccessData = getSensorDataSuccess(responseData as any);
 			const sensorDataState = reducer(
 				sensorDataInitialState,
-				getSensorSuccessData,
+				getSensorSuccessData
 			);
 
 			expect(sensorDataState.errors).toBe(null);
@@ -28,7 +28,7 @@ describe('Sensor data reducer:', () => {
 			const getSensorFailureData = getSensorDataFailure(errorMessage);
 			const sensorDataState = reducer(
 				sensorDataInitialState,
-				getSensorFailureData,
+				getSensorFailureData
 			);
 
 			expect(sensorDataState.errors).toBe(errorMessage);

@@ -40,7 +40,7 @@ export const getAllPeopleRequest = (): GetAllPeopleActionRequest => ({
  * @returns {GetAllPeopleActionSuccess}
  */
 export const getAllPeopleSuccess = (
-	people: UserDetails[],
+	people: UserDetails[]
 ): GetAllPeopleActionSuccess => ({
 	people,
 	isLoading: false,
@@ -52,7 +52,7 @@ export const getAllPeopleSuccess = (
  * @returns {GetAllPeopleActionFailure}
  */
 export const getAllPeopleFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): GetAllPeopleActionFailure => ({
 	errors,
 	isLoading: false,
@@ -69,7 +69,7 @@ export const updatePersonRequest = (): UpdatePersonRequest => ({
  * @returns {UpdatePersonSuccess}
  */
 export const updatePersonSuccess = (
-	person: UserDetails,
+	person: UserDetails
 ): UpdatePersonSuccess => ({
 	person,
 	isLoading: false,
@@ -77,7 +77,7 @@ export const updatePersonSuccess = (
 });
 
 export const updatePersonFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): UpdatePersonFailure => ({
 	errors,
 	isLoading: false,
@@ -91,7 +91,7 @@ export const getAllPeople =
 		getState: any,
 		http: {
 			get: (arg0: string) => Promise<{ data: { data: UserDetails[] } }>;
-		},
+		}
 	) => {
 		dispatch(getAllPeopleRequest());
 		return http
@@ -103,7 +103,7 @@ export const getAllPeople =
 				errorOnSnack(
 					error,
 					dispatch,
-					'fetch your all users. Kindly reload the page.',
+					'fetch your all users. Kindly reload the page.'
 				);
 				dispatch(getAllPeopleFailure(error));
 			});
@@ -123,9 +123,9 @@ export const updatePerson =
 		http: {
 			put: (
 				arg0: string,
-				arg1: any,
+				arg1: any
 			) => Promise<{ data: { data: UserDetails; message: string } }>;
-		},
+		}
 	) => {
 		dispatch(updatePersonRequest());
 		return http
@@ -157,7 +157,7 @@ export const peopleInitialState = {
  */
 export const reducer = (
 	state: State = peopleInitialState,
-	action: AnyAction,
+	action: AnyAction
 ) => {
 	switch (action.type) {
 		case GET_ALL_PEOPLE_REQUEST:
@@ -193,7 +193,7 @@ export const reducer = (
 								...person,
 								...action.person,
 						  }
-						: person,
+						: person
 				),
 				errors: null,
 			};

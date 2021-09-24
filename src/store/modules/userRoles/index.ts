@@ -51,7 +51,7 @@ export const createUserRoleRequest = (): CreateUserRolesActionRequest => ({
  * @returns {CreateUserRolesActionSuccess}
  */
 export const createUserRoleSuccess = (
-	role: UserRole,
+	role: UserRole
 ): CreateUserRolesActionSuccess => ({
 	role,
 	type: CREATE_USER_ROLES_SUCCESS,
@@ -63,7 +63,7 @@ export const createUserRoleSuccess = (
  * @returns {CreateUserRolesActionFailure}
  */
 export const createUserRoleFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): CreateUserRolesActionFailure => ({
 	errors,
 	type: CREATE_USER_ROLES_FAILURE,
@@ -101,7 +101,7 @@ export const getUserRolesSuccess = (allRolesAndPermissions: {
  * @returns {GetAllSchedulesActionRequest}
  */
 export const getUserRolesFailure = (
-	errors: any,
+	errors: any
 ): GetUserRolesActionFailure => ({
 	errors,
 	type: GET_USER_ROLES_FAILURE,
@@ -123,7 +123,7 @@ export const deleteUserRolesRequest = (): DeleteUserRolesRequest => ({
  * @param id
  */
 export const deleteUserRolesSuccess = (
-	id: string,
+	id: string
 ): DeleteUserRolesSuccess => ({
 	id,
 	type: DELETE_USER_ROLES_SUCCESS,
@@ -135,7 +135,7 @@ export const deleteUserRolesSuccess = (
  * @returns {DeleteUserRolesSuccess}
  */
 export const deleteUserRolesFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): DeleteUserRolesFailure => ({
 	errors,
 	type: DELETE_USER_ROLES_FAILURE,
@@ -159,7 +159,7 @@ export const editUserRoleRequest = (): EditUserRolesRequest => ({
  */
 export const editUserRoleSuccess = (
 	role: any,
-	id: string,
+	id: string
 ): EditUserRolesSuccess => ({
 	id,
 	role,
@@ -172,7 +172,7 @@ export const editUserRoleSuccess = (
  * @returns {EditUserRolesRequest}
  */
 export const editUserRoleFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): EditUserRolesFailure => ({
 	errors,
 	type: EDIT_USER_ROLES_FAILURE,
@@ -188,7 +188,7 @@ export const getUserRoles =
 	(
 		dispatch: Dispatch,
 		getState: any,
-		http: { get: (arg0: string) => Promise<any> },
+		http: { get: (arg0: string) => Promise<any> }
 	) => {
 		dispatch(getUserRolesRequest());
 		return http
@@ -216,9 +216,9 @@ export const createUserRole =
 		http: {
 			post: (
 				arg0: string,
-				arg1: any,
+				arg1: any
 			) => Promise<{ data: { data: any; message: string } }>;
-		},
+		}
 	) => {
 		dispatch(createUserRoleRequest());
 		return http
@@ -246,7 +246,7 @@ export const deleteUserRole =
 	(
 		dispatch: Dispatch,
 		getState: any,
-		http: { delete: (arg0: string) => Promise<any> },
+		http: { delete: (arg0: string) => Promise<any> }
 	) => {
 		dispatch(deleteUserRolesRequest());
 		return http
@@ -277,9 +277,9 @@ export const editUserRole =
 		http: {
 			patch: (
 				arg0: string,
-				arg1: { _id: string },
-			) => Promise<{ data: { data: any } }>;
-		},
+				arg1: { _id: string }
+			) => Promise<{ data: { data: any, message: string } }>;
+		}
 	) => {
 		const { _id } = updatedRolePayload;
 		dispatch(editUserRoleRequest());
@@ -295,10 +295,7 @@ export const editUserRole =
 			.catch((error: ErrorObject) => {
 				error?.response?.status === 400
 					? dispatch(
-							displaySnackMessage(
-								'Please format the fields properly',
-								'error',
-							),
+							displaySnackMessage('Please format the fields properly', 'error')
 					  )
 					: errorOnSnack(error, dispatch, 'editing user role');
 				dispatch(editUserRoleFailure(error));
@@ -316,7 +313,7 @@ export const userRoleInitialState = {
 
 export const reducer: Reducer<State, Action> = (
 	state: State = userRoleInitialState,
-	action: Action,
+	action: Action
 ) => {
 	switch (action.type) {
 		case GET_USER_ROLES_REQUEST:
@@ -352,7 +349,7 @@ export const reducer: Reducer<State, Action> = (
 								...role,
 								...action.role,
 						  }
-						: role,
+						: role
 				),
 				isLoading: action.isLoading,
 				errors: null,

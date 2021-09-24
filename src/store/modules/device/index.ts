@@ -47,7 +47,6 @@ import {
 } from '@modules/device/types';
 import { Dispatch, Reducer } from 'redux';
 import errorOnSnack from '@utils/errorOnSnack';
-import { useDispatch } from 'react-redux';
 import { displaySnackMessage } from '../snack';
 
 import { Action, ErrorObject } from '../../../shared.interfaces';
@@ -67,7 +66,7 @@ export const addDeviceRequest = (): AddDeviceActionRequest => ({
  * @returns {AddDeviceActionSuccess}
  */
 export const addDeviceSuccess = (
-	device: NewDevice,
+	device: NewDevice
 ): AddDeviceActionSuccess => ({
 	device,
 	type: ADD_DEVICE_SUCCESS,
@@ -99,7 +98,7 @@ export const verifyDeviceRequest = (): UserVerifyDeviceActionRequest => ({
  * @param id
  */
 export const verifyDeviceSuccess = (
-	id: VerifyDevice,
+	id: VerifyDevice
 ): UserVerifyDeviceActionSuccess => ({
 	id,
 	type: USER_VERIFY_DEVICE_SUCCESS,
@@ -111,7 +110,7 @@ export const verifyDeviceSuccess = (
  * @returns {UserVerifyDeviceActionFailure}
  */
 export const verifyDeviceFailure = (
-	errors: any,
+	errors: any
 ): UserVerifyDeviceActionFailure => ({
 	errors,
 	type: USER_VERIFY_DEVICE_FAILURE,
@@ -133,7 +132,7 @@ export const activateDeviceRequest = (): ActivateDeviceActionRequest => ({
  * @param activeDevice
  */
 export const activateDeviceSuccess = (
-	activeDevice: ActivateDevice,
+	activeDevice: ActivateDevice
 ): ActivateDeviceActionSuccess => ({
 	activeDevice,
 	type: ACTIVATE_DEVICE_SUCCESS,
@@ -145,7 +144,7 @@ export const activateDeviceSuccess = (
  * @returns {ActivateDeviceActionFailure}
  */
 export const activateDeviceFailure = (
-	errors: ErrorObject,
+	errors: ErrorObject
 ): ActivateDeviceActionFailure => ({
 	errors,
 	type: ACTIVATE_DEVICE_FAILURE,
@@ -167,7 +166,7 @@ export const getDevicesRequest = (): GetAllDevicesActionRequest => ({
  * @param devices
  */
 export const getDevicesSuccess = (
-	devices: Device[],
+	devices: Device[]
 ): GetAllDevicesActionSuccess => ({
 	devices,
 	type: GET_DEVICES_SUCCESS,
@@ -179,7 +178,7 @@ export const getDevicesSuccess = (
  * @returns {GetAllDevicesActionFailure}
  */
 export const getDevicesFailure = (
-	errors: any,
+	errors: any
 ): GetAllDevicesActionFailure => ({
 	errors,
 	type: GET_DEVICES_FAILURE,
@@ -201,7 +200,7 @@ export const deleteSingleDeviceRequest = (): DeleteDeviceActionRequest => ({
  * @param id
  */
 export const deleteSingleDeviceSuccess = (
-	id: string,
+	id: string
 ): DeleteDeviceActionSuccess => ({
 	id,
 	type: DELETE_DEVICE_SUCCESS,
@@ -213,7 +212,7 @@ export const deleteSingleDeviceSuccess = (
  * @returns {DeleteScheduleActionFailure}
  */
 export const deleteSingleDeviceFailure = (
-	errors: any,
+	errors: any
 ): DeleteDeviceActionFailure => ({
 	errors,
 	type: DELETE_DEVICE_FAILURE,
@@ -237,7 +236,7 @@ export const editDeviceRequest = (): EditDeviceActionRequest => ({
  */
 export const editDeviceSuccess = (
 	id: string,
-	device: { id: string },
+	device: { id: string }
 ): EditDeviceActionSuccess => ({
 	id,
 	device,
@@ -269,9 +268,9 @@ export const addNewDevice =
 		http: {
 			post: (
 				arg0: string,
-				arg1: { id: string },
+				arg1: { id: string }
 			) => Promise<{ data: { data: NewDevice; message: string } }>;
-		},
+		}
 	) => {
 		dispatch(addDeviceRequest());
 		return http
@@ -297,9 +296,9 @@ export const verifyUserDevice =
 		http: {
 			post: (
 				arg0: string,
-				arg1: { id: string },
+				arg1: { id: string }
 			) => Promise<{ data: { data: VerifyDevice; message: string } }>;
-		},
+		}
 	) => {
 		dispatch(verifyDeviceRequest());
 		return http
@@ -326,9 +325,9 @@ export const activateDevice =
 		http: {
 			put: (
 				arg0: string,
-				arg1: { id: string },
+				arg1: { id: string }
 			) => Promise<{ data: { data: ActivateDevice; message: string } }>;
-		},
+		}
 	) => {
 		dispatch(activateDeviceRequest());
 		return http
@@ -340,7 +339,7 @@ export const activateDevice =
 					} = response;
 					dispatch(activateDeviceSuccess(data));
 					dispatch(displaySnackMessage(message));
-				},
+				}
 			)
 			.catch((error: ErrorObject) => {
 				errorOnSnack(error, dispatch, 'activating your device');
@@ -356,9 +355,9 @@ export const getAllDevices =
 		http: {
 			get: (
 				arg0: string,
-				arg1: { signal: AbortSignal },
+				arg1: { signal: AbortSignal }
 			) => Promise<{ data: { data: Device[] } }>;
-		},
+		}
 	) => {
 		dispatch(getDevicesRequest());
 		const abortController = new AbortController();
@@ -385,9 +384,9 @@ export const editDevice =
 		http: {
 			patch: (
 				arg0: string,
-				arg1: any,
+				arg1: any
 			) => Promise<{ data: { data: { id: string }; message: string } }>;
-		},
+		}
 	) => {
 		dispatch(editDeviceRequest());
 		return http
@@ -399,7 +398,7 @@ export const editDevice =
 					} = response;
 					dispatch(editDeviceSuccess(id, data));
 					dispatch(displaySnackMessage(message));
-				},
+				}
 			)
 			.catch((error: ErrorObject) => {
 				errorOnSnack(error, dispatch, 'editing device');
@@ -412,7 +411,7 @@ export const deleteDevice =
 	(
 		dispatch: Dispatch,
 		getState: any,
-		http: { delete: (arg0: string) => Promise<{ data: { message: string } }> },
+		http: { delete: (arg0: string) => Promise<{ data: { message: string } }> }
 	) => {
 		dispatch(deleteSingleDeviceRequest());
 		return http
@@ -439,7 +438,7 @@ export const deviceInitialState = {
 
 export const reducer: Reducer<State, Action> = (
 	state: State = deviceInitialState,
-	action: Action,
+	action: Action
 ) => {
 	switch (action.type) {
 		case GET_DEVICES_REQUEST:
@@ -523,7 +522,7 @@ export const reducer: Reducer<State, Action> = (
 			return {
 				...state,
 				devices: [...state.devices].filter(
-					(device) => action.id !== device._id,
+					(device) => action.id !== device._id
 				),
 				isLoading: action.isLoading,
 				errors: null,
@@ -548,7 +547,7 @@ export const reducer: Reducer<State, Action> = (
 								...device,
 								...action.device,
 						  }
-						: device,
+						: device
 				),
 				isLoading: action.isLoading,
 				errors: null,

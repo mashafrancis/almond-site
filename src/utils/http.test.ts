@@ -107,7 +107,7 @@ describe('The http axios instance helper function', () => {
 			});
 
 			expect(CacheHandler.cacheInvalidationRegister).toHaveProperty(
-				'/test-endpoint',
+				'/test-endpoint'
 			);
 		});
 
@@ -122,7 +122,7 @@ describe('The http axios instance helper function', () => {
 			});
 
 			expect(CacheHandler.cacheInvalidationRegister).toHaveProperty(
-				'/my-device',
+				'/my-device'
 			);
 		});
 	});
