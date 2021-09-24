@@ -1,2 +1,1 @@
-export function util() {
-}
+export function util() {}

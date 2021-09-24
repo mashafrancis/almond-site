@@ -58,6 +58,7 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "slick-carousel": "^1.8.1",
+    "validate.js": "^0.13.1",
     "yup": "^0.32.9"
   },
   "devDependencies": {

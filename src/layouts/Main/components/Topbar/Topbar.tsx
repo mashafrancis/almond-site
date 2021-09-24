@@ -8,6 +8,9 @@ import authService from '@utils/auth';
 import CustomAvatar from '@components/molecules/CustomAvatar';
 import Logo from '@components/atoms/Logo';
 import { ShortTextRounded } from '@mui/icons-material';
+import Modal from '@components/atoms/Modal';
+import { useState } from 'react';
+import { Form } from './components';
 
 interface Props {
 	// eslint-disable-next-line @typescript-eslint/ban-types
@@ -15,34 +18,39 @@ interface Props {
 }
 
 const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
+	const [openAuthModal, setAuthModalOpen] = useState<boolean>(false);
 	const theme = useTheme();
+
+	const handleAuthModal = () => setAuthModalOpen((prevState) => !prevState);
 
 	const renderAuthButtons = () => (
 		<>
-			{authService.isAuthenticated() ? (
-				<Box marginLeft={3}>
+			<Box marginLeft={3}>
+				{authService.isAuthenticated() ? (
 					<CustomAvatar />
-				</Box>
-			) : (
-				<>
-					<Box marginLeft={3}>
-						<Link href="/login">
-							<Button variant="outlined" size="small">
-								Login
-							</Button>
-						</Link>
-					</Box>
-
-					<Box marginLeft={3}>
-						<Link href="/register">
-							<Button variant="contained" color="primary" size="small">
-								Get started
-							</Button>
-						</Link>
-					</Box>
-				</>
-			)}
+				) : (
+					<Button
+						variant="contained"
+						color="primary"
+						size="small"
+						onClick={handleAuthModal}
+					>
+						Login
+					</Button>
+				)}
+			</Box>
 		</>
+	);
+
+	const renderAuthModal = (): JSX.Element => (
+		<Modal
+			isModalOpen={openAuthModal}
+			renderHeader="Login into your account"
+			renderDialogText="Choose your preferred method to authenticate into your account"
+			renderContent={<Form />}
+			onClose={handleAuthModal}
+			onDismiss={handleAuthModal}
+		/>
 	);
 
 	return (
@@ -98,6 +106,7 @@ const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
 					<ShortTextRounded />
 				</Button>
 			</Box>
+			{renderAuthModal()}
 		</Box>
 	);
 };
