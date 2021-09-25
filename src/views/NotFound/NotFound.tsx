@@ -78,7 +78,9 @@ const NotFound = (): JSX.Element => {
 							<Box height={1} width={1} maxWidth={500}>
 								<Box
 									component={'img'}
-									src={"https://storage.googleapis.com/static.almondhydroponics.com/static/images/illustration_404.svg"}
+									src={
+										'https://storage.googleapis.com/static.almondhydroponics.com/static/images/illustration_404.svg'
+									}
 									width={1}
 									height={1}
 									sx={{

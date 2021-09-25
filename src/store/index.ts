@@ -1,7 +1,6 @@
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-
 import thunk from 'redux-thunk';
 
 import cacheAxiosInstance from '@utils/cacheAxiosInstance';

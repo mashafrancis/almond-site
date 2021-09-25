@@ -27,7 +27,9 @@ const Form = (): JSX.Element => {
 		});
 
 	const handleLogin = () =>
-		window.location.replace(`http://127.0.0.1:8080/api/auth/google`);
+		window.location.replace(
+			`${process.env.NEXT_PUBLIC_ALMOND_API}/auth/google`
+		);
 
 	return (
 		<Box>

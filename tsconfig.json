@@ -33,7 +33,8 @@
       "@components/*": ["components/*"],
       "@utils/*": ["utils/*"],
       "@modules/*": ["store/modules/*"],
-      "@hooks/*": ["hooks/*"]
+      "@hooks/*": ["hooks/*"],
+      "@context/*": ["context/*"]
     }
   },
   "include": [

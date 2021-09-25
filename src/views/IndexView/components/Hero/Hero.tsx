@@ -1,4 +1,4 @@
-import React from 'react';
+import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -8,12 +8,18 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
 import Container from 'components/Container';
+import authService from '@utils/auth';
+import isArrayNotNull from '@utils/checkArrayEmpty';
+import { UserContext } from '@context/UserContext';
+import { useContext } from 'react';
 
 const Hero = (): JSX.Element => {
 	const theme = useTheme();
 	const isMd = useMediaQuery(theme.breakpoints.up('md'), {
 		defaultMatches: true,
 	});
+	const { devices } = useContext(UserContext);
+	const isAuthed = authService.isAuthenticated();
 
 	const LeftSide = () => (
 		<Box data-aos={isMd ? 'fade-right' : 'fade-up'}>
@@ -36,9 +42,17 @@ const Hero = (): JSX.Element => {
 					year round.
 				</Typography>
 			</Box>
-			<Button variant="contained" color="primary" size="large">
-				Visit our store
-			</Button>
+			<Link
+				href={
+					isAuthed
+						? `${isArrayNotNull(devices) ? '/dashboard' : '/my-device'}`
+						: '/store'
+				}
+			>
+				<Button variant="contained" color="primary" size="large">
+					{isAuthed ? 'Go to dashboard' : 'Visit our store'}
+				</Button>
+			</Link>
 		</Box>
 	);
 
