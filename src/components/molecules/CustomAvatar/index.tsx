@@ -1,7 +1,7 @@
 import { Avatar, Menu, MenuItem, ListItemIcon } from '@mui/material';
 import { useRouter } from 'next/router';
 import fancyId from '@utils/fancyId';
-import { useState, MouseEvent } from 'react';
+import { useState, MouseEvent, useContext } from 'react';
 import {
 	ExitToApp,
 	Help,
@@ -9,6 +9,9 @@ import {
 	OpenInNew,
 	Settings,
 } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '@modules/user';
+import { UserContext } from '@context/UserContext';
 
 interface Props {
 	hasMultipleRoles?: boolean;
@@ -20,7 +23,9 @@ const CustomAvatar = ({
 	...rest
 }: Props): JSX.Element => {
 	const router = useRouter();
+	const dispatch = useDispatch();
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+	const { name, photo } = useContext(UserContext);
 
 	const handleToggleProfileMenu = (event: MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
@@ -35,7 +40,7 @@ const CustomAvatar = ({
 
 	const logoutActiveUser = async (): Promise<void> => {
 		await window.location.replace('/');
-		// dispatch(logoutUser());
+		dispatch(logoutUser());
 	};
 
 	const open = Boolean(anchorEl);
@@ -55,8 +60,8 @@ const CustomAvatar = ({
 	return (
 		<>
 			<Avatar
-				alt="name"
-				src=""
+				alt={name}
+				src={photo}
 				onClick={handleToggleProfileMenu}
 				aria-describedby="menu-popover"
 				aria-controls="menu-popover"

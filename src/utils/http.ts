@@ -17,7 +17,7 @@ const headers = {
 };
 
 const http = axios.create({
-	baseURL: process.env.ALMOND_API,
+	baseURL: process.env.NEXT_PUBLIC_ALMOND_API,
 	headers: authService.isAuthenticated() ? headers : '',
 	// withCredentials: true,
 	adapter: cacheAdapter.adapter,

@@ -5,6 +5,15 @@ import CssBaseline from '@mui/material/CssBaseline';
 import getTheme from 'theme';
 import AOS from 'aos';
 import { PaletteMode } from '@mui/material';
+import checkUserRole from '@utils/checkUserRole';
+import useEffectAsync from '@hooks/useEffectAsync';
+import { getUserDetails } from '@modules/user';
+import authService from '@utils/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { IRootState } from '../store/rootReducer';
+import SnackBar from '@components/atoms/SnackBar';
+import { UserContext } from '@context/UserContext';
+import { useRouter } from 'next/router';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -14,6 +23,26 @@ interface Props {
 
 export default function Page({ children }: Props): JSX.Element {
 	const [mode, setMode] = useState<'light' | 'dark'>('light');
+	const router = useRouter();
+
+	// Selectors from redux
+	const { snack } = useSelector((globalState: IRootState) => globalState);
+	const {
+		userDetails: {
+			_id,
+			firstName,
+			lastName,
+			email,
+			photo,
+			devices,
+			isVerified,
+			activeDevice,
+			currentRole,
+		},
+	} = useSelector((globalState: IRootState) => globalState.user);
+	const isAuthenticated = authService.isAuthenticated();
+	const dispatch = useDispatch();
+
 	useEffect(() => {
 		// Remove the server-side injected CSS.
 		const jssStyles = document.querySelector('#jss-server-side');
@@ -29,6 +58,20 @@ export default function Page({ children }: Props): JSX.Element {
 		});
 	}, []);
 
+	useEffectAsync(async () => {
+		if (isAuthenticated) {
+			await dispatch(getUserDetails());
+		}
+	}, [isAuthenticated]);
+
+	useEffectAsync(async () => {
+		const { socialToken } = router.query;
+		if (socialToken) {
+			authService.saveToken(socialToken);
+			await router.replace(process.env.NEXT_PUBLIC_PUBLIC_URL as string);
+		}
+	}, [router.query]);
+
 	const colorMode = useMemo(
 		() => ({
 			toggleColorMode: () => {
@@ -40,18 +83,32 @@ export default function Page({ children }: Props): JSX.Element {
 
 	const theme = useMemo(() => getTheme(mode as PaletteMode), [mode]);
 
+	const userDetailsOnProvider = {
+		_id,
+		email,
+		photo,
+		devices,
+		isVerified,
+		activeDevice,
+		name: `${firstName} ${lastName}`,
+		isAdmin: !checkUserRole(currentRole?.title ?? 'User', 'User'),
+	};
+
 	return (
 		<StyledEngineProvider injectFirst>
 			<ColorModeContext.Provider value={colorMode}>
 				<ThemeProvider theme={theme}>
-					<style jsx>{`
-						a {
-							margin: 0 10px 0 0;
-						}
-					`}</style>
-					{/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-					<CssBaseline />
-					<Paper elevation={0}>{children}</Paper>
+					<UserContext.Provider value={userDetailsOnProvider}>
+						<style jsx>{`
+							a {
+								margin: 0 10px 0 0;
+							}
+						`}</style>
+						{/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+						<CssBaseline />
+						<Paper elevation={0}>{children}</Paper>
+						<SnackBar snack={snack} />
+					</UserContext.Provider>
 				</ThemeProvider>
 			</ColorModeContext.Provider>
 		</StyledEngineProvider>

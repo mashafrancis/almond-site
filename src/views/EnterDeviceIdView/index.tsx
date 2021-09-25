@@ -27,7 +27,7 @@ export const EnterDeviceIdView = (): JSX.Element => {
 									<Box
 										component={'img'}
 										src={
-											"https://static.almondhydroponics.com/static/images/illustration_my_device.svg"
+											'https://static.almondhydroponics.com/static/images/illustration_my_device.svg'
 										}
 										width={1}
 										height={1}
