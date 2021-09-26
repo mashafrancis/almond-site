@@ -7,10 +7,9 @@ const BlankContent = ({ message }: { message: string }): JSX.Element => {
 			color="textSecondary"
 			sx={{
 				fontFamily: 'San Francisco, serif !important',
-				fontSize: 30,
-				fontWeight: 300,
-				letterSpacing: -2,
-				wordSpacing: 2,
+				fontSize: '30px !important',
+				fontWeight: 200,
+				letterSpacing: -1,
 			}}
 		>
 			{message}

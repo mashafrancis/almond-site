@@ -1,57 +1,161 @@
-import Link from 'next/link';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { alpha, useTheme } from '@mui/material/styles';
 // components
 import { DarkModeToggler } from '@components/atoms';
-import authService from '@utils/auth';
 import CustomAvatar from '@components/molecules/CustomAvatar';
 import Logo from '@components/atoms/Logo';
-import { ShortTextRounded } from '@mui/icons-material';
-import Modal from '@components/atoms/Modal';
-import { useState } from 'react';
-import { Form } from './components';
+import {
+	ArrowDropDownTwoTone,
+	ArrowDropUpTwoTone,
+	Timeline,
+} from '@mui/icons-material';
+import { useContext } from 'react';
+import { ComponentContext } from '@context/ComponentContext';
+import {
+	Badge,
+	BadgeProps,
+	Theme,
+	Typography,
+	useMediaQuery,
+} from '@mui/material';
+import { shallowEqual, useSelector } from 'react-redux';
+import { IRootState } from '../../../../store/rootReducer';
+import { UserContext } from '@context/UserContext';
+import { alpha, styled, useTheme } from '@mui/material/styles';
+import { useMqttState } from '@hooks/mqtt';
+import { NotificationsPanel } from '@components/molecules';
 
-interface Props {
-	// eslint-disable-next-line @typescript-eslint/ban-types
-	onSidebarOpen: () => void;
-}
+const connectedColor = '#76ff03';
+const reconnectingColor = '#FFCE56';
+const closedColor = '#ff1744';
+const offlineColor = '#CCCCCC';
 
-const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
-	const [openAuthModal, setAuthModalOpen] = useState<boolean>(false);
+const Topbar = (): JSX.Element => {
+	const isSm = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'));
+	const { toggleActivityDrawer, setDeviceModalOpen, isSelectDeviceModalOpen } =
+		useContext(ComponentContext);
+	const { activeDevice, isAdmin } = useContext(UserContext);
+	const { connectionStatus } = useMqttState();
+
+	const { roles } = useSelector(
+		(globalState: IRootState) => globalState.user.userDetails,
+		shallowEqual
+	);
+
 	const theme = useTheme();
+	const { mode } = theme.palette;
 
-	const handleAuthModal = () => setAuthModalOpen((prevState) => !prevState);
+	const statusChange = (mqttStatus: string): string => {
+		switch (mqttStatus) {
+			case 'Connected':
+				return connectedColor;
+			case 'Reconnecting':
+				return reconnectingColor;
+			case 'Closed':
+				return closedColor;
+			case 'Offline':
+				return offlineColor;
+			default:
+				return reconnectingColor;
+		}
+	};
 
-	const renderAuthButtons = () => (
-		<>
-			<Box marginLeft={3}>
-				{authService.isAuthenticated() ? (
-					<CustomAvatar />
-				) : (
-					<Button
-						variant="contained"
-						color="primary"
-						size="small"
-						onClick={handleAuthModal}
+	const renderMoreButton = (handleClick) =>
+		isSelectDeviceModalOpen ? (
+			<ArrowDropUpTwoTone />
+		) : (
+			<ArrowDropDownTwoTone onClick={handleClick} />
+		);
+
+	const DeviceActiveBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+		'& .MuiBadge-badge': {
+			backgroundColor: statusChange(connectionStatus as string),
+			color: statusChange(connectionStatus as string),
+			boxShadow: `0 0 0 1px ${
+				isSm ? theme.palette.background.paper : 'rgba(38,38,38,0.32)'
+			}`,
+			top: '50%',
+			left: '-2%',
+			'&::after': {
+				position: 'absolute',
+				width: '100%',
+				height: '100%',
+				borderRadius: '50%',
+				// animation: '$ripple 1.2s infinite ease-in-out',
+				border: '0.8px solid currentColor',
+				content: '""',
+			},
+		},
+	}));
+
+	const renderTimeLineIcon = (): JSX.Element => {
+		const handleClick = () => toggleActivityDrawer(true, true);
+		return (
+			<Button
+				variant={'outlined'}
+				aria-label="Dark mode toggler"
+				color={mode === 'light' ? 'primary' : 'secondary'}
+				sx={{
+					borderRadius: 1,
+					minWidth: 'auto',
+					padding: 1,
+					borderColor: alpha(theme.palette.divider, 0.2),
+				}}
+			>
+				<Badge
+					overlap="circular"
+					anchorOrigin={{
+						vertical: 'bottom',
+						horizontal: 'right',
+					}}
+					variant="dot"
+					// invisible={isActivityLogsEmpty !== activityLogsViewed}
+				>
+					<Timeline color="primary" fontSize="small" onClick={handleClick} />
+				</Badge>
+			</Button>
+		);
+	};
+
+	const renderDeviceDisplay = (): JSX.Element => {
+		const handleClick = (): void => setDeviceModalOpen(true);
+		const handleDeviceModal = (): void => setDeviceModalOpen(true);
+		return (
+			<Button
+				variant="outlined"
+				onClick={handleClick}
+				onKeyDown={handleDeviceModal}
+				endIcon={renderMoreButton(handleClick)}
+				sx={{ borderColor: alpha(theme.palette.divider, 0.2) }}
+			>
+				<DeviceActiveBadge
+					variant="dot"
+					overlap="circular"
+					anchorOrigin={{
+						vertical: 'top',
+						horizontal: 'left',
+					}}
+				>
+					<Typography
+						variant="subtitle2"
+						sx={{ fontWeight: 400, fontSize: 13, marginLeft: 1 }}
+						color="textPrimary"
 					>
-						Login
-					</Button>
-				)}
-			</Box>
-		</>
-	);
-
-	const renderAuthModal = (): JSX.Element => (
-		<Modal
-			isModalOpen={openAuthModal}
-			renderHeader="Login into your account"
-			renderDialogText="Choose your preferred method to authenticate into your account"
-			renderContent={<Form />}
-			onClose={handleAuthModal}
-			onDismiss={handleAuthModal}
-		/>
-	);
+						Device ID:
+					</Typography>
+					<Typography
+						variant="subtitle2"
+						sx={{
+							paddingLeft: 1,
+							fontWeight: 600,
+						}}
+					>
+						{activeDevice?.id}
+					</Typography>
+				</DeviceActiveBadge>
+			</Button>
+		);
+	};
 
 	return (
 		<Box
@@ -60,53 +164,35 @@ const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
 			alignItems={'center'}
 			width={1}
 		>
-			<Box sx={{ display: { xs: 'flex', md: 'none' } }} alignItems={'center'}>
-				<Logo displayText />
+			<Box sx={{ display: 'flex' }} alignItems={'center'}>
+				<Logo displayText={isSm} />
 			</Box>
-			<Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-				<Logo displayText />
-				<Box marginLeft={3}>
-					<Link href="/resources">
-						<Button sx={{ color: '#2d3748' }} variant="text">
-							Resources
-						</Button>
-					</Link>
-				</Box>
 
-				<Box marginLeft={3}>
-					<Link href="/store">
-						<Button sx={{ color: '#2d3748' }} variant="text">
-							Store
-						</Button>
-					</Link>
-				</Box>
+			<Box sx={{ display: 'flex' }} alignItems={'center'}>
+				{!isAdmin && renderDeviceDisplay()}
 			</Box>
 
 			<Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-				{renderAuthButtons()}
+				<Box marginLeft={3}>{renderTimeLineIcon()}</Box>
 				<Box marginLeft={3}>
-					<DarkModeToggler />
+					<NotificationsPanel />
+				</Box>
+				<Box marginLeft={3}>
+					<DarkModeToggler
+						moonColor={theme.palette.secondary.main}
+						sunColor={theme.palette.primary.main}
+					/>
+				</Box>
+				<Box marginLeft={3}>
+					<CustomAvatar hasMultipleRoles={roles.length > 1} />
 				</Box>
 			</Box>
 
 			<Box sx={{ display: { xs: 'flex', md: 'none' } }} alignItems={'center'}>
-				<DarkModeToggler />
-				<Button
-					onClick={() => onSidebarOpen()}
-					aria-label="Menu"
-					variant={'text'}
-					sx={{
-						borderRadius: 1,
-						minWidth: 'auto',
-						padding: 1,
-						marginLeft: 2,
-						borderColor: alpha(theme.palette.divider, 0.2),
-					}}
-				>
-					<ShortTextRounded />
-				</Button>
+				<Box marginLeft={3}>
+					<CustomAvatar hasMultipleRoles={roles.length > 1} />
+				</Box>
 			</Box>
-			{renderAuthModal()}
 		</Box>
 	);
 };

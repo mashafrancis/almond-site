@@ -22,8 +22,8 @@ import { useRouter } from 'next/router';
 import { ComponentContext } from '@context/ComponentContext';
 import { useSubscription } from '@hooks/mqtt';
 import {
+	Box,
 	Divider,
-	Grid,
 	InputAdornment,
 	LinearProgress,
 	MenuItem,
@@ -343,26 +343,29 @@ const DashboardContainer = (): JSX.Element => {
 	const checkIsAdmin = () => (isAdmin ? AdminMenus : UserMenus);
 
 	return (
-		<Dashboard>
-			<Container>
-				<Grid container spacing={4}>
-					<Grid item xs={12} md={12}>
-						<TabPanel index={selectedIndex} value={selectedIndex}>
-							{isLoading ? (
-								<LinearProgress color="primary" />
-							) : (
-								createElement(checkIsAdmin()[selectedIndex].component, {
-									history,
-								})
-							)}
-						</TabPanel>
-						{renderSelectDeviceModal()}
-						{renderChangeUserRoleDialog()}
-						{renderActivityDrawer()}
-					</Grid>
-				</Grid>
-			</Container>
-		</Dashboard>
+		<Box sx={{ overflowX: 'hidden' }}>
+			<Dashboard>
+				<Container
+					sx={{ position: 'relative' }}
+					maxWidth={{ sm: 720, md: '90%' }} // Replace md with 1440px if it doesn't work
+					width={1}
+					paddingY={{ xs: 4, sm: 6, md: 3 }}
+				>
+					<TabPanel index={selectedIndex} value={selectedIndex}>
+						{isLoading ? (
+							<LinearProgress color="primary" />
+						) : (
+							createElement(checkIsAdmin()[selectedIndex].component, {
+								history,
+							})
+						)}
+					</TabPanel>
+					{renderSelectDeviceModal()}
+					{renderChangeUserRoleDialog()}
+					{renderActivityDrawer()}
+				</Container>
+			</Dashboard>
+		</Box>
 	);
 };
 

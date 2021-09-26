@@ -1,17 +1,19 @@
-import { Avatar, Menu, MenuItem, ListItemIcon } from '@mui/material';
+import {
+	Avatar,
+	Menu,
+	MenuItem,
+	ListItemIcon,
+	Tooltip,
+	IconButton,
+} from '@mui/material';
 import { useRouter } from 'next/router';
 import fancyId from '@utils/fancyId';
 import { useState, MouseEvent, useContext } from 'react';
-import {
-	ExitToApp,
-	Help,
-	Mood,
-	OpenInNew,
-	Settings,
-} from '@mui/icons-material';
+import { Help, Logout, Mood, OpenInNew, Settings } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '@modules/user';
 import { UserContext } from '@context/UserContext';
+import { useTheme } from '@mui/material/styles';
 
 interface Props {
 	hasMultipleRoles?: boolean;
@@ -24,6 +26,7 @@ const CustomAvatar = ({
 }: Props): JSX.Element => {
 	const router = useRouter();
 	const dispatch = useDispatch();
+	const theme = useTheme();
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const { name, photo } = useContext(UserContext);
 
@@ -46,9 +49,13 @@ const CustomAvatar = ({
 	const open = Boolean(anchorEl);
 
 	let menuItems = [
-		{ name: 'Settings', icon: <Settings />, link: 'account' },
-		{ name: 'Help', icon: <Help />, link: 'help' },
-		{ name: 'Send Feedback', icon: <OpenInNew />, link: 'send-feedback' },
+		{ name: 'Settings', icon: <Settings fontSize="small" />, link: 'account' },
+		{ name: 'Help', icon: <Help fontSize="small" />, link: 'help' },
+		{
+			name: 'Send Feedback',
+			icon: <OpenInNew fontSize="small" />,
+			link: 'send-feedback',
+		},
 	];
 
 	if (location.pathname === '/') {
@@ -59,23 +66,59 @@ const CustomAvatar = ({
 
 	return (
 		<>
-			<Avatar
-				alt={name}
-				src={photo}
-				onClick={handleToggleProfileMenu}
-				aria-describedby="menu-popover"
-				aria-controls="menu-popover"
-				aria-haspopup="true"
-				typeof="button"
-				{...rest}
-			/>
+			<Tooltip title="Account settings">
+				<IconButton
+					onClick={handleToggleProfileMenu}
+					size="small"
+					sx={{ ml: 2, padding: 0 }}
+				>
+					<Avatar
+						alt={name}
+						src={photo}
+						// onClick={handleToggleProfileMenu}
+						aria-describedby="menu-popover"
+						aria-controls="menu-popover"
+						aria-haspopup="true"
+						typeof="button"
+						{...rest}
+					/>
+				</IconButton>
+			</Tooltip>
 			<Menu
 				id="menu-popover"
-				style={{ top: '44px', right: '16px' }}
 				anchorEl={anchorEl}
 				open={open}
-				keepMounted
 				onClose={handleProfileClose}
+				onClick={handleProfileClose}
+				PaperProps={{
+					elevation: 0,
+					sx: {
+						zIndex: theme.zIndex.drawer + 1,
+						overflow: 'visible',
+						filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+						mt: 1.5,
+						'& .MuiAvatar-root': {
+							width: 32,
+							height: 32,
+							ml: -0.5,
+							mr: 1,
+						},
+						'&:before': {
+							content: '""',
+							display: 'block',
+							position: 'absolute',
+							top: 0,
+							right: 14,
+							width: 10,
+							height: 10,
+							bgcolor: 'background.paper',
+							transform: 'translateY(-50%) rotate(45deg)',
+							zIndex: 0,
+						},
+					},
+				}}
+				transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+				anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
 			>
 				{menuItems.map((item) => {
 					const handleClick = () => {
@@ -84,23 +127,23 @@ const CustomAvatar = ({
 					};
 					return (
 						<MenuItem key={fancyId()} onClick={handleClick}>
-							<ListItemIcon style={{ minWidth: 40 }}>{item.icon}</ListItemIcon>
+							<ListItemIcon>{item.icon}</ListItemIcon>
 							{item.name}
 						</MenuItem>
 					);
 				})}
 				{location.pathname === '/dashboard' && hasMultipleRoles && (
 					<MenuItem onClick={handleRoleModal}>
-						<ListItemIcon style={{ minWidth: 40 }}>
-							<Mood />
+						<ListItemIcon>
+							<Mood fontSize="small" />
 						</ListItemIcon>
 						Change role
 					</MenuItem>
 				)}
 
 				<MenuItem onClick={logoutActiveUser}>
-					<ListItemIcon style={{ minWidth: 40 }}>
-						<ExitToApp />
+					<ListItemIcon>
+						<Logout fontSize="small" />
 					</ListItemIcon>
 					Logout
 				</MenuItem>

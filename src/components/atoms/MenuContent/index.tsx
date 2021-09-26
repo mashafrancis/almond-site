@@ -35,6 +35,7 @@ const MenuContent = (): JSX.Element => {
 			scrollButtons={false}
 			textColor="primary"
 			aria-label="menu tabs"
+			visibleScrollbar={false}
 		>
 			{checkIsAdmin()
 				.slice(0, 6)

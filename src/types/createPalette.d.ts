@@ -7,7 +7,9 @@ declare module '@mui/material/styles/createPalette' {
 		default: string;
 		level2: string;
 		level1: string;
+		level3: string;
 		footer: string;
+		contrast: string;
 	}
 
 	interface PaletteOptions {
