@@ -21,7 +21,7 @@ const getTheme = (mode: PaletteMode): Theme =>
 				drawer: 1300,
 			},
 			shape: {
-				borderRadius: 8,
+				borderRadius: 6,
 			},
 			components: {
 				MuiButton: {

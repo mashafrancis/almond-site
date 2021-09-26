@@ -20,10 +20,7 @@ const TabPanel = ({
 				<Box
 					sx={{
 						padding: 0,
-						marginBottom: 0,
-						marginTop: '20px',
-						marginLeft: 0,
-						marginRight: 0,
+						margin: 0,
 					}}
 					p={3}
 					{...other}

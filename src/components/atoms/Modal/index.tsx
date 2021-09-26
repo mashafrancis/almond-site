@@ -39,8 +39,8 @@ const BootstrapDialogTitle = ({
 		sx={{
 			m: 0,
 			p: 2,
-			backgroundColor: (theme) => theme.palette.primary.main,
-			color: (theme) => theme.palette.common.white,
+			backgroundColor: 'rgba(66, 133, 244, 0.15)',
+			color: (theme) => theme.palette.primary.main,
 		}}
 		{...other}
 	>
@@ -53,7 +53,7 @@ const BootstrapDialogTitle = ({
 					position: 'absolute',
 					right: 8,
 					top: 8,
-					color: (theme) => theme.palette.common.white,
+					color: (theme) => theme.palette.grey[500],
 				}}
 			>
 				<Close />
@@ -85,19 +85,25 @@ const Modal = ({
 			<BootstrapDialogTitle id="customized-dialog-title" onClose={onClose}>
 				{renderHeader}
 			</BootstrapDialogTitle>
-			<DialogContent dividers>
-				<DialogContentText gutterBottom>{renderDialogText}</DialogContentText>
+			<DialogContent>
+				<DialogContentText sx={{ paddingY: 2 }} gutterBottom>
+					{renderDialogText}
+				</DialogContentText>
 				{renderContent}
 			</DialogContent>
 			<DialogActions>
 				<Button variant="text" color="primary" onClick={onDismiss}>
-					DISMISS
+					Dismiss
 				</Button>
-				{disabled && (
-					<Button autoFocus onClick={onSubmit} disabled={disabled}>
-						{submitButtonName}
-					</Button>
-				)}
+				<Button
+					autoFocus
+					variant="contained"
+					color="primary"
+					onClick={onSubmit}
+					disabled={disabled}
+				>
+					{submitButtonName}
+				</Button>
 			</DialogActions>
 		</BootstrapDialog>
 	);

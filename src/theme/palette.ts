@@ -12,10 +12,14 @@ export const light = {
 	},
 	mode: 'light' as PaletteMode,
 	primary: {
-		main: '#318162',
-		light: '#62b18f',
-		dark: '#005438',
+		main: '#1976d2',
+		light: '#2196f3',
+		dark: '#0d47a1',
 		contrastText: '#fff',
+		// main: '#318162',
+		// light: '#62b18f',
+		// dark: '#005438',
+		// contrastText: '#fff',
 	},
 	secondary: {
 		light: '#ffe98d',
@@ -31,8 +35,10 @@ export const light = {
 	background: {
 		paper: '#ffffff',
 		default: '#ffffff',
+		level3: '#62a1e81f',
 		level2: '#f5f5f5',
 		level1: '#ffffff',
+		contrast: 'rgba(255, 255, 255, 0.12)',
 	},
 };
 
@@ -48,10 +54,14 @@ export const dark = {
 	},
 	mode: 'dark' as PaletteMode,
 	primary: {
-		main: '#318162',
-		light: '#62b18f',
-		dark: '#005438',
+		main: '#1976d2',
+		light: '#2196f3',
+		dark: '#0d47a1',
 		contrastText: '#fff',
+		// main: '#318162',
+		// light: '#62b18f',
+		// dark: '#005438',
+		// contrastText: '#fff',
 	},
 	secondary: {
 		light: '#ffe98d',
@@ -65,9 +75,11 @@ export const dark = {
 	},
 	divider: 'rgba(255, 255, 255, 0.12)',
 	background: {
-		paper: '#222B45',
-		default: '#222B45',
+		paper: '#121212',
+		default: '#121212',
+		level3: '#62a1e81f',
 		level2: '#333',
 		level1: '#2D3748',
+		contrast: 'rgba(255, 255, 255, 0.12)',
 	},
 };

@@ -93,7 +93,6 @@ const Hero = (): JSX.Element => {
 				overflow: 'hidden',
 			}}
 		>
-			<Divider />
 			<Container paddingX={0} paddingY={0} maxWidth={{ sm: 1, md: 1236 }}>
 				<Box
 					display={'flex'}
