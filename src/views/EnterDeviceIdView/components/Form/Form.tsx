@@ -32,13 +32,6 @@ const Form = (): JSX.Element => {
 			<form name="enter-device-form" method="post" onSubmit={handleSubmit}>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
-						<span>
-							The device ID will help you to control your purchased device from
-							Almond. Kindly enter the 6 digit figure to start using your
-							system. Configuration with the device might take a few minutes.
-						</span>
-					</Grid>
-					<Grid item xs={12}>
 						<TextField
 							label="Enter device ID"
 							name="deviceId"
