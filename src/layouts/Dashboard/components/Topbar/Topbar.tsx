@@ -169,7 +169,6 @@ const Topbar = (): JSX.Element => {
 			display={'flex'}
 			justifyContent={'space-between'}
 			alignItems={'center'}
-			width={1}
 		>
 			<Box sx={{ display: 'flex' }} alignItems={'center'}>
 				<Logo displayText={isSm} />

@@ -1,7 +1,8 @@
 import { Main } from '../../layouts';
 import { useTheme } from '@mui/material/styles';
-import { Box, Container, Grid, useMediaQuery } from '@mui/material';
+import { Box, Divider, Grid, Typography, useMediaQuery } from '@mui/material';
 import { Form } from './components';
+import Container from '@components/Container';
 
 export const EnterDeviceIdView = (): JSX.Element => {
 	const theme = useTheme();
@@ -19,7 +20,7 @@ export const EnterDeviceIdView = (): JSX.Element => {
 				justifyContent={'center'}
 				height={1}
 			>
-				<Container>
+				<Container maxWidth={{ sm: 720, md: 960 }}>
 					<Grid container spacing={6}>
 						{isMd ? (
 							<Grid item container justifyContent={'center'} xs={12} md={6}>
@@ -49,7 +50,21 @@ export const EnterDeviceIdView = (): JSX.Element => {
 							xs={12}
 							md={6}
 						>
-							<Form />
+							<Grid item xs={12}>
+								<Typography variant="h6" color="textPrimary">
+									Add new device
+								</Typography>
+								<Typography variant={'subtitle2'} color={'text.secondary'}>
+									The device ID will help you to control your purchased device
+									from Almond. Kindly enter the 6 digit figure to start using
+									your system. Configuration with the device might take a few
+									minutes.
+								</Typography>
+								<Box paddingY={4}>
+									<Divider />
+								</Box>
+								<Form />
+							</Grid>
 						</Grid>
 					</Grid>
 				</Container>
