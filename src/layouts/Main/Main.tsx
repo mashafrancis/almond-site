@@ -126,7 +126,11 @@ const Main = ({ children }: Props): JSX.Element => {
 					elevation={0}
 				>
 					<Toolbar>
-						<Container paddingY={{ xs: 1, sm: 1.5 }} paddingX={{ xs: 0 }}>
+						<Container
+							maxWidth={1}
+							paddingY={{ xs: 1, sm: 1.5 }}
+							paddingX={{ xs: 0 }}
+						>
 							<Topbar onSidebarOpen={handleSidebarOpen} />
 						</Container>
 					</Toolbar>

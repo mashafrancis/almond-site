@@ -2,6 +2,8 @@ import { ReactNode } from 'react';
 
 export interface ModalProps {
 	isModalOpen: boolean;
+	isRequesting?: boolean;
+	loadingText?: string;
 	renderHeader: ReactNode | string | null;
 	renderContent?: ReactNode;
 	renderDialogText?: ReactNode;

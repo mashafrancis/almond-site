@@ -10,6 +10,7 @@ import {
 	styled,
 } from '@mui/material';
 import { Close } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
 import { ModalProps } from '@components/atoms/Modal/interfaces';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -73,6 +74,8 @@ const Modal = ({
 	onDismiss,
 	disabled = false,
 	renderDialogText,
+	isRequesting,
+	loadingText = 'Loading...',
 }: ModalProps): JSX.Element => {
 	return (
 		<BootstrapDialog
@@ -95,15 +98,17 @@ const Modal = ({
 				<Button variant="text" color="primary" onClick={onDismiss}>
 					Dismiss
 				</Button>
-				<Button
+				<LoadingButton
 					autoFocus
 					variant="contained"
 					color="primary"
 					onClick={onSubmit}
 					disabled={disabled}
+					loading={isRequesting}
+					loadingIndicator={loadingText}
 				>
 					{submitButtonName}
-				</Button>
+				</LoadingButton>
 			</DialogActions>
 		</BootstrapDialog>
 	);

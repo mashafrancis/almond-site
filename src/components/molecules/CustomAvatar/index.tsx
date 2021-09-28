@@ -1,11 +1,4 @@
-import {
-	Avatar,
-	Menu,
-	MenuItem,
-	ListItemIcon,
-	Tooltip,
-	IconButton,
-} from '@mui/material';
+import { Avatar, Menu, MenuItem, ListItemIcon, Tooltip } from '@mui/material';
 import { useRouter } from 'next/router';
 import fancyId from '@utils/fancyId';
 import { useState, MouseEvent, useContext } from 'react';
@@ -58,7 +51,7 @@ const CustomAvatar = ({
 		},
 	];
 
-	if (location.pathname === '/') {
+	if (router.pathname === '/') {
 		menuItems = menuItems.filter((item) => {
 			return item.name !== 'Settings';
 		});
@@ -67,22 +60,16 @@ const CustomAvatar = ({
 	return (
 		<>
 			<Tooltip title="Account settings">
-				<IconButton
+				<Avatar
+					alt={name}
+					src={photo}
 					onClick={handleToggleProfileMenu}
-					size="small"
-					sx={{ ml: 2, padding: 0 }}
-				>
-					<Avatar
-						alt={name}
-						src={photo}
-						// onClick={handleToggleProfileMenu}
-						aria-describedby="menu-popover"
-						aria-controls="menu-popover"
-						aria-haspopup="true"
-						typeof="button"
-						{...rest}
-					/>
-				</IconButton>
+					aria-describedby="menu-popover"
+					aria-controls="menu-popover"
+					aria-haspopup="true"
+					typeof="button"
+					{...rest}
+				/>
 			</Tooltip>
 			<Menu
 				id="menu-popover"
@@ -132,7 +119,7 @@ const CustomAvatar = ({
 						</MenuItem>
 					);
 				})}
-				{location.pathname === '/dashboard' && hasMultipleRoles && (
+				{router.pathname === '/dashboard' && hasMultipleRoles && (
 					<MenuItem onClick={handleRoleModal}>
 						<ListItemIcon>
 							<Mood fontSize="small" />
