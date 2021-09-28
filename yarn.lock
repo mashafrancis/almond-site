@@ -1322,6 +1322,69 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@date-io/core@npm:^2.11.0":
+  version: 2.11.0
+  resolution: "@date-io/core@npm:2.11.0"
+  checksum: ad26af280b0fb08bf4a272fbd5d41fb9bdb5b5aa3fcc4930ea5ae92a691c6b1adad8d54aa4172cc164b260aa5ee7994d5d1fcee00609f2e12efda8556fa32ba2
+  languageName: node
+  linkType: hard
+
+"@date-io/date-fns@npm:^2.10.6":
+  version: 2.11.0
+  resolution: "@date-io/date-fns@npm:2.11.0"
+  dependencies:
+    "@date-io/core": ^2.11.0
+  peerDependencies:
+    date-fns: ^2.0.0
+  peerDependenciesMeta:
+    date-fns:
+      optional: true
+  checksum: cdab6e3836c69b3d81a43afb6fe082feb29edd55923422f821c4bf7aa8dbdcee890fa5b7e85a133403196f942e0ca5eb14707413e768a0abb05d7a819dbbfd95
+  languageName: node
+  linkType: hard
+
+"@date-io/dayjs@npm:^2.10.6":
+  version: 2.11.0
+  resolution: "@date-io/dayjs@npm:2.11.0"
+  dependencies:
+    "@date-io/core": ^2.11.0
+  peerDependencies:
+    dayjs: ^1.8.17
+  peerDependenciesMeta:
+    dayjs:
+      optional: true
+  checksum: 298f5355c3c0e0a60581e8daa1a3208b50741b5af7b59319ecbaaf69369f1faa51bfa711a030297d0b37b4b13444dbe909fc8773d0104bbead789ecce2433b89
+  languageName: node
+  linkType: hard
+
+"@date-io/luxon@npm:^2.10.6":
+  version: 2.11.1
+  resolution: "@date-io/luxon@npm:2.11.1"
+  dependencies:
+    "@date-io/core": ^2.11.0
+  peerDependencies:
+    luxon: ^1.21.3 || ^2.x
+  peerDependenciesMeta:
+    luxon:
+      optional: true
+  checksum: 64782a8bc95b3b4adb24bdbf05a211b0f7afe36a2c9ce92c6262bd167b43c897ef049b2fa80e03a489b67877cadae7adecd21518193359ac192a7c2d3dc11764
+  languageName: node
+  linkType: hard
+
+"@date-io/moment@npm:^2.10.6":
+  version: 2.11.0
+  resolution: "@date-io/moment@npm:2.11.0"
+  dependencies:
+    "@date-io/core": ^2.11.0
+  peerDependencies:
+    moment: ^2.24.0
+  peerDependenciesMeta:
+    moment:
+      optional: true
+  checksum: db0d3e79ba485ca9c6804ded95ab5d6c84900774c75d9f4e37fced67161737fa2bfd460b15ce969ef8336dbea2cc4119cf938e5d1df55a1aea27cb4297d5270c
+  languageName: node
+  linkType: hard
+
 "@emotion/babel-plugin@npm:^11.3.0":
   version: 11.3.0
   resolution: "@emotion/babel-plugin@npm:11.3.0"
@@ -1819,6 +1882,47 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mui/lab@npm:^5.0.0-alpha.48":
+  version: 5.0.0-alpha.48
+  resolution: "@mui/lab@npm:5.0.0-alpha.48"
+  dependencies:
+    "@babel/runtime": ^7.15.4
+    "@date-io/date-fns": ^2.10.6
+    "@date-io/dayjs": ^2.10.6
+    "@date-io/luxon": ^2.10.6
+    "@date-io/moment": ^2.10.6
+    "@mui/core": 5.0.0-alpha.48
+    "@mui/system": ^5.0.1
+    "@mui/utils": ^5.0.1
+    clsx: ^1.1.1
+    prop-types: ^15.7.2
+    react-is: ^17.0.2
+    react-transition-group: ^4.4.2
+    rifm: ^0.12.0
+  peerDependencies:
+    "@mui/material": ^5.0.0-rc.0
+    "@types/react": ^16.8.6 || ^17.0.0
+    date-fns: ^2.24.0
+    dayjs: ^1.10.7
+    luxon: ^1.28.0
+    moment: ^2.29.1
+    react: ^17.0.2
+    react-dom: ^17.0.2
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    date-fns:
+      optional: true
+    dayjs:
+      optional: true
+    luxon:
+      optional: true
+    moment:
+      optional: true
+  checksum: 912b0fd8987af135c93f7a22c7f689f53fe6197f05233db48d8cf2b91674447441a7a66fb0091639c14e8c889d676efea0ef514216fb9794751c7e91c39732cb
+  languageName: node
+  linkType: hard
+
 "@mui/material@npm:^5.0.1":
   version: 5.0.1
   resolution: "@mui/material@npm:5.0.1"
@@ -1961,7 +2065,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/utils@npm:^5.0.1":
+"@mui/utils@npm:^5.0.0, @mui/utils@npm:^5.0.1":
   version: 5.0.1
   resolution: "@mui/utils@npm:5.0.1"
   dependencies:
@@ -1973,6 +2077,22 @@ __metadata:
   peerDependencies:
     react: ^17.0.2
   checksum: b6d8375bdb479201a3a343113795ba5d7a9bfe308d46b9e79be6e426dceb4da8dc1cac6b0a459545e28ed632967d209f297009699a4737ef20dcbfa8a1fcfb15
+  languageName: node
+  linkType: hard
+
+"@mui/x-data-grid@npm:next":
+  version: 5.0.0-beta.2
+  resolution: "@mui/x-data-grid@npm:5.0.0-beta.2"
+  dependencies:
+    "@mui/utils": ^5.0.0
+    clsx: ^1.1.1
+    prop-types: ^15.7.2
+    reselect: ^4.0.0
+  peerDependencies:
+    "@mui/material": ^5.0.0
+    "@mui/styles": ^5.0.0
+    react: ^17.0.2
+  checksum: 064e99ef9ab988fed34b6d2fbb3caba4f26fccdb4647d87f4e3680925ad7cbe548cd95c499c4b32146c588ef1648b76fc6c2cb22b1c6078afa097f7b1328f66d
   languageName: node
   linkType: hard
 
@@ -3258,8 +3378,10 @@ __metadata:
     "@emotion/server": ^11.4.0
     "@emotion/styled": ^11.3.0
     "@mui/icons-material": ^5.0.1
+    "@mui/lab": ^5.0.0-alpha.48
     "@mui/material": ^5.0.1
     "@mui/styles": ^5.0.1
+    "@mui/x-data-grid": next
     "@reduxjs/toolkit": ^1.6.1
     "@testing-library/dom": ^8.6.0
     "@testing-library/jest-dom": ^5.14.1
@@ -3285,7 +3407,11 @@ __metadata:
     babel-jest: ^27.2.1
     babel-plugin-styled-components: ^1.13.2
     card-validator: ^8.1.1
+    chart.js: ^3.5.0
+    chartjs-adapter-luxon: ^1.0.0
+    chartjs-plugin-streaming: ^2.0.0
     cross-env: ^7.0.3
+    date-fns: ^2.24.0
     dayjs: ^1.10.7
     dequal: ^2.0.2
     eslint: ^7.32.0
@@ -3299,11 +3425,14 @@ __metadata:
     eslint-plugin-testing-library: ^4.12.4
     formik: ^2.2.9
     globby: ^12.0.2
+    highcharts: ^9.2.2
+    highcharts-react-official: ^3.0.0
     identity-obj-proxy: ^3.0.0
     jarallax: ^1.12.7
     jest: ^27.2.1
     js-cookie: ^3.0.1
     jwt-decode: ^3.1.2
+    luxon: ^2.0.2
     mqtt: ^4.2.8
     next: ^11.1.2
     next-images: ^1.8.1
@@ -3314,6 +3443,7 @@ __metadata:
     prettier-eslint: ^13.0.0
     prettier-eslint-cli: ^5.0.1
     react: ^17.0.2
+    react-chartjs-2: ^3.0.4
     react-countup: ^6.0.0
     react-dom: ^17.0.2
     react-ga: ^3.3.0
@@ -4467,6 +4597,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chart.js@npm:^3.5.0":
+  version: 3.5.1
+  resolution: "chart.js@npm:3.5.1"
+  checksum: aab597abd025354608336111da4e9f7a912a65d4c29f3c7fb41df5cc54bb29d235c41a2cf08d82a79a9a8be928812445f930cbee16aeb8075ebeeb963bfc0da2
+  languageName: node
+  linkType: hard
+
+"chartjs-adapter-luxon@npm:^1.0.0":
+  version: 1.1.0
+  resolution: "chartjs-adapter-luxon@npm:1.1.0"
+  peerDependencies:
+    chart.js: ^3.0.0
+    luxon: ^1.0.0 || ^2.0.0
+  checksum: 9ff31fc57d6b8feb089fbf5833de155b324171ea686028e0212c54b6490fe3ef5054a49e34060088ed53b7278ed6f602b723529d0639e9bbe8b5c156405449b4
+  languageName: node
+  linkType: hard
+
+"chartjs-plugin-streaming@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "chartjs-plugin-streaming@npm:2.0.0"
+  peerDependencies:
+    chart.js: ^3.0.0
+  checksum: 9b08a09d51599388d2aca23a3fc42d6ad7c0872b630412519374379ee55e9a5f7bb8de20e2ae350a413c1918a3301fe40d19bd78bc916789258733097d32933d
+  languageName: node
+  linkType: hard
+
 "chokidar@npm:3.5.1":
   version: 3.5.1
   resolution: "chokidar@npm:3.5.1"
@@ -5096,6 +5252,13 @@ __metadata:
     whatwg-mimetype: ^2.3.0
     whatwg-url: ^8.0.0
   checksum: 97caf828aac25e25e04ba6869db0f99c75e6859bb5b424ada28d3e7841941ebf08ddff3c1b1bb4585986bd507a5d54c2a716853ea6cb98af877400e637393e71
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^2.24.0":
+  version: 2.24.0
+  resolution: "date-fns@npm:2.24.0"
+  checksum: f930419e356cf6a6a02c7ed6c6e438df61b4011861002a3dc94a4efc83bc96a7f30ea3cc2e7231c421604c3d5131f9ffb097bf8e7f81a59d68f556864490664f
   languageName: node
   linkType: hard
 
@@ -7114,6 +7277,23 @@ __metadata:
     glob: ^7.1.6
     readable-stream: ^3.6.0
   checksum: 04b0cf1cc02c2710d09718811cdf3d4dc5e3210d65e3f74749c8fc0c8081736cb0309dc3513696cba5e97196254f3c99378dab25ac0c514037c8d238a0b8ce48
+  languageName: node
+  linkType: hard
+
+"highcharts-react-official@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "highcharts-react-official@npm:3.0.0"
+  peerDependencies:
+    highcharts: ">=6.0.0"
+    react: ">=16.8.0"
+  checksum: 78aca394eb73badec872aaf5282d862c64e00b0d20f52992e49ceb2c84638c78aad6fc4194310459a2fe8b6d42708c49dd2c8c1b6dbe6ae9f2e7a16b8b7ad837
+  languageName: node
+  linkType: hard
+
+"highcharts@npm:^9.2.2":
+  version: 9.2.2
+  resolution: "highcharts@npm:9.2.2"
+  checksum: e5cf10e4bfa4015cc5eb5df63f66afab8ed34093b0038d2d66da0ef11393695f5caebcbfb24a4d6fb046cdba6e813b3536052436c7f2e30b166e54b25079ea76
   languageName: node
   linkType: hard
 
@@ -9140,7 +9320,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.11, lodash@npm:^4.17.12, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.4, lodash@npm:^4.7.0":
+"lodash@npm:^4.17.11, lodash@npm:^4.17.12, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.19, lodash@npm:^4.17.20, lodash@npm:^4.17.21, lodash@npm:^4.17.4, lodash@npm:^4.7.0":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: eb835a2e51d381e561e508ce932ea50a8e5a68f4ebdd771ea240d3048244a8d13658acbd502cd4829768c56f2e16bdd4340b9ea141297d472517b83868e677f7
@@ -9191,6 +9371,13 @@ __metadata:
   dependencies:
     yallist: ^4.0.0
   checksum: f97f499f898f23e4585742138a22f22526254fdba6d75d41a1c2526b3b6cc5747ef59c5612ba7375f42aca4f8461950e925ba08c991ead0651b4918b7c978297
+  languageName: node
+  linkType: hard
+
+"luxon@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "luxon@npm:2.0.2"
+  checksum: eb2e366cf41a129704ae3213e0aea3e1504390af2a84322a5bbb6a22c92d96c7cb70e58b941a109c5e1bfbed51784d08130278feeee6cdf169940af90a68ded5
   languageName: node
   linkType: hard
 
@@ -11021,6 +11208,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-chartjs-2@npm:^3.0.4":
+  version: 3.0.5
+  resolution: "react-chartjs-2@npm:3.0.5"
+  dependencies:
+    lodash: ^4.17.19
+  peerDependencies:
+    chart.js: ^3.5.0
+    react: ^16.8.0 || ^17.0.0
+  checksum: e21fad0db09caf9b9345a40766dd942fb24066a467a9c041555008aa9f619d73f7227e69abe3aba4d126f5677f789da682f023d07de9a502b97c0e55e90a657d
+  languageName: node
+  linkType: hard
+
 "react-clientside-effect@npm:^1.2.5":
   version: 1.2.5
   resolution: "react-clientside-effect@npm:1.2.5"
@@ -11848,6 +12047,15 @@ resolve@^2.0.0-next.3:
   version: 1.0.4
   resolution: "reusify@npm:1.0.4"
   checksum: c3076ebcc22a6bc252cb0b9c77561795256c22b757f40c0d8110b1300723f15ec0fc8685e8d4ea6d7666f36c79ccc793b1939c748bf36f18f542744a4e379fcc
+  languageName: node
+  linkType: hard
+
+"rifm@npm:^0.12.0":
+  version: 0.12.0
+  resolution: "rifm@npm:0.12.0"
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 8ea4f820f3e7a9804e79397194b19d8feee23037b8bf040223d1811551144e57e85b364758c04804e677d505a56a87f69db46ae2b7a37852d078e9adc4912a02
   languageName: node
   linkType: hard
 

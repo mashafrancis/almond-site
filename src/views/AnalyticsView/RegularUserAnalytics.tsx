@@ -38,7 +38,7 @@ const RegularUserAnalytics = (): JSX.Element => {
 	const isEmpty = (arr) => !Array.isArray(arr) || arr.length === 0;
 
 	useEffectAsync(async () => {
-		await dispatch(getAllSchedules(activeDevice._id));
+		await dispatch(getAllSchedules(activeDevice?._id));
 		if (!isEmpty(schedules)) {
 			const filteredSchedules: Schedule[] = schedules.filter(
 				(t) => Math.sign(getDiff(dayjs(), t.schedule)) > 0
@@ -64,14 +64,14 @@ const RegularUserAnalytics = (): JSX.Element => {
 					onClick={handleCardClick(1)}
 					colorClass="blueCard"
 					icon={<OpacityTwoTone fontSize="large" />}
-					mainInfo="Water Level"
+					mainInfo="Water level"
 					subInfo={`${formatWaterLevelData(waterLevel)} %`}
 				/>
 				<AnalyticsCard
 					onClick={handleCardClick(1)}
 					colorClass="yellowCard"
 					icon={<HorizontalSplitTwoTone fontSize="large" />}
-					mainInfo="Water Temperature"
+					mainInfo="Water temperature"
 					subInfo={`${temperature ?? 0}\u00b0C`}
 				/>
 				<AnalyticsCard
@@ -85,14 +85,14 @@ const RegularUserAnalytics = (): JSX.Element => {
 					onClick={handleCardClick(2)}
 					colorClass="redCard"
 					icon={<BlurOn fontSize="large" />}
-					mainInfo="Air Temperature"
+					mainInfo="Air temperature"
 					subInfo={`${temperature ?? 0}\u00b0C`}
 				/>
 				<AnalyticsCard
 					onClick={handleCardClick(2)}
 					colorClass="greenCard"
 					icon={<BubbleChart fontSize="large" />}
-					mainInfo="Air Humidity"
+					mainInfo="Air humidity"
 					subInfo={`${humidity ?? 0} %`}
 				/>
 				<AnalyticsCard
@@ -100,7 +100,7 @@ const RegularUserAnalytics = (): JSX.Element => {
 					colorClass="purpleCard"
 					icon={<MemoryTwoTone fontSize="large" />}
 					mainInfo="Power usage"
-					subInfo="30 KW"
+					subInfo="3 kW"
 				/>
 			</Grid>
 		</div>

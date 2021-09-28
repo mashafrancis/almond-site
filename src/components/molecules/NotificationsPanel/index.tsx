@@ -6,11 +6,13 @@ import {
 	Divider,
 	Stack,
 	SwipeableDrawer,
+	Tooltip,
 	Typography,
 } from '@mui/material';
 import { Notifications } from '@mui/icons-material';
 import { notificationsUnread } from '../../../layouts/Dashboard/components/Topbar/fixtures';
 import { alpha, useTheme } from '@mui/material/styles';
+import { useMobileDetect } from '@hooks/index';
 
 const NotificationsPanel = (): JSX.Element => {
 	const [isNotificationsDrawerOpen, setNotificationsDrawerState] =
@@ -19,9 +21,11 @@ const NotificationsPanel = (): JSX.Element => {
 	const theme = useTheme();
 	const { mode } = theme.palette;
 
-	const iOS =
-		typeof window === 'undefined' &&
-		/iPad|iPhone|iPod/.test(navigator.userAgent);
+	const currentDevice = useMobileDetect();
+
+	// const iOS =
+	// 	typeof window === 'undefined' &&
+	// 	/iPad|iPhone|iPod/.test(navigator.userAgent);
 
 	const handleNotificationsDrawer =
 		(open: boolean) => (event: KeyboardEvent | MouseEvent) => {
@@ -42,8 +46,8 @@ const NotificationsPanel = (): JSX.Element => {
 			open={isNotificationsDrawerOpen}
 			onClose={handleNotificationsDrawer(false)}
 			onOpen={handleNotificationsDrawer(true)}
-			disableBackdropTransition={!iOS}
-			disableDiscovery={iOS}
+			disableBackdropTransition={!currentDevice.isIos()}
+			disableDiscovery={currentDevice.isIos()}
 		>
 			<div style={{ margin: 10 }}>
 				<Stack
@@ -108,32 +112,34 @@ const NotificationsPanel = (): JSX.Element => {
 
 	const renderNotificationsIcon = (): JSX.Element => (
 		// :TODO: Implement notifications function
-		<Button
-			variant={'outlined'}
-			aria-label="Dark mode toggler"
-			color={mode === 'light' ? 'primary' : 'secondary'}
-			sx={{
-				borderRadius: 1,
-				minWidth: 'auto',
-				padding: 1,
-				borderColor: alpha(theme.palette.divider, 0.2),
-			}}
-		>
-			<Badge
-				anchorOrigin={{
-					vertical: 'bottom',
-					horizontal: 'right',
+		<Tooltip title="Toggle notifications">
+			<Button
+				variant={'outlined'}
+				aria-label="Dark mode toggler"
+				color={mode === 'light' ? 'primary' : 'secondary'}
+				sx={{
+					borderRadius: 1,
+					minWidth: 'auto',
+					padding: 1,
+					borderColor: alpha(theme.palette.divider, 0.2),
 				}}
-				color="primary"
-				badgeContent={3}
 			>
-				<Notifications
-					onClick={handleNotificationsDrawer(!isNotificationsDrawerOpen)}
+				<Badge
+					anchorOrigin={{
+						vertical: 'bottom',
+						horizontal: 'right',
+					}}
 					color="primary"
-					fontSize="small"
-				/>
-			</Badge>
-		</Button>
+					badgeContent={3}
+				>
+					<Notifications
+						onClick={handleNotificationsDrawer(!isNotificationsDrawerOpen)}
+						color="primary"
+						fontSize="small"
+					/>
+				</Badge>
+			</Button>
+		</Tooltip>
 	);
 
 	return (

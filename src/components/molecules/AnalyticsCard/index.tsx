@@ -1,12 +1,5 @@
 import { AnalyticsCardProps } from './interfaces';
-import {
-	ButtonBase,
-	Card,
-	CardContent,
-	Grid,
-	Stack,
-	Typography,
-} from '@mui/material';
+import { Box, ButtonBase, Grid, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 
 const AnalyticsCard = ({
@@ -40,106 +33,106 @@ const AnalyticsCard = ({
 			width: 128,
 			height: 128,
 		},
-		mainInfoText: {
-			fontWeight: 500,
-			fontSize: 18,
-		},
-		subInfoText: {
-			fontWeight: 600,
-			// [theme.breakpoints.up('xl')]: {
-			//   fontSize: 12
-			// },
-		},
 		mainCard: {
 			cursor: 'pointer',
 			borderRadius: 2,
-			[theme.breakpoints.down('sm')]: {
-				paddingTop: '0 !important',
-				marginBottom: 1,
+			height: 'fit-content',
+			border: `1px solid ${theme.palette.divider}`,
+			marginBottom: 1,
+			[theme.breakpoints.up('sm')]: {
+				marginRight: 1,
+			},
+			// [theme.breakpoints.down('sm')]: {
+			// 	paddingTop: '0 !important',
+			// 	marginBottom: 1,
+			// },
+		},
+		mainInfo: {
+			[theme.breakpoints.down('xs')]: {
+				maxWidth: 20,
 			},
 		},
 		yellowCard: {
-			color: '#f29900 !important',
+			color: '#cc8000',
 			backgroundColor: '#fef7e0',
-			borderColor: 'rgba(242, 153, 0, 0.2) !important',
+			borderColor: 'rgba(242, 153, 0, 0.3)',
 		},
 
 		blueCard: {
-			color: '#1967d2 !important',
+			color: '#1967d2',
 			backgroundColor: '#e8f0fe',
-			borderColor: 'rgba(25, 103, 210, 0.2) !important',
+			borderColor: 'rgba(25, 103, 210, 0.3)',
 		},
 
 		purpleCard: {
-			color: '#512da8 !important',
+			color: '#512da8',
 			backgroundColor: '#f3e8fd',
-			borderColor: 'rgba(81, 45, 168, 0.2) !important',
+			borderColor: 'rgba(81, 45, 168, 0.3)',
 		},
 
 		brownCard: {
-			color: '#3e2723 !important',
+			color: '#3e2723',
 			backgroundColor: '#efebe9',
-			borderColor: 'rgba(62, 39, 35, 0.2) !important',
+			borderColor: 'rgba(62, 39, 35, 0.3)',
 		},
 
 		redCard: {
-			color: '#821721 !important',
+			color: '#821721',
 			backgroundColor: '#e3d6d6',
-			borderColor: 'rgba(210, 43, 53, 0.2) !important',
+			borderColor: 'rgba(210, 43, 53, 0.3)',
 		},
 
 		greenCard: {
-			color: '#1b5e20 !important',
+			color: '#1b5e20',
 			backgroundColor: '#e8f5e9',
-			borderColor: 'rgba(27, 94, 32, 0.2) !important',
+			borderColor: 'rgba(27, 94, 32, 0.3)',
 		},
 	};
+
 	return (
-		<Grid item lg={4} md={6} xs={12} sx={classes.mainCard}>
-			<Card
+		<Grid item lg={4} md={6} xs={6}>
+			<Box
 				sx={{ ...classes[colorClass!], ...classes.mainCard }}
-				variant="outlined"
 				onClick={onClick}
 				data-testid="analytics-card"
 			>
-				<CardContent classes={classes.content}>
-					<Stack
-						direction="row"
-						justifyContent="space-between"
-						alignItems="center"
-						spacing={2}
+				<Box
+					classes={classes.content}
+					padding={2}
+					display={'flex'}
+					alignItems={'center'}
+				>
+					<Box marginRight={2}>
+						<ButtonBase>{icon}</ButtonBase>
+					</Box>
+					<Box
+						display={'flex'}
+						flexDirection={{ xs: 'column', sm: 'row' }}
+						flex={'1 1 100%'}
+						justifyContent={{ sm: 'space-between' }}
+						alignItems={{ sm: 'center' }}
 					>
-						<Grid item xs={1} md={2}>
-							<ButtonBase>{icon}</ButtonBase>
-						</Grid>
-						<Grid item xs={10} sm container>
-							<Grid
-								item
-								container
-								justifyContent="space-between"
-								alignItems="center"
-								direction="row"
-								style={{ display: 'flex', width: '100%' }}
-							>
-								<Typography
-									sx={{ ...classes[colorClass!], ...classes.mainInfoText }}
-									variant="h6"
-									data-testid="main-info"
-								>
-									{mainInfo}
-								</Typography>
-								<Typography
-									variant="h4"
-									sx={{ ...classes[colorClass!], ...classes.subInfoText }}
-									data-testid="sub-info"
-								>
-									{subInfo}
-								</Typography>
-							</Grid>
-						</Grid>
-					</Stack>
-				</CardContent>
-			</Card>
+						<Typography
+							classes={classes.mainInfo}
+							fontWeight={500}
+							fontSize={{ xs: 14, sm: 16 }}
+							sx={{ ...classes[colorClass!] }}
+							variant="h6"
+							data-testid="main-info"
+						>
+							{mainInfo}
+						</Typography>
+						<Typography
+							variant="h4"
+							fontWeight={600}
+							sx={{ ...classes[colorClass!] }}
+							data-testid="sub-info"
+						>
+							{subInfo}
+						</Typography>
+					</Box>
+				</Box>
+			</Box>
 		</Grid>
 	);
 };

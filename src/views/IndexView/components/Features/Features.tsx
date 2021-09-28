@@ -67,7 +67,12 @@ const Features = (): JSX.Element => {
 					<Grid container spacing={2}>
 						{mock.map((item) => (
 							<Grid key={fancyId()} item xs={12} md={4}>
-								<Typography variant="h4" color={'primary'} gutterBottom>
+								<Typography
+									fontWeight={500}
+									variant="h4"
+									color={'primary'}
+									gutterBottom
+								>
 									<VisibilitySensor
 										onChange={(isVisible) => setViewPortVisibility(isVisible)}
 										delayedCall

@@ -15,6 +15,7 @@ import {
 	Badge,
 	BadgeProps,
 	Theme,
+	Tooltip,
 	Typography,
 	useMediaQuery,
 } from '@mui/material';
@@ -91,29 +92,31 @@ const Topbar = (): JSX.Element => {
 	const renderTimeLineIcon = (): JSX.Element => {
 		const handleClick = () => toggleActivityDrawer(true, true);
 		return (
-			<Button
-				variant={'outlined'}
-				aria-label="Dark mode toggler"
-				color={mode === 'light' ? 'primary' : 'secondary'}
-				sx={{
-					borderRadius: 1,
-					minWidth: 'auto',
-					padding: 1,
-					borderColor: alpha(theme.palette.divider, 0.2),
-				}}
-			>
-				<Badge
-					overlap="circular"
-					anchorOrigin={{
-						vertical: 'bottom',
-						horizontal: 'right',
+			<Tooltip title="Check device activities">
+				<Button
+					variant={'outlined'}
+					aria-label="Dark mode toggler"
+					color={mode === 'light' ? 'primary' : 'secondary'}
+					sx={{
+						borderRadius: 1,
+						minWidth: 'auto',
+						padding: 1,
+						borderColor: alpha(theme.palette.divider, 0.2),
 					}}
-					variant="dot"
-					// invisible={isActivityLogsEmpty !== activityLogsViewed}
 				>
-					<Timeline color="primary" fontSize="small" onClick={handleClick} />
-				</Badge>
-			</Button>
+					<Badge
+						overlap="circular"
+						anchorOrigin={{
+							vertical: 'bottom',
+							horizontal: 'right',
+						}}
+						variant="dot"
+						// invisible={isActivityLogsEmpty !== activityLogsViewed}
+					>
+						<Timeline color="primary" fontSize="small" onClick={handleClick} />
+					</Badge>
+				</Button>
+			</Tooltip>
 		);
 	};
 
@@ -123,10 +126,14 @@ const Topbar = (): JSX.Element => {
 		return (
 			<Button
 				variant="outlined"
+				size="large"
 				onClick={handleClick}
 				onKeyDown={handleDeviceModal}
 				endIcon={renderMoreButton(handleClick)}
-				sx={{ borderColor: alpha(theme.palette.divider, 0.2) }}
+				sx={{
+					borderColor: alpha(theme.palette.divider, 0.2),
+					backgroundColor: theme.palette.alternate.main,
+				}}
 			>
 				<DeviceActiveBadge
 					variant="dot"
@@ -168,29 +175,33 @@ const Topbar = (): JSX.Element => {
 				<Logo displayText={isSm} />
 			</Box>
 
-			<Box sx={{ display: 'flex' }} alignItems={'center'}>
-				{!isAdmin && renderDeviceDisplay()}
-			</Box>
-
 			<Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
+				<Box sx={{ display: 'flex' }} alignItems={'center'}>
+					{!isAdmin && renderDeviceDisplay()}
+				</Box>
 				<Box marginLeft={3}>{renderTimeLineIcon()}</Box>
 				<Box marginLeft={3}>
 					<NotificationsPanel />
 				</Box>
+				<Tooltip title="Toggle theme mode">
+					<Box marginLeft={3}>
+						<DarkModeToggler
+							moonColor={theme.palette.secondary.main}
+							// sunColor={theme.palette.primary.main}
+						/>
+					</Box>
+				</Tooltip>
 				<Box marginLeft={3}>
-					<DarkModeToggler
-						moonColor={theme.palette.secondary.main}
-						sunColor={theme.palette.primary.main}
-					/>
-				</Box>
-				<Box marginLeft={3}>
-					<CustomAvatar hasMultipleRoles={roles.length > 1} />
+					<CustomAvatar hasMultipleRoles={roles?.length > 1} />
 				</Box>
 			</Box>
 
 			<Box sx={{ display: { xs: 'flex', md: 'none' } }} alignItems={'center'}>
+				<Box sx={{ display: 'flex' }} alignItems={'center'}>
+					{!isAdmin && renderDeviceDisplay()}
+				</Box>
 				<Box marginLeft={3}>
-					<CustomAvatar hasMultipleRoles={roles.length > 1} />
+					<CustomAvatar hasMultipleRoles={roles?.length > 1} />
 				</Box>
 			</Box>
 		</Box>

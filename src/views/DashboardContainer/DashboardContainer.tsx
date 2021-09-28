@@ -20,7 +20,7 @@ import {
 import { IRootState } from '../../store/rootReducer';
 import { useRouter } from 'next/router';
 import { ComponentContext } from '@context/ComponentContext';
-import { useSubscription } from '@hooks/mqtt';
+// import { useSubscription } from '@hooks/mqtt';
 import {
 	Box,
 	Divider,
@@ -40,7 +40,7 @@ import { activateDevice } from '@modules/device';
 // utils
 import isArrayNotNull from '@utils/checkArrayEmpty';
 // interfaces
-import { IClientSubscribeOptions } from 'mqtt';
+// import { IClientSubscribeOptions } from 'mqtt';
 import { DashboardContainerState } from './interfaces';
 
 const DashboardContainer = (): JSX.Element => {
@@ -83,10 +83,10 @@ const DashboardContainer = (): JSX.Element => {
 		isActivityDrawerOpen,
 	} = useContext(ComponentContext);
 
-	const options: IClientSubscribeOptions = {
-		qos: 2,
-		rap: true,
-	};
+	// const options: IClientSubscribeOptions = {
+	// 	qos: 2,
+	// 	rap: true,
+	// };
 
 	const dispatch = useDispatch();
 
@@ -101,9 +101,9 @@ const DashboardContainer = (): JSX.Element => {
 	// }, []);
 
 	// :TODO: Reformat to get user specific device subscription
-	const userSensorSubscription = 'almond/data';
-	const { message } = useSubscription(userSensorSubscription, options);
-	console.log(message);
+	// const userSensorSubscription = 'almond/data';
+	// const { message } = useSubscription(userSensorSubscription, options);
+	// console.log(message);
 
 	// useEffect(() => {
 	// 	if (message) {
