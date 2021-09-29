@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { logoutUser } from '@modules/user';
 import { UserContext } from '@context/UserContext';
 import { useTheme } from '@mui/material/styles';
+import {ComponentContext} from "@context/ComponentContext";
 
 interface Props {
 	hasMultipleRoles?: boolean;
@@ -29,9 +30,11 @@ const CustomAvatar = ({
 
 	const handleProfileClose = () => setAnchorEl(null);
 
+	const { toggleRoleChangeDialog } = useContext(ComponentContext);
+
 	const handleRoleModal = () => {
 		handleProfileClose();
-		// toggleRoleChangeDialog();
+		toggleRoleChangeDialog();
 	};
 
 	const logoutActiveUser = async (): Promise<void> => {

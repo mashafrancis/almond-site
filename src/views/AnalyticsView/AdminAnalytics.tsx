@@ -58,7 +58,7 @@ const AdminAnalytics = (): JSX.Element => {
 					colorClass="redCard"
 					icon={<AccountBalanceTwoTone fontSize="large" />}
 					mainInfo="Sales"
-					subInfo="400,000"
+					subInfo="4,000"
 				/>
 				<AnalyticsCard
 					onClick={handleCardClick(2)}

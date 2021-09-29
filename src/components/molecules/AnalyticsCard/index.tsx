@@ -48,8 +48,8 @@ const AnalyticsCard = ({
 			// },
 		},
 		mainInfo: {
-			[theme.breakpoints.down('xs')]: {
-				maxWidth: 20,
+			[theme.breakpoints.down('sm')]: {
+				display: 'none'
 			},
 		},
 		yellowCard: {
@@ -96,6 +96,18 @@ const AnalyticsCard = ({
 				onClick={onClick}
 				data-testid="analytics-card"
 			>
+				<Box marginLeft={2} marginTop={1} display={{ sm: 'none' }}>
+				<Typography
+					classes={classes.mainInfo}
+					fontWeight={500}
+					fontSize={{ xs: 14, sm: 16 }}
+					sx={{ ...classes[colorClass!] }}
+					variant="h6"
+					data-testid="main-info"
+				>
+					{mainInfo}
+				</Typography>
+				</Box>
 				<Box
 					classes={classes.content}
 					padding={2}
@@ -113,10 +125,9 @@ const AnalyticsCard = ({
 						alignItems={{ sm: 'center' }}
 					>
 						<Typography
-							classes={classes.mainInfo}
 							fontWeight={500}
 							fontSize={{ xs: 14, sm: 16 }}
-							sx={{ ...classes[colorClass!] }}
+							sx={{ ...classes[colorClass!], ...classes.mainInfo }}
 							variant="h6"
 							data-testid="main-info"
 						>

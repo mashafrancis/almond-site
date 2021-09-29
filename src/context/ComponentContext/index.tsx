@@ -5,7 +5,7 @@ import { ComponentContextProps, ComponentContextState } from './interfaces';
 // 	window.localStorage.getItem('selectedIndex') as string
 // );
 
-const selectedIndex = 1;
+const selectedIndex = 0;
 
 const ComponentContext = createContext({
 	isMenuOpen: false,

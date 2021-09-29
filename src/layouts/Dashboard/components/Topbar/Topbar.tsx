@@ -113,7 +113,7 @@ const Topbar = (): JSX.Element => {
 						variant="dot"
 						// invisible={isActivityLogsEmpty !== activityLogsViewed}
 					>
-						<Timeline color="primary" fontSize="small" onClick={handleClick} />
+						<Timeline color="primary" onClick={handleClick} />
 					</Badge>
 				</Button>
 			</Tooltip>
