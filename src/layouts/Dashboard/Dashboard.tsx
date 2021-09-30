@@ -61,7 +61,7 @@ const Dashboard = ({ children }: Props): JSX.Element => {
 	return (
 		<Box
 			sx={{
-				background: theme.palette.alternate.main,
+				// background: theme.palette.alternate.main,
 				height: '100vh',
 			}}
 		>
@@ -107,7 +107,7 @@ const Dashboard = ({ children }: Props): JSX.Element => {
 					</Box>
 				</Box>
 			</main>
-			<Container>{hidden ? null : <BottomNavigation />}</Container>
+			{hidden ? null : <Container><BottomNavigation /></Container>}
 		</Box>
 	);
 };

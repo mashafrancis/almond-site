@@ -42,8 +42,10 @@ import isArrayNotNull from '@utils/checkArrayEmpty';
 // interfaces
 // import { IClientSubscribeOptions } from 'mqtt';
 import { DashboardContainerState } from './interfaces';
+import {useTheme} from "@mui/material/styles";
 
 const DashboardContainer = (): JSX.Element => {
+	const theme = useTheme();
 	const { activityLogs } = useSelector(
 		(globalState: IRootState) => globalState,
 		shallowEqual
@@ -291,7 +293,8 @@ const DashboardContainer = (): JSX.Element => {
 					spacing={1}
 					sx={{
 						background: (theme) => theme.palette.alternate.main,
-						padding: 10,
+						padding: 1,
+						marginTop: 10,
 						borderRadius: 4,
 					}}
 				>
@@ -343,7 +346,7 @@ const DashboardContainer = (): JSX.Element => {
 	const checkIsAdmin = () => (isAdmin ? AdminMenus : UserMenus);
 
 	return (
-		<Box sx={{ overflowX: 'hidden' }}>
+		<Box sx={{ overflowX: 'hidden', background: theme.palette.alternate.main, }}>
 			<Dashboard>
 				<Container
 					sx={{ position: 'relative' }}

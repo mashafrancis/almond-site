@@ -9,7 +9,7 @@ import {
 	Tooltip,
 	Typography,
 } from '@mui/material';
-import { Notifications } from '@mui/icons-material';
+import {Notifications, NotificationsNoneRounded} from '@mui/icons-material';
 import { notificationsUnread } from '../../../layouts/Dashboard/components/Topbar/fixtures';
 import { alpha, useTheme } from '@mui/material/styles';
 import { useMobileDetect } from '@hooks/index';
@@ -57,7 +57,8 @@ const NotificationsPanel = (): JSX.Element => {
 					spacing={1}
 					sx={{
 						background: (theme) => theme.palette.alternate.main,
-						padding: 10,
+						padding: 1,
+						marginTop: 10,
 						borderRadius: 4,
 					}}
 				>
@@ -126,16 +127,15 @@ const NotificationsPanel = (): JSX.Element => {
 			>
 				<Badge
 					anchorOrigin={{
-						vertical: 'bottom',
+						vertical: 'top',
 						horizontal: 'right',
 					}}
 					color="primary"
-					badgeContent={3}
+					badgeContent={0}
 				>
-					<Notifications
+					<NotificationsNoneRounded
 						onClick={handleNotificationsDrawer(!isNotificationsDrawerOpen)}
 						color="primary"
-						fontSize="small"
 					/>
 				</Badge>
 			</Button>
