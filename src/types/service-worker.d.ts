@@ -1,40 +1,40 @@
 interface ExtendableEvent extends Event {
-  waitUntil(fn: Promise<any>): void;
+	waitUntil(fn: Promise<any>): void;
 }
 
 interface PushSubscriptionChangeEvent extends ExtendableEvent {
-  readonly newSubscription?: PushSubscription;
-  readonly oldSubscription?: PushSubscription;
+	readonly newSubscription?: PushSubscription;
+	readonly oldSubscription?: PushSubscription;
 }
 
 // Client API
 
 declare class Client {
-  frameType: ClientFrameType;
-  id: string;
-  url: string;
-  focused: boolean;
-  focus(): void;
-  postMessage(message: any): void;
+	frameType: ClientFrameType;
+	id: string;
+	url: string;
+	focused: boolean;
+	focus(): void;
+	postMessage(message: any): void;
 }
 
 interface Clients {
-  claim(): Promise<any>;
-  get(id: string): Promise<Client>;
-  matchAll(options?: ClientMatchOptions): Promise<Array<Client>>;
-  openWindow(url: string): Promise<void>;
+	claim(): Promise<any>;
+	get(id: string): Promise<Client>;
+	matchAll(options?: ClientMatchOptions): Promise<Array<Client>>;
+	openWindow(url: string): Promise<void>;
 }
 
 interface ClientMatchOptions {
-  includeUncontrolled?: boolean;
-  type?: ClientMatchTypes;
+	includeUncontrolled?: boolean;
+	type?: ClientMatchTypes;
 }
 
 interface WindowClient {
-  focused: boolean;
-  visibilityState: WindowClientState;
-  focus(): Promise<WindowClient>;
-  navigate(url: string): Promise<WindowClient>;
+	focused: boolean;
+	visibilityState: WindowClientState;
+	focus(): Promise<WindowClient>;
+	navigate(url: string): Promise<WindowClient>;
 }
 
 type ClientFrameType = 'auxiliary' | 'top-level' | 'nested' | 'none';
@@ -44,13 +44,13 @@ type WindowClientState = 'hidden' | 'visible' | 'prerender' | 'unloaded';
 // Fetch API
 
 interface FetchEvent extends ExtendableEvent {
-  clientId: string | null;
-  request: Request;
-  respondWith(response: Promise<Response> | Response): Promise<Response>;
+	clientId: string | null;
+	request: Request;
+	respondWith(response: Promise<Response> | Response): Promise<Response>;
 }
 
 interface InstallEvent extends ExtendableEvent {
-  activeWorker: ServiceWorker;
+	activeWorker: ServiceWorker;
 }
 
 interface ActivateEvent extends ExtendableEvent {}
@@ -58,50 +58,62 @@ interface ActivateEvent extends ExtendableEvent {}
 // Notification API
 
 interface NotificationEvent extends ExtendableEvent {
-  action: string;
-  notification: Notification;
+	action: string;
+	notification: Notification;
 }
 
 // Push API
 
 interface PushEvent extends ExtendableEvent {
-  data: PushMessageData;
+	data: PushMessageData;
 }
 
 interface PushMessageData {
-  arrayBuffer(): ArrayBuffer;
-  blob(): Blob;
-  json(): any;
-  text(): string;
+	arrayBuffer(): ArrayBuffer;
+	blob(): Blob;
+	json(): any;
+	text(): string;
 }
 
 // Sync API
 
 interface SyncEvent extends ExtendableEvent {
-  lastChance: boolean;
-  tag: string;
+	lastChance: boolean;
+	tag: string;
 }
 
 interface ExtendableMessageEvent extends ExtendableEvent {
-  data: any;
-  source: Client | Object;
+	data: any;
+	source: Client | Object;
 }
 
 // ServiceWorkerGlobalScope
 
 interface ServiceWorkerGlobalScope {
-  caches: CacheStorage;
-  clients: Clients;
-  registration: ServiceWorkerRegistration;
+	caches: CacheStorage;
+	clients: Clients;
+	registration: ServiceWorkerRegistration;
 
-  addEventListener(event: 'activate', fn: (event?: ExtendableEvent) => any): void;
-  addEventListener(event: 'message', fn: (event?: ExtendableMessageEvent) => any): void;
-  addEventListener(event: 'fetch', fn: (event?: FetchEvent) => any): void;
-  addEventListener(event: 'install', fn: (event?: ExtendableEvent) => any): void;
-  addEventListener(event: 'push', fn: (event?: PushEvent) => any): void;
-  addEventListener(event: 'notificationclick', fn: (event?: NotificationEvent) => any): void;
-  addEventListener(event: 'sync', fn: (event?: SyncEvent) => any): void;
+	addEventListener(
+		event: 'activate',
+		fn: (event?: ExtendableEvent) => any
+	): void;
+	addEventListener(
+		event: 'message',
+		fn: (event?: ExtendableMessageEvent) => any
+	): void;
+	addEventListener(event: 'fetch', fn: (event?: FetchEvent) => any): void;
+	addEventListener(
+		event: 'install',
+		fn: (event?: ExtendableEvent) => any
+	): void;
+	addEventListener(event: 'push', fn: (event?: PushEvent) => any): void;
+	addEventListener(
+		event: 'notificationclick',
+		fn: (event?: NotificationEvent) => any
+	): void;
+	addEventListener(event: 'sync', fn: (event?: SyncEvent) => any): void;
 
-  fetch(request: Request | string): Promise<Response>;
-  skipWaiting(): Promise<void>;
+	fetch(request: Request | string): Promise<Response>;
+	skipWaiting(): Promise<void>;
 }

@@ -6,8 +6,8 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import createEmotionServer from '@emotion/server/create-instance';
 
-const APP_NAME = 'next-pwa example'
-const APP_DESCRIPTION = 'Almond Hydroponics - Growing your plants smart.'
+const APP_NAME = 'next-pwa example';
+const APP_DESCRIPTION = 'Almond Hydroponics - Growing your plants smart.';
 
 const getCache = () => {
 	const cache = createCache({ key: 'css', prepend: true });
@@ -37,20 +37,20 @@ export default class MyDocument extends Document {
 			<Html lang="en">
 				<Head>
 					<meta charSet="utf-8" />
-					<meta name='application-name' content={APP_NAME} />
-					<meta name='apple-mobile-web-app-capable' content='yes' />
-					<meta name='apple-mobile-web-app-status-bar-style' content='default' />
-					<meta name='apple-mobile-web-app-title' content={APP_NAME} />
+					<meta name="application-name" content={APP_NAME} />
+					<meta name="apple-mobile-web-app-capable" content="yes" />
+					<meta
+						name="apple-mobile-web-app-status-bar-style"
+						content="default"
+					/>
+					<meta name="apple-mobile-web-app-title" content={APP_NAME} />
 					{/*<meta httpEquiv="Content-Security-Policy" content={csp} />*/}
 					<meta
 						name="google-site-verification"
 						content="dd2y9SSTVVhP9HCWjxTYYKSO3IGw8l9cIZhiF6xXRWw"
 					/>
 					<meta name="theme-color" content="#ffffff" />
-					<meta
-						name="description"
-						content={APP_DESCRIPTION}
-					/>
+					<meta name="description" content={APP_DESCRIPTION} />
 					<meta
 						name="robots"
 						content="max-snippet:-1, max-image-preview:large, max-video-preview:-1"

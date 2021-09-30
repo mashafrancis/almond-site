@@ -1,7 +1,7 @@
-import NotFoundCover from 'views/NotFoundCover';
+import NotFound from 'views/NotFound';
 
 const FourOFourPage = (): JSX.Element => {
-	return <NotFoundCover />;
+	return <NotFound />;
 };
 
 export default FourOFourPage;

@@ -8,11 +8,12 @@ import { Provider } from 'react-redux';
 import { useEffect } from 'react';
 import NProgress from 'nprogress';
 import store from '../store';
-
+// components
 import Page from '../components/Page';
 import createEmotionCache from '../createEmotionCache';
 import { initializeGA, logPageView } from '@utils/googleAnalytics';
-
+import { ComponentProvider } from '@context/ComponentContext';
+// styles
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -74,19 +75,21 @@ export default function App({
 	}, [router]);
 
 	return (
-		<Provider store={store}>
-			<CacheProvider value={emotionCache}>
-				<Head>
-					<meta
-						name="viewport"
-						content="width=device-width, initial-scale=1, shrink-to-fit=no"
-					/>
-					<title>almond</title>
-				</Head>
-				<Page>
-					<Component {...pageProps} />
-				</Page>
-			</CacheProvider>
-		</Provider>
+		<CacheProvider value={emotionCache}>
+			<Head>
+				<meta
+					name="viewport"
+					content="width=device-width, initial-scale=1, shrink-to-fit=no"
+				/>
+				<title>almond</title>
+			</Head>
+			<Provider store={store}>
+				<ComponentProvider>
+					<Page>
+						<Component {...pageProps} />
+					</Page>
+				</ComponentProvider>
+			</Provider>
+		</CacheProvider>
 	);
 }

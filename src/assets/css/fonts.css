@@ -1,3 +1,51 @@
+/** Ultra Light */
+@font-face {
+	font-family: 'San Francisco';
+	font-weight: 100;
+	src: url('./SanFranciscoDisplay/sanfranciscodisplay-ultralight-webfont.woff')
+	format('woff');
+}
+
+/** Thin */
+@font-face {
+	font-family: 'San Francisco';
+	font-weight: 200;
+	src: url('./SanFranciscoDisplay/sanfranciscodisplay-thin-webfont.woff')
+	format('woff');
+}
+
+/** Regular */
+@font-face {
+	font-family: 'San Francisco';
+	font-weight: 400;
+	src: url('./SanFranciscoDisplay/sanfranciscodisplay-regular-webfont.woff')
+	format('woff');
+}
+
+/** Medium */
+@font-face {
+	font-family: 'San Francisco';
+	font-weight: 500;
+	src: url('./SanFranciscoDisplay/sanfranciscodisplay-medium-webfont.woff')
+	format('woff');
+}
+
+/** Semi Bold */
+@font-face {
+	font-family: 'San Francisco';
+	font-weight: 600;
+	src: url('./SanFranciscoDisplay/sanfranciscodisplay-semibold-webfont.woff')
+	format('woff');
+}
+
+/** Bold */
+@font-face {
+	font-family: 'San Francisco';
+	font-weight: 700;
+	src: url('./SanFranciscoDisplay/sanfranciscodisplay-bold-webfont.woff')
+	format('woff');
+}
+
 /* cyrillic */
 @font-face {
 	font-family: "Google Sans";

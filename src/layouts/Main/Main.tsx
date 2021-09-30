@@ -1,11 +1,11 @@
-import React, {
+import {
 	ReactElement,
 	ReactNode,
 	MouseEvent,
 	useState,
 	cloneElement,
 } from 'react';
-import { useTheme } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import {
 	Slide,
@@ -121,11 +121,16 @@ const Main = ({ children }: Props): JSX.Element => {
 					position={'fixed'}
 					sx={{
 						backgroundColor: theme.palette.background.paper,
+						borderBottom: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
 					}}
 					elevation={0}
 				>
 					<Toolbar>
-						<Container paddingY={{ xs: 1, sm: 1.5 }} paddingX={{ xs: 0 }}>
+						<Container
+							maxWidth={1}
+							paddingY={{ xs: 1, sm: 1.5 }}
+							paddingX={{ xs: 0 }}
+						>
 							<Topbar onSidebarOpen={handleSidebarOpen} />
 						</Container>
 					</Toolbar>
