@@ -83,6 +83,7 @@ export const loginAccountSuccess = (
 ): LoginActionSuccess => ({
 	user,
 	type: LOGIN_SUCCESS,
+	errors: null,
 	isLoading: false,
 });
 
@@ -190,7 +191,6 @@ export const loginAccount =
 				authService.saveToken(data.token.accessToken);
 				dispatch(loginAccountSuccess(data.user));
 				dispatch(displaySnackMessage(message));
-				window.location.replace('/');
 			})
 			.catch((error) => {
 				dispatch(loginAccountFailure(error.message));
@@ -240,6 +240,17 @@ export const passwordChange =
 			});
 	};
 
+export const socialLogin =
+	() => (dispatch: Dispatch, getState: any, http: any) => {
+		try {
+			window.location.replace(
+				`${process.env.NEXT_PUBLIC_ALMOND_API}/auth/google`
+			);
+		} catch (error: any) {
+			errorOnSnack(error, dispatch, 'Cannot complete request');
+		}
+	};
+
 export const userAccountInitialState = {
 	user: {} as any,
 	isLoading: false,
@@ -277,6 +288,7 @@ export const reducer: Reducer<State, Action> = (
 				...state,
 				isLoading: action.isLoading,
 				user: action.user,
+				errors: action.errors,
 			};
 		case LOGIN_FAILURE:
 			return {

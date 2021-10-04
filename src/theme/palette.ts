@@ -54,9 +54,9 @@ export const dark = {
 	},
 	mode: 'dark' as PaletteMode,
 	primary: {
-		main: '#2573b5',
-		light: '#62a1e8',
-		dark: '#004885',
+		main: '#289bff',
+		light: '#73cbff',
+		dark: '#006dcb',
 		contrastText: '#fff',
 		// main: '#318162',
 		// light: '#62b18f',

@@ -18,15 +18,11 @@ import {
 	MenuBottomProps,
 	MenuComponentProps,
 } from '@components/molecules/MenuRoutes/interfaces';
-// import {
-// 	AnalyticsView,
-// 	EnvironmentControlView,
-// 	WaterCyclesView,
-// } from '../../../views/';
-// pages
 import AnalyticsView from 'views/AnalyticsView';
 import WaterCyclesView from 'views/WaterCyclesView';
 import EnvironmentControlView from 'views/EnvironmentControlView';
+import DeviceManagementView from 'views/DeviceManagementView';
+import SupportView from 'views/SupportView';
 
 export const UserMenus: MenuComponentProps[] = [
 	{
@@ -62,7 +58,7 @@ export const UserMenus: MenuComponentProps[] = [
 	{
 		icon: <LocalFlorist />,
 		primaryText: 'Support',
-		component: WaterCyclesView,
+		component: SupportView,
 		id: 'support',
 	},
 	{
@@ -89,13 +85,13 @@ export const AdminMenus: MenuComponentProps[] = [
 	{
 		icon: <WidgetsRounded />,
 		primaryText: 'Analytics',
-		component: WaterCyclesView,
+		component: AnalyticsView,
 		id: 'analytics',
 	},
 	{
 		icon: <AllOut />,
 		primaryText: 'Devices',
-		component: WaterCyclesView,
+		component: DeviceManagementView,
 		id: 'devices',
 	},
 	{
@@ -113,7 +109,7 @@ export const AdminMenus: MenuComponentProps[] = [
 	{
 		icon: <Spa />,
 		primaryText: 'Support',
-		component: WaterCyclesView,
+		component: SupportView,
 		id: 'support',
 	},
 	{

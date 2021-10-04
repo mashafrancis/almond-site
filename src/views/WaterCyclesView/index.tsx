@@ -658,11 +658,12 @@ export const WaterCyclesView = (): JSX.Element => {
 		}));
 
 		return (
-			<div style={{ height: 400, width: '100%', ...tableStyles }}>
+			<div style={{ width: '100%', ...tableStyles }}>
 				<div style={{ display: 'flex', height: '100%' }}>
 					<div style={{ flexGrow: 1 }}>
 						<DataGrid
 							disableColumnMenu
+							autoHeight
 							style={{ ...tableStyles }}
 							loading={isLoading}
 							rows={rows}
@@ -688,7 +689,7 @@ export const WaterCyclesView = (): JSX.Element => {
 	};
 
 	const firstColumn = () => (
-		<Grid item xs={12} md={4} spacing={2}>
+		<Grid item xs={12} md={4} spacing={1}>
 			<GeneralCardInfo
 				mainHeader="Manual Override"
 				subHeader="Pump water directly into the system"
@@ -721,7 +722,7 @@ export const WaterCyclesView = (): JSX.Element => {
 	);
 
 	const secondColumn = () => (
-		<Grid item xs={12} md={5} spacing={2}>
+		<Grid item xs={12} md={5} spacing={1}>
 			<LineChartCard
 				heading="Water Temperature"
 				selectedValue={state.waterCardDateRange}
@@ -736,7 +737,7 @@ export const WaterCyclesView = (): JSX.Element => {
 	);
 
 	const thirdColumn = () => (
-		<Grid item xs={12} md={3} spacing={2}>
+		<Grid item xs={12} md={3} spacing={1}>
 			<DashboardCard
 				heading="Water Tank Level"
 				body={<DonutDisplay data={heightOfWater} />}

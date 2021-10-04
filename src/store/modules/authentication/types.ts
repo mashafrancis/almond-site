@@ -18,7 +18,7 @@ export type CREATE_ACCOUNT_FAILURE = typeof CREATE_ACCOUNT_FAILURE;
 export const LOGIN_REQUEST = 'almond/auth/LOGIN_REQUEST';
 export type LOGIN_REQUEST = typeof LOGIN_REQUEST;
 
-export const LOGIN_SUCCESS = 'almond/auth/ADD_SCHEDULES_SUCCESS';
+export const LOGIN_SUCCESS = 'almond/auth/LOGIN_SUCCESS';
 export type LOGIN_SUCCESS = typeof LOGIN_SUCCESS;
 
 export const LOGIN_FAILURE = 'almond/auth/LOGIN_FAILURE';

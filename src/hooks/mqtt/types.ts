@@ -1,4 +1,5 @@
-import { MqttClient } from 'mqtt';
+import { MqttClient, IClientOptions } from 'mqtt';
+import { ReactNode } from 'react';
 
 export interface Error {
 	name: string;
@@ -6,33 +7,33 @@ export interface Error {
 	stack?: string;
 }
 
+export interface ConnectorProps {
+	brokerUrl?: string | object;
+	options?: IClientOptions;
+	parserMethod?: (message) => string;
+	children: ReactNode;
+}
+
 export interface IMqttContext {
 	connectionStatus: string | Error;
-	client: MqttClient | null;
-	message?: IMessage;
+	client?: MqttClient | null;
+	parserMethod?: (message: any) => string;
 }
 
 export interface IUseSubscription {
-	message?: IMessage;
 	topic: string | string[];
 	client?: MqttClient | null;
+	message?: IMessage;
 	connectionStatus: string | Error;
 }
 
 export interface IMessageStructure {
-	[key: string]: string | number;
+	[key: string]: string;
 }
 
 export interface IMessage {
 	topic: string;
-	message?: any | IMessageStructure | string;
+	message?: string | IMessageStructure;
 }
-
-// type Sensor = {
-// 	temp: number;
-// 	humid: number;
-// 	// eslint-disable-next-line camelcase
-// 	water_level: number;
-// };
 
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;

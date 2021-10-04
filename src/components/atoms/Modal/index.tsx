@@ -98,17 +98,19 @@ const Modal = ({
 				<Button variant="text" color="primary" onClick={onDismiss}>
 					Dismiss
 				</Button>
-				<LoadingButton
-					autoFocus
-					variant="contained"
-					color="primary"
-					onClick={onSubmit}
-					disabled={disabled}
-					loading={isRequesting}
-					loadingIndicator={loadingText}
-				>
-					{submitButtonName}
-				</LoadingButton>
+				{submitButtonName ? (
+					<LoadingButton
+						autoFocus
+						variant="contained"
+						color="primary"
+						onClick={onSubmit}
+						disabled={disabled}
+						loading={isRequesting}
+						loadingIndicator={loadingText}
+					>
+						{submitButtonName}
+					</LoadingButton>
+				) : null}
 			</DialogActions>
 		</BootstrapDialog>
 	);

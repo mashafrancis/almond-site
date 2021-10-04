@@ -1,10 +1,18 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Box, Grid, TextField, Button } from '@mui/material';
+import { useState } from 'react';
+import { Box, Grid, TextField, Button, InputAdornment } from '@mui/material';
 import { GoogleIcon, DividerWithText } from '@components/atoms';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import useFormState from '@hooks/useFormState';
 import { loginAccount } from '@modules/authentication';
 import validate from 'validate.js';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
+import { IRootState } from '../../../../../../store/rootReducer';
+
+interface Props {
+	handleAuthModal: () => void;
+}
 
 const schema = {
 	email: {
@@ -16,13 +24,36 @@ const schema = {
 	},
 };
 
-const Form = (): JSX.Element => {
+const isObjectEmpty = (obj): boolean =>
+	obj &&
+	Object.keys(obj).length === 0 &&
+	Object.getPrototypeOf(obj) === Object.prototype;
+
+const Form = ({ handleAuthModal }: Props): JSX.Element => {
 	const dispatch = useDispatch();
+	const auth = useSelector(
+		(globalState: IRootState) => globalState.authentication
+	);
+
+	const [isPasswordHidden, showPassword] = useState<boolean>(false);
+	const togglePassword = () => showPassword((prevState) => !prevState);
 
 	const { values, isValid, errors, hasError, handleFormChange, handleSubmit } =
 		useFormState({
-			onSubmit: ({ email, password }) =>
-				dispatch(loginAccount({ email, password })),
+			onSubmit: async ({ email, password }) => {
+				await dispatch(loginAccount({ email, password }));
+				console.log(
+					'Class: , Function: onSubmit, Line 42 errors():',
+					auth.errors
+				);
+				console.log(
+					'Class: , Function: onSubmit, Line 43 auth.errors():',
+					isObjectEmpty(auth.errors)
+				);
+				if (isObjectEmpty(errors)) {
+					handleAuthModal();
+				}
+			},
 			formErrors: (formValues) => validate(formValues, schema),
 		});
 
@@ -51,6 +82,33 @@ const Form = (): JSX.Element => {
 						/>
 					</Grid>
 
+					<Grid item xs={12}>
+						<TextField
+							placeholder="Password"
+							label="Password *"
+							variant="outlined"
+							size="medium"
+							name="password"
+							fullWidth
+							helperText={hasError('password') ? errors.password[0] : null}
+							error={hasError('password')}
+							onChange={handleFormChange}
+							type={isPasswordHidden ? 'text' : 'password'}
+							value={values.password || ''}
+							InputProps={{
+								endAdornment: (
+									<InputAdornment
+										style={{ cursor: 'pointer' }}
+										onClick={togglePassword}
+										position="end"
+									>
+										{isPasswordHidden ? <Visibility /> : <VisibilityOff />}
+									</InputAdornment>
+								),
+							}}
+						/>
+					</Grid>
+
 					<Grid item container xs={12}>
 						<Box
 							display="flex"
@@ -61,16 +119,19 @@ const Form = (): JSX.Element => {
 							maxWidth={600}
 							margin={'0 auto'}
 						>
-							<Button
-								size="large"
+							<LoadingButton
+								autoFocus
+								fullWidth
 								variant="contained"
 								type="submit"
 								color="primary"
-								fullWidth
+								size="large"
 								disabled={!isValid}
+								loading={auth.isLoading}
+								loadingIndicator="Requesting..."
 							>
-								Continue with Email
-							</Button>
+								Login
+							</LoadingButton>
 						</Box>
 					</Grid>
 

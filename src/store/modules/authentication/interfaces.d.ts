@@ -46,6 +46,7 @@ export interface LoginActionSuccess {
 	type: LOGIN_SUCCESS;
 	isLoading: boolean;
 	user: UserDetails;
+	errors: ErrorObject | null;
 }
 
 export interface LoginActionFailure {

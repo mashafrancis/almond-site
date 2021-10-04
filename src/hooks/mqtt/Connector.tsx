@@ -1,81 +1,66 @@
-import { useCallback, useRef, useState } from 'react';
-import { connect, MqttClient } from 'mqtt';
-import { Error, IMessage } from '@hooks/mqtt/types';
-import useDeepCompareEffect from '@hooks/useDeepEffect';
-import MqttContext from './Context';
-import { ConnectorProps } from './interfaces';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 
-const Connector = ({
-	brokerUrl,
+import { connect, MqttClient } from 'mqtt';
+
+import MqttContext from './Context';
+import { Error, ConnectorProps } from './types';
+
+export default function Connector({
 	children,
+	brokerUrl,
 	options = { keepalive: 0 },
 	parserMethod,
-}: ConnectorProps) => {
-	const mountedRef = useRef<boolean>(true);
+}: ConnectorProps) {
+	const mountedRef = useRef(true);
 	const [connectionStatus, setStatus] = useState<string | Error>('Offline');
 	const [client, setClient] = useState<MqttClient | null>(null);
-	const [message, setMessage] = useState<IMessage>();
 
 	const mqttConnect = useCallback(async () => {
-		try {
-			setStatus('Connecting');
-			const mqtt = connect(brokerUrl, options);
-			mqtt.setMaxListeners(0);
-			mqtt.on('connect', () => {
-				if (mountedRef.current) {
-					setClient(mqtt);
-					setStatus('Connected');
-				}
-			});
-			mqtt.on('reconnect', () => {
-				if (mountedRef.current) {
-					setStatus('Reconnecting');
-				}
-			});
-			mqtt.on('error', (error) => {
-				if (mountedRef.current) {
-					setStatus(error?.message);
-				}
-			});
-			mqtt.on('offline', () => {
-				if (mountedRef.current) {
-					setStatus('Offline');
-				}
-			});
-			mqtt.on('end', () => {
-				if (mountedRef.current) {
-					setStatus('Offline');
-				}
-			});
-		} catch (error) {
-			setStatus(error as any);
-		}
-	}, [brokerUrl, options, client]);
+		setStatus('Connecting');
+		const mqtt = connect(brokerUrl, options);
+		mqtt.on('connect', () => {
+			if (mountedRef.current) {
+				setClient(mqtt);
+				setStatus('Connected');
+			}
+		});
+		mqtt.on('reconnect', () => {
+			if (mountedRef.current) {
+				setStatus('Reconnecting');
+			}
+		});
+		mqtt.on('error', (err) => {
+			if (mountedRef.current) {
+				console.log(`Connection error: ${err}`);
+				setStatus(err.message);
+			}
+		});
+		mqtt.on('offline', () => {
+			if (mountedRef.current) {
+				setStatus('Offline');
+			}
+		});
+		mqtt.on('end', () => {
+			if (mountedRef.current) {
+				setStatus('Offline');
+			}
+		});
+	}, [brokerUrl, options]);
 
-	useDeepCompareEffect(() => {
-		if (client) {
-			client?.on('message', (topic, msg) => {
-				const payload = {
-					topic,
-					message: parserMethod?.(msg) || msg.toString(),
-				};
-				setMessage(payload);
-			});
-		} else {
+	useEffect(() => {
+		if (!client) {
 			mqttConnect();
 		}
 
-		// return () => {
-		// 	mountedRef.current = false;
-		// 	client?.end();
-		// };
+		return () => {
+			mountedRef.current = false;
+			client?.end(true);
+		};
 	}, [client, mqttConnect, parserMethod]);
 
 	return (
-		<MqttContext.Provider value={{ connectionStatus, client, message }}>
+		<MqttContext.Provider value={{ connectionStatus, client, parserMethod }}>
 			{children}
 		</MqttContext.Provider>
 	);
-};
-
-export default Connector;
+}
