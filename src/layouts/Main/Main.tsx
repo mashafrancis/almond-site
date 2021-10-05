@@ -21,6 +21,8 @@ import {
 import Container from 'components/Container';
 import { Topbar, Sidebar, Footer } from './components';
 import { KeyboardArrowUpRounded } from '@mui/icons-material';
+import Modal from '../../components/atoms/Modal';
+import { ContactForm } from './components/Topbar/components';
 
 interface Props {
 	children: ReactNode;
@@ -101,8 +103,15 @@ const Main = ({ children }: Props): JSX.Element => {
 	const isMd = useMediaQuery(theme.breakpoints.up('md'), {
 		defaultMatches: true,
 	});
+	const isSm = useMediaQuery(theme.breakpoints.down('sm'), {
+		defaultMatches: true,
+	});
 
 	const [openSidebar, setOpenSidebar] = useState(false);
+	const [openContactModal, setContactModalOpen] = useState<boolean>(false);
+
+	const handleContactModal = () =>
+		setContactModalOpen((prevState) => !prevState);
 
 	const handleSidebarOpen = (): void => {
 		setOpenSidebar(true);
@@ -113,6 +122,18 @@ const Main = ({ children }: Props): JSX.Element => {
 	};
 
 	const open = isMd ? false : openSidebar;
+
+	const renderContactModal = (): JSX.Element => (
+		<Modal
+			fullScreen={isSm}
+			isModalOpen={openContactModal}
+			renderHeader="Contact us"
+			renderDialogText="Get in touch with us"
+			renderContent={<ContactForm handleContactModal={handleContactModal} />}
+			onClose={handleContactModal}
+			onDismiss={handleContactModal}
+		/>
+	);
 
 	return (
 		<Box>
@@ -131,18 +152,27 @@ const Main = ({ children }: Props): JSX.Element => {
 							paddingY={{ xs: 1, sm: 1.5 }}
 							paddingX={{ xs: 0 }}
 						>
-							<Topbar onSidebarOpen={handleSidebarOpen} />
+							<Topbar
+								onSidebarOpen={handleSidebarOpen}
+								handleContactModal={handleContactModal}
+							/>
 						</Container>
 					</Toolbar>
 				</AppBar>
 			</ElevationScroll>
 			<div id="back-to-top-anchor" />
-			<Sidebar onClose={handleSidebarClose} open={open} variant="temporary" />
+			<Sidebar
+				onClose={handleSidebarClose}
+				handleContactModal={handleContactModal}
+				open={open}
+				variant="temporary"
+			/>
 			<main>
 				<Box height={{ xs: 58, sm: 66 }} />
 				{children}
 				<Divider />
 			</main>
+			{renderContactModal()}
 			<ScrollTop>
 				<Fab color="secondary" size="small" aria-label="scroll back to top">
 					<KeyboardArrowUpRounded />

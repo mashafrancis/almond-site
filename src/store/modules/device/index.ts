@@ -309,7 +309,7 @@ export const verifyUserDevice =
 				} = response;
 				dispatch(verifyDeviceSuccess(data));
 				dispatch(displaySnackMessage(message));
-				window.location.replace('/dashboard');
+				// window.location.replace('/dashboard');
 			})
 			.catch((error: ErrorObject) => {
 				errorOnSnack(error, dispatch, 'verifying device');

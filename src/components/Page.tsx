@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IRootState } from '../store/rootReducer';
 import SnackBar from '@components/atoms/SnackBar';
 import { UserContext } from '@context/UserContext';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
@@ -23,23 +23,30 @@ interface Props {
 
 export default function Page({ children }: Props): JSX.Element {
 	const [mode, setMode] = useState<'light' | 'dark'>('light');
-	const router = useRouter();
+	// const router = useRouter();
 
 	// Selectors from redux
 	const { snack } = useSelector((globalState: IRootState) => globalState);
+
+	const { userDetails } = useSelector(
+		(globalState: IRootState) => globalState.user
+	);
+	const { user } = useSelector(
+		(globalState: IRootState) => globalState.authentication
+	);
+
 	const {
-		userDetails: {
-			_id,
-			firstName,
-			lastName,
-			email,
-			photo,
-			devices,
-			isVerified,
-			activeDevice,
-			currentRole,
-		},
-	} = useSelector((globalState: IRootState) => globalState.user);
+		_id,
+		firstName,
+		lastName,
+		email,
+		photo,
+		devices,
+		isVerified,
+		activeDevice,
+		currentRole,
+	} = userDetails._id ? userDetails : user;
+
 	const isAuthenticated = authService.isAuthenticated();
 	const dispatch = useDispatch();
 
@@ -62,15 +69,14 @@ export default function Page({ children }: Props): JSX.Element {
 		if (isAuthenticated) {
 			await dispatch(getUserDetails());
 		}
-	}, [isAuthenticated]);
+	}, []);
 
-	useEffectAsync(async () => {
-		const { socialToken } = router.query;
-		if (socialToken) {
-			authService.saveToken(socialToken);
-			await router.replace(process.env.NEXT_PUBLIC_PUBLIC_URL as string);
-		}
-	}, [router.query]);
+	// useEffectAsync(async () => {
+	// 	if (socialToken) {
+	// 		authService.saveToken(socialToken);
+	// 		await router.replace(process.env.NEXT_PUBLIC_PUBLIC_URL as string);
+	// 	}
+	// }, [router.query]);
 
 	const colorMode = useMemo(
 		() => ({

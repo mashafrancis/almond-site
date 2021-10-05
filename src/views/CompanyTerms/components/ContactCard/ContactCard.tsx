@@ -32,13 +32,11 @@ const ContactCard = (): JSX.Element => {
 					contact us.
 				</Typography>
 				<Typography variant={'subtitle2'}>
-					hi@maccarianagency.com
+					hi@almondhydroponics.com
 					<br />
-					via Gola 4
+					Nairobi 20143
 					<br />
-					Milan, Milano 20143
-					<br />
-					Italy
+					Kenya
 				</Typography>
 			</Box>
 		</Box>

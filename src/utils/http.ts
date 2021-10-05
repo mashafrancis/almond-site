@@ -6,6 +6,9 @@ import { setupCache } from 'axios-cache-adapter';
 // helpers
 import authService from '@utils/auth';
 import store from '../store';
+import createAuthRefreshInterceptor from 'axios-auth-refresh';
+import * as setCookie from 'set-cookie-parser';
+import * as cookie from 'cookie';
 
 const cacheAdapter = setupCache({
 	maxAge: 15 * 60 * 1000,
@@ -16,12 +19,41 @@ const headers = {
 	Authorization: `Bearer ${token}`,
 };
 
+// create axios instance
 const http = axios.create({
 	baseURL: process.env.NEXT_PUBLIC_ALMOND_API,
 	headers: authService.isAuthenticated() ? headers : '',
 	// withCredentials: true,
 	adapter: cacheAdapter.adapter,
 });
+
+// create axios interceptors
+createAuthRefreshInterceptor(http, (failedRequest) =>
+	// 1. First try request fails - refresh the token.
+	http.get('/api/refreshToken').then((resp) => {
+		// 1a. Clear old helper cookie used in 'authorize.ts' higher order function.
+		if (http.defaults.headers.setCookie) {
+			delete http.defaults.headers.setCookie;
+		}
+		const { accessToken } = resp.data;
+		// 2. Set up new access token
+		const bearer = `Bearer ${accessToken}`;
+		http.defaults.headers.Authorization = bearer;
+
+		// 3. Set up new refresh token as cookie
+		const responseCookie = setCookie.parse(resp.headers['set-cookie'])[0]; // 3a. We can't just acces it, we need to parse it first.
+		http.defaults.headers.setCookie = resp.headers['set-cookie']; // 3b. Set helper cookie for 'authorize.ts' Higher order Function.
+		http.defaults.headers.cookie = cookie.serialize(
+			responseCookie.name,
+			responseCookie.value
+		);
+		// 4. Set up access token of the failed request.
+		failedRequest.response.config.headers.Authorization = bearer;
+
+		// 5. Retry the request with new setup!
+		return Promise.resolve();
+	})
+);
 
 http.interceptors.request.use((config) => {
 	if (token && authService.isExpired()) {

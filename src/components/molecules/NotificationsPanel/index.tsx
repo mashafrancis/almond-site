@@ -9,7 +9,7 @@ import {
 	Tooltip,
 	Typography,
 } from '@mui/material';
-import {Notifications, NotificationsNoneRounded} from '@mui/icons-material';
+import { Notifications, NotificationsNoneRounded } from '@mui/icons-material';
 import { notificationsUnread } from '../../../layouts/Dashboard/components/Topbar/fixtures';
 import { alpha, useTheme } from '@mui/material/styles';
 import { useMobileDetect } from '@hooks/index';
@@ -121,7 +121,7 @@ const NotificationsPanel = (): JSX.Element => {
 				sx={{
 					borderRadius: 1,
 					minWidth: 'auto',
-					padding: 1,
+					paddingX: 1,
 					borderColor: alpha(theme.palette.divider, 0.2),
 				}}
 			>

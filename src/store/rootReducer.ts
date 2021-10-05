@@ -53,7 +53,10 @@ const appReducer = combineReducers({
 	redirect,
 });
 
-const rootReducer = (state: Partial<IRootState> | any, action: AnyAction) => {
+const rootReducer = (
+	state: ReturnType<typeof appReducer> | any,
+	action: AnyAction
+) => {
 	if (action.type === LOG_OUT_USER) {
 		return {
 			...state,
@@ -65,5 +68,7 @@ const rootReducer = (state: Partial<IRootState> | any, action: AnyAction) => {
 
 	return appReducer(state, action);
 };
+
+export type OurStore = IRootState;
 
 export default rootReducer;

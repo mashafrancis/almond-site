@@ -2,13 +2,8 @@ import { alpha, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Main from 'layouts/Main';
 import Container from 'components/Container';
-import {
-	GetStarted,
-	Features,
-	QuickStart,
-	Services,
-	Hero,
-} from './components';
+import { Features, Services, Hero } from './components';
+import { News } from '../Ecommerce/components';
 
 const IndexView = (): JSX.Element => {
 	const theme = useTheme();
@@ -53,9 +48,9 @@ const IndexView = (): JSX.Element => {
 						position: 'relative',
 					}}
 				>
-					<Container>
-						<QuickStart />
-					</Container>
+					{/*<Container>*/}
+					{/*	<QuickStart />*/}
+					{/*</Container>*/}
 					<Container>
 						<Features />
 					</Container>
@@ -77,9 +72,14 @@ const IndexView = (): JSX.Element => {
 						></path>
 					</Box>
 				</Box>
-				<Container>
-					<GetStarted />
-				</Container>
+				{/*<Container>*/}
+				{/*	<GetStarted />*/}
+				{/*</Container>*/}
+				<Box>
+					<Container>
+						<News />
+					</Container>
+				</Box>
 			</Main>
 		</Box>
 	);

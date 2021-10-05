@@ -42,7 +42,8 @@ import isArrayNotNull from '@utils/checkArrayEmpty';
 // interfaces
 // import { IClientSubscribeOptions } from 'mqtt';
 import { DashboardContainerState } from './interfaces';
-import {useTheme} from "@mui/material/styles";
+import { useTheme } from '@mui/material/styles';
+import { UserContext } from '@context/UserContext';
 
 const DashboardContainer = (): JSX.Element => {
 	const theme = useTheme();
@@ -51,7 +52,7 @@ const DashboardContainer = (): JSX.Element => {
 		shallowEqual
 	);
 	const {
-		userDetails: { _id, currentRole, roles, activeDevice, devices },
+		userDetails: { _id, currentRole, roles },
 		isLoading,
 	} = useSelector((globalState: IRootState) => globalState.user);
 	const [state, setState] = useState<DashboardContainerState>({
@@ -71,7 +72,7 @@ const DashboardContainer = (): JSX.Element => {
 
 	const history = useRouter();
 
-	const isAdmin = false;
+	const { activeDevice, devices, isAdmin } = useContext(UserContext);
 
 	const {
 		selectedIndex,
@@ -346,13 +347,16 @@ const DashboardContainer = (): JSX.Element => {
 	const checkIsAdmin = () => (isAdmin ? AdminMenus : UserMenus);
 
 	return (
-		<Box sx={{ overflowX: 'hidden', background: theme.palette.alternate.main, }}>
+		<Box
+			sx={{ overflowX: 'hidden', background: theme.palette.alternate.main }}
+		>
 			<Dashboard>
 				<Container
 					sx={{ position: 'relative' }}
 					maxWidth={{ sm: 720, md: '90%' }} // Replace md with 1440px if it doesn't work
 					width={1}
-					paddingY={{ xs: 4, sm: 6, md: 3 }}
+					paddingY={{ xs: 1, sm: 6, md: 3 }}
+					paddingX={{ xs: 1 }}
 				>
 					<TabPanel index={selectedIndex} value={selectedIndex}>
 						{isLoading ? (
