@@ -141,7 +141,7 @@ const AccountSettingsView = (): JSX.Element => {
 								}}
 							>
 								<TabPanel value={selectedTabIndex} index={selectedTabIndex}>
-									{createElement(subPages[selectedTabIndex].component, {
+									{createElement(subPages[selectedTabIndex]?.component, {
 										history,
 									})}
 								</TabPanel>

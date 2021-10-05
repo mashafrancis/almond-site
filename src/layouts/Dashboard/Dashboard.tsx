@@ -14,6 +14,8 @@ import {
 import Container from '@components/Container';
 import { BottomNavigation } from '@components/molecules';
 import { alpha, useTheme } from '@mui/material/styles';
+// import { Connector } from '@hooks/mqtt';
+// import { IClientOptions } from 'mqtt';
 
 interface AppBarOnScrollProps {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -58,10 +60,37 @@ const Dashboard = ({ children }: Props): JSX.Element => {
 		defaultMatches: true,
 	});
 
+	// const options: IClientOptions = {
+	// 	username: process.env.NEXT_PUBLIC_MQTT_USERNAME,
+	// 	password: process.env.NEXT_PUBLIC_MQTT_PASSWORD,
+	// 	clientId: process.env.NEXT_PUBLIC_MQTT_CLIENTID,
+	// 	// keepalive: 0,
+	// 	// clientId: 'almond',
+	// 	// protocolId: 'MQTT',
+	// 	// protocolVersion: 4,
+	// 	// clean: true,
+	// 	// reconnectPeriod: 1000,
+	// 	// connectTimeout: 30 * 1000,
+	// 	// will: {
+	// 	// topic: 'almond/lastWill',
+	// 	// payload: 'Connection Closed abnormally..!',
+	// 	// qos: 2,
+	// 	// retain: false,
+	// 	// },
+	// 	// key: bufferKey,
+	// 	// cert: bufferCert,
+	// 	// ca: bufferCA,
+	// 	rejectUnauthorized: false,
+	// };
+
 	return (
+		// <Connector
+		// 	brokerUrl={`wss://${process.env.NEXT_PUBLIC_MQTT_HOST}:${process.env.NEXT_PUBLIC_MQTT_PORT}`}
+		// 	options={options}
+		// 	parserMethod={(msg) => msg}
+		// >
 		<Box
 			sx={{
-				// background: theme.palette.alternate.main,
 				height: '100vh',
 			}}
 		>
@@ -107,7 +136,11 @@ const Dashboard = ({ children }: Props): JSX.Element => {
 					</Box>
 				</Box>
 			</main>
-			{hidden ? null : <Container><BottomNavigation /></Container>}
+			{hidden ? null : (
+				<Container>
+					<BottomNavigation />
+				</Container>
+			)}
 		</Box>
 	);
 };

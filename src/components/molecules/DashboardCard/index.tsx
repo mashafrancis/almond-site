@@ -10,6 +10,7 @@ const DashboardCard = ({
 	const theme = useTheme();
 	return (
 		<Grid
+			item
 			xs={12}
 			sx={{
 				height: 'fit-content',

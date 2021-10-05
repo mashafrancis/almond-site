@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { logoutUser } from '@modules/user';
 import { UserContext } from '@context/UserContext';
 import { useTheme } from '@mui/material/styles';
-import {ComponentContext} from "@context/ComponentContext";
+import { ComponentContext } from '@context/ComponentContext';
 
 interface Props {
 	hasMultipleRoles?: boolean;

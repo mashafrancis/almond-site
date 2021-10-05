@@ -10,18 +10,9 @@ const pages = [
 				title: 'Portfolio',
 				href: '/portfolio',
 			},
-		],
-	},
-	{
-		groupTitle: 'Account',
-		pages: [
 			{
-				title: 'Register',
-				href: '/register',
-			},
-			{
-				title: 'Login',
-				href: '/login',
+				title: 'Latest news',
+				href: '/blog-newsroom',
 			},
 		],
 	},

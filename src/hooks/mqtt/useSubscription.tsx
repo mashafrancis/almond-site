@@ -1,29 +1,52 @@
-import { useContext, useCallback } from 'react';
-import { IClientSubscribeOptions } from 'mqtt';
-import MqttContext from './Context';
-import { IMqttContext as Context, IUseSubscription } from './types';
-import useEffectAsync from '@hooks/useEffectAsync';
+import { useContext, useEffect, useCallback, useState } from 'react';
+import mqttPatterns from 'mqtt-pattern';
 
-const useSubscription = (
-	topic: string,
+import { IClientSubscribeOptions } from 'mqtt';
+// import { matches } from 'mqtt-pattern';
+
+import MqttContext from './Context';
+import { IMqttContext as Context, IUseSubscription, IMessage } from './types';
+
+export default function useSubscription(
+	topic: string | string[],
 	options: IClientSubscribeOptions = {} as IClientSubscribeOptions
-): IUseSubscription => {
-	const { client, connectionStatus, message } =
+): IUseSubscription {
+	const { client, connectionStatus, parserMethod } =
 		useContext<Context>(MqttContext);
+
+	const [message, setMessage] = useState<IMessage | undefined>(undefined);
 
 	const subscribe = useCallback(async () => {
 		client?.subscribe(topic, options);
 	}, [client, options, topic]);
 
-	useEffectAsync(async () => {
-		if (client?.connected) {
-			await subscribe();
-		}
+	const callback = useCallback(
+		(receivedTopic: string, receivedMessage: any) => {
+			if (
+				[topic]
+					.flat()
+					.some((rTopic) => mqttPatterns.exec(rTopic, receivedTopic))
+			) {
+				setMessage({
+					topic: receivedTopic,
+					message:
+						parserMethod?.(receivedMessage) || receivedMessage.toString(),
+				});
+			}
+		},
+		[parserMethod, topic]
+	);
 
+	useEffect(() => {
+		if (client?.connected) {
+			subscribe();
+
+			client.on('message', callback);
+		}
 		return () => {
-			client?.unsubscribe(topic);
+			client?.off('message', callback);
 		};
-	}, [client, subscribe]);
+	}, [callback, client, subscribe]);
 
 	return {
 		client,
@@ -31,6 +54,4 @@ const useSubscription = (
 		message,
 		connectionStatus,
 	};
-};
-
-export default useSubscription;
+}

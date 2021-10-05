@@ -35,10 +35,13 @@ const LatestNews = (): JSX.Element => {
 	const sliderOpts = {
 		dots: !isMd,
 		infinite: true,
-		speed: 500,
+		speed: 1000,
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		arrows: isMd,
+		autoplay: true,
+		autoplaySpeed: 4000,
+		pauseOnHover: true,
 	};
 
 	return (
@@ -64,17 +67,6 @@ const LatestNews = (): JSX.Element => {
 		>
 			<Box position={'relative'} zIndex={2}>
 				<Box marginBottom={4}>
-					<Typography
-						sx={{
-							textTransform: 'uppercase',
-							fontWeight: 'medium',
-						}}
-						gutterBottom
-						color={'secondary'}
-						align={'center'}
-					>
-						Latest News
-					</Typography>
 					<Typography
 						variant="h4"
 						align={'center'}

@@ -7,7 +7,7 @@ import { DarkModeToggler } from '@components/atoms';
 import authService from '@utils/auth';
 import CustomAvatar from '@components/molecules/CustomAvatar';
 import Logo from '@components/atoms/Logo';
-import { ShortTextRounded } from '@mui/icons-material';
+import { AccountCircleTwoTone, ShortTextRounded } from '@mui/icons-material';
 import Modal from '@components/atoms/Modal';
 import { useState } from 'react';
 import { Form } from './components';
@@ -15,9 +15,10 @@ import { Form } from './components';
 interface Props {
 	// eslint-disable-next-line @typescript-eslint/ban-types
 	onSidebarOpen: () => void;
+	handleContactModal: () => void;
 }
 
-const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
+const Topbar = ({ onSidebarOpen, handleContactModal }: Props): JSX.Element => {
 	const [openAuthModal, setAuthModalOpen] = useState<boolean>(false);
 	const theme = useTheme();
 
@@ -30,12 +31,13 @@ const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
 					<CustomAvatar />
 				) : (
 					<Button
-						variant="contained"
+						variant="outlined"
 						color="primary"
-						size="small"
+						size="medium"
 						onClick={handleAuthModal}
+						startIcon={<AccountCircleTwoTone color="primary" />}
 					>
-						Login
+						Account
 					</Button>
 				)}
 			</Box>
@@ -47,7 +49,7 @@ const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
 			isModalOpen={openAuthModal}
 			renderHeader="Login into your account"
 			renderDialogText="Choose your preferred method to authenticate into your account"
-			renderContent={<Form />}
+			renderContent={<Form handleAuthModal={handleAuthModal} />}
 			onClose={handleAuthModal}
 			onDismiss={handleAuthModal}
 		/>
@@ -67,7 +69,15 @@ const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
 				<Logo displayText />
 				<Box marginLeft={3}>
 					<Link href="/resources">
-						<Button sx={{ color: '#2d3748' }} variant="text">
+						<Button
+							sx={{
+								color: theme.palette.text.primary,
+								'&:hover': {
+									color: theme.palette.primary.dark,
+								},
+							}}
+							variant="text"
+						>
 							Resources
 						</Button>
 					</Link>
@@ -75,22 +85,67 @@ const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
 
 				<Box marginLeft={3}>
 					<Link href="/store">
-						<Button sx={{ color: '#2d3748' }} variant="text">
+						<Button
+							sx={{
+								color: theme.palette.text.primary,
+								'&:hover': {
+									color: theme.palette.primary.dark,
+								},
+							}}
+							variant="text"
+						>
 							Store
 						</Button>
 					</Link>
+				</Box>
+
+				<Box marginLeft={3}>
+					<Link href="/blog-newsroom">
+						<Button
+							sx={{
+								color: theme.palette.text.primary,
+								'&:hover': {
+									color: theme.palette.primary.dark,
+								},
+							}}
+							variant="text"
+						>
+							Latest news
+						</Button>
+					</Link>
+				</Box>
+
+				<Box marginLeft={3}>
+					<Button
+						sx={{
+							color: theme.palette.text.primary,
+							'&:hover': {
+								color: theme.palette.primary.dark,
+							},
+						}}
+						variant="text"
+						onClick={handleContactModal}
+					>
+						Contact us
+					</Button>
 				</Box>
 			</Box>
 
 			<Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
 				{renderAuthButtons()}
 				<Box marginLeft={3}>
-					<DarkModeToggler />
+					<DarkModeToggler
+						moonColor={theme.palette.secondary.main}
+						sunColor={theme.palette.primary.main}
+					/>
 				</Box>
 			</Box>
 
 			<Box sx={{ display: { xs: 'flex', md: 'none' } }} alignItems={'center'}>
-				<DarkModeToggler />
+				<DarkModeToggler
+					moonColor={theme.palette.secondary.main}
+					sunColor={theme.palette.primary.main}
+				/>
 				<Button
 					onClick={() => onSidebarOpen()}
 					aria-label="Menu"

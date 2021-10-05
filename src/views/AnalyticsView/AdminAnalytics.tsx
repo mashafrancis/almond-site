@@ -31,7 +31,7 @@ const AdminAnalytics = (): JSX.Element => {
 
 	return (
 		<div data-testid="admin-analytics-page">
-			<Grid container item xs={12} spacing={2}>
+			<Grid container item xs={12} spacing={1}>
 				<AnalyticsCard
 					onClick={handleCardClick(1)}
 					colorClass="blueCard"

@@ -49,7 +49,7 @@ const AnalyticsCard = ({
 		},
 		mainInfo: {
 			[theme.breakpoints.down('sm')]: {
-				display: 'none'
+				display: 'none',
 			},
 		},
 		yellowCard: {
@@ -97,16 +97,16 @@ const AnalyticsCard = ({
 				data-testid="analytics-card"
 			>
 				<Box marginLeft={2} marginTop={1} display={{ sm: 'none' }}>
-				<Typography
-					classes={classes.mainInfo}
-					fontWeight={500}
-					fontSize={{ xs: 14, sm: 16 }}
-					sx={{ ...classes[colorClass!] }}
-					variant="h6"
-					data-testid="main-info"
-				>
-					{mainInfo}
-				</Typography>
+					<Typography
+						classes={classes.mainInfo}
+						fontWeight={500}
+						fontSize={{ xs: 14, sm: 16 }}
+						sx={{ ...classes[colorClass!] }}
+						variant="h6"
+						data-testid="main-info"
+					>
+						{mainInfo}
+					</Typography>
 				</Box>
 				<Box
 					classes={classes.content}

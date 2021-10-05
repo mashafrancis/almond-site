@@ -3,13 +3,29 @@ import { useState } from 'react';
 import CountUp from 'react-countup';
 import VisibilitySensor from 'react-visibility-sensor';
 import { useTheme } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
+// import Card from '@mui/material/Card';
+// import CardMedia from '@mui/material/CardMedia';
 import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import fancyId from '@utils/fancyId';
+import {
+	Timeline,
+	TimelineConnector,
+	TimelineContent,
+	TimelineDot,
+	TimelineItem,
+	TimelineOppositeContent,
+	TimelineSeparator,
+} from '@mui/lab';
+import {
+	ApiRounded,
+	CalendarToday,
+	Dry,
+	EmojiNature,
+	Fastfood,
+} from '@mui/icons-material';
 
 const mock = [
 	{
@@ -101,18 +117,110 @@ const Features = (): JSX.Element => {
 					md={6}
 					data-aos={'zoom-in'}
 					sx={{
-						display: { xs: 'none', md: 'flex' },
+						display: 'flex',
 					}}
 				>
-					<Box component={Card} boxShadow={4} height={1} width={1}>
-						<Box
-							component={CardMedia}
-							height={1}
-							width={1}
-							minHeight={300}
-							image="https://storage.googleapis.com/static.almondhydroponics.com/static/images/hydroponic-strawberries.jpg"
-						/>
-					</Box>
+					<Timeline position="alternate">
+						<TimelineItem>
+							<TimelineOppositeContent
+								sx={{ m: 'auto 0' }}
+								align="right"
+								variant="body2"
+								color="text.secondary"
+							>
+								Prepare
+							</TimelineOppositeContent>
+							<TimelineSeparator>
+								<TimelineConnector />
+								<TimelineDot>
+									<CalendarToday />
+								</TimelineDot>
+								<TimelineConnector />
+							</TimelineSeparator>
+							<TimelineContent sx={{ py: '12px', px: 2 }}>
+								<Typography variant="h6" component="span" color="primary">
+									Start
+								</Typography>
+								<Typography>Select your produce</Typography>
+							</TimelineContent>
+						</TimelineItem>
+						<TimelineItem>
+							<TimelineOppositeContent
+								sx={{ m: 'auto 0' }}
+								variant="body2"
+								color="text.secondary"
+							>
+								Day 1
+							</TimelineOppositeContent>
+							<TimelineSeparator>
+								<TimelineConnector />
+								<TimelineDot color="primary">
+									<Dry />
+								</TimelineDot>
+								<TimelineConnector />
+							</TimelineSeparator>
+							<TimelineContent sx={{ py: '12px', px: 2 }}>
+								<Typography variant="h6" component="span" color="primary">
+									Plant
+								</Typography>
+								<Typography>Add your seeds to the pod</Typography>
+							</TimelineContent>
+						</TimelineItem>
+						<TimelineItem>
+							<TimelineSeparator>
+								<TimelineConnector />
+								<TimelineDot color="primary" variant="outlined">
+									<EmojiNature />
+								</TimelineDot>
+								<TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
+							</TimelineSeparator>
+							<TimelineContent sx={{ py: '12px', px: 2 }}>
+								<Typography variant="h6" component="span" color="primary">
+									Care
+								</Typography>
+								<Typography>Add nutrients every few weeks</Typography>
+							</TimelineContent>
+						</TimelineItem>
+						<TimelineItem>
+							<TimelineSeparator>
+								<TimelineConnector sx={{ bgcolor: 'secondary.main' }} />
+								<TimelineDot color="secondary">
+									<ApiRounded />
+								</TimelineDot>
+								<TimelineConnector />
+							</TimelineSeparator>
+							<TimelineContent sx={{ py: '12px', px: 2 }}>
+								<Typography variant="h6" component="span" color="primary">
+									Reap
+								</Typography>
+								<Typography>Harvest only what you need</Typography>
+							</TimelineContent>
+						</TimelineItem>
+						<TimelineItem>
+							<TimelineSeparator>
+								<TimelineConnector />
+								<TimelineDot color="primary" variant="outlined">
+									<Fastfood />
+								</TimelineDot>
+								<TimelineConnector />
+							</TimelineSeparator>
+							<TimelineContent sx={{ py: '12px', px: 2 }}>
+								<Typography variant="h6" component="span" color="primary">
+									Feast
+								</Typography>
+								<Typography>Yummy! Eat and enjoy</Typography>
+							</TimelineContent>
+						</TimelineItem>
+					</Timeline>
+					{/*<Box component={Card} boxShadow={4} height={1} width={1}>*/}
+					{/*	<Box*/}
+					{/*		component={CardMedia}*/}
+					{/*		height={1}*/}
+					{/*		width={1}*/}
+					{/*		minHeight={300}*/}
+					{/*		image="https://storage.googleapis.com/static.almondhydroponics.com/static/images/hydroponic-strawberries.jpg"*/}
+					{/*	/>*/}
+					{/*</Box>*/}
 				</Grid>
 			</Grid>
 		</Box>

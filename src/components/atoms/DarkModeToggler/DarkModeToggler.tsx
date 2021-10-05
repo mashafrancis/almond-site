@@ -108,8 +108,13 @@ const DarkModeToggler = ({
 			sx={{
 				borderRadius: 1,
 				minWidth: 'auto',
-				padding: 1,
-				borderColor: alpha(theme.palette.divider, 0.2),
+				paddingX: 1,
+				borderColor: alpha(
+					mode === 'dark'
+						? theme.palette.secondary.main
+						: theme.palette.primary.main,
+					0.2
+				),
 			}}
 		>
 			<animated.svg

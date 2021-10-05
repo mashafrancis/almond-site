@@ -55,6 +55,11 @@ const useFormState = ({ onSubmit, formErrors }: FormProps) => {
 		if (isValid) {
 			onSubmit(values);
 		}
+
+		setState((prevState) => ({
+			...prevState,
+			errors: {},
+		}));
 	};
 
 	const hasError = (field: string): boolean =>

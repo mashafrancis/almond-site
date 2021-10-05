@@ -7,9 +7,15 @@ interface Props {
 	onClose: () => void;
 	open: boolean;
 	variant: 'permanent' | 'persistent' | 'temporary' | undefined;
+	handleContactModal: () => void;
 }
 
-const Sidebar = ({ open, variant, onClose }: Props): JSX.Element => {
+const Sidebar = ({
+	open,
+	variant,
+	onClose,
+	handleContactModal,
+}: Props): JSX.Element => {
 	return (
 		<Drawer
 			anchor="left"
@@ -29,7 +35,10 @@ const Sidebar = ({ open, variant, onClose }: Props): JSX.Element => {
 					padding: 1,
 				}}
 			>
-				<SidebarNav onClose={onClose} />
+				<SidebarNav
+					handleContactModal={handleContactModal}
+					onClose={onClose}
+				/>
 			</Box>
 		</Drawer>
 	);

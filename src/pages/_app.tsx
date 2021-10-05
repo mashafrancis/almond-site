@@ -7,7 +7,7 @@ import { CacheProvider } from '@emotion/react';
 import { Provider } from 'react-redux';
 import { useEffect } from 'react';
 import NProgress from 'nprogress';
-import store from '../store';
+import store, { wrapper } from '../store';
 // components
 import Page from '../components/Page';
 import createEmotionCache from '../createEmotionCache';
@@ -29,7 +29,7 @@ interface Props extends AppProps {
 const clientSideEmotionCache = createEmotionCache();
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default function App({
+function App({
 	Component,
 	pageProps,
 	emotionCache = clientSideEmotionCache,
@@ -93,3 +93,5 @@ export default function App({
 		</CacheProvider>
 	);
 }
+
+export default wrapper.withRedux(App);

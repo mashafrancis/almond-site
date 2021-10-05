@@ -100,7 +100,7 @@ const Topbar = (): JSX.Element => {
 					sx={{
 						borderRadius: 1,
 						minWidth: 'auto',
-						padding: 1,
+						paddingX: 1,
 						borderColor: alpha(theme.palette.divider, 0.2),
 					}}
 				>
@@ -186,7 +186,7 @@ const Topbar = (): JSX.Element => {
 					<Box marginLeft={3}>
 						<DarkModeToggler
 							moonColor={theme.palette.secondary.main}
-							// sunColor={theme.palette.primary.main}
+							sunColor={theme.palette.primary.main}
 						/>
 					</Box>
 				</Tooltip>
