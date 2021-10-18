@@ -67,13 +67,10 @@ export default class MyDocument extends Document {
 						property="og:image"
 						content="https://static.almondhydroponics.com/static/icons/android-icon-192x192.png"
 					/>
-					<meta
-						property="og:title"
-						content="theFront | UI Kit by Maccarian Agency."
-					/>
+					<meta property="og:title" content="almond" />
 					<meta
 						property="og:description"
-						content="A modern design system for your new landing and web pages."
+						content="Grow food hydroponically."
 					/>
 					<meta property="og:url" content="https://almondhydroponics.com/" />
 

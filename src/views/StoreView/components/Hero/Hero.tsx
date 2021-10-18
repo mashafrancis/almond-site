@@ -28,22 +28,22 @@ const Hero = (): JSX.Element => {
 								component={'span'}
 								variant={'inherit'}
 							>
-								Experience your music{' '}
+								Experience your food{' '}
 							</Typography>
+							<br />
 							like never before.
 						</Typography>
 					</Box>
 					<Box marginBottom={3}>
 						<Typography variant="h6" component="p" color="text.secondary">
-							Supper offer till the end of June. All the original headphones at
-							maximum:
+							Offer available until the end of November:
 						</Typography>
 						<Typography
 							variant="h3"
 							color="text.primary"
 							sx={{ fontWeight: 700, color: colors.red[400] }}
 						>
-							$299.95
+							Ksh10,000
 						</Typography>
 						<Box
 							component={Button}
@@ -53,7 +53,7 @@ const Hero = (): JSX.Element => {
 							height={54}
 							marginTop={2}
 						>
-							Discover the offer
+							Discover our offer
 						</Box>
 					</Box>
 					<Box
@@ -63,8 +63,7 @@ const Hero = (): JSX.Element => {
 						borderRadius={2}
 					>
 						<Typography variant="body1" component="p">
-							$60 Apple Music gift card with purchase of select Beats
-							products.*
+							Ksh200 for our strawberry package grown from us.*
 						</Typography>
 					</Box>
 				</Box>
@@ -82,10 +81,13 @@ const Hero = (): JSX.Element => {
 					component={LazyLoadImage}
 					height={1}
 					width={1}
-					src={'https://assets.maccarianagency.com/backgrounds/img34.png'}
+					borderRadius={2}
+					src={
+						'https://storage.googleapis.com/static.almondhydroponics.com/static/images/hydroponics.webp'
+					}
 					alt="..."
 					effect="blur"
-					maxWidth={600}
+					maxWidth={550}
 				/>
 			</Grid>
 		</Grid>

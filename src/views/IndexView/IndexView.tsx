@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Main from 'layouts/Main';
 import Container from 'components/Container';
 import { Features, Services, Hero } from './components';
-import { News } from '../Ecommerce/components';
+import { News } from '../StoreView/components';
 
 const IndexView = (): JSX.Element => {
 	const theme = useTheme();

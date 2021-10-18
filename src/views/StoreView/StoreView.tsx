@@ -7,14 +7,11 @@ import {
 	Hero,
 	LatestProducts,
 	News,
-	Newsletter,
 	Overview,
 	Products,
-	QuickSearch,
-	Reviews,
 } from './components';
 
-const Ecommerce = (): JSX.Element => {
+const StoreView = (): JSX.Element => {
 	return (
 		<Main>
 			<Container>
@@ -34,27 +31,27 @@ const Ecommerce = (): JSX.Element => {
 			<Container>
 				<Products />
 			</Container>
+			<Container>
+				<LatestProducts />
+			</Container>
 			<Box bgcolor={'alternate.main'}>
 				<Container>
 					<News />
 				</Container>
 			</Box>
-			<Container>
-				<LatestProducts />
-			</Container>
-			<Container paddingTop={'0 !important'}>
-				<QuickSearch />
-			</Container>
-			<Box bgcolor={'alternate.main'}>
-				<Container>
-					<Reviews />
-				</Container>
-			</Box>
-			<Container>
-				<Newsletter />
-			</Container>
+			{/*<Container paddingTop={'0 !important'}>*/}
+			{/*	<QuickSearch />*/}
+			{/*</Container>*/}
+			{/*<Box bgcolor={'alternate.main'}>*/}
+			{/*	<Container>*/}
+			{/*		<Reviews />*/}
+			{/*	</Container>*/}
+			{/*</Box>*/}
+			{/*<Container>*/}
+			{/*	<Newsletter />*/}
+			{/*</Container>*/}
 		</Main>
 	);
 };
 
-export default Ecommerce;
+export default StoreView;

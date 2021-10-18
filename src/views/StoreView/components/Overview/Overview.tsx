@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 const Overview = (): JSX.Element => {
 	return (
 		<Box
-			bgcolor={'primary.main'}
+			bgcolor={'primary.dark'}
 			borderRadius={4}
 			paddingBottom={{ xs: 2, md: 0 }}
 		>
@@ -14,7 +14,9 @@ const Overview = (): JSX.Element => {
 				<Grid item container alignItems="flex-start" xs={12} md={4}>
 					<Box
 						component={'img'}
-						src={'https://assets.maccarianagency.com/backgrounds/img35.png'}
+						src={
+							'https://storage.googleapis.com/static.almondhydroponics.com/static/images/single-nft-hydroponic-system.png'
+						}
 						alt="..."
 						sx={{
 							objectFit: 'cover',
@@ -52,7 +54,9 @@ const Overview = (): JSX.Element => {
 				<Grid item container justifyContent="flex-end" xs={12} md={4}>
 					<Box
 						component={'img'}
-						src={'https://assets.maccarianagency.com/backgrounds/img36.png'}
+						src={
+							'https://storage.googleapis.com/static.almondhydroponics.com/static/images/nft-hydroponic-system.png'
+						}
 						alt="..."
 						sx={{
 							objectFit: 'contain',

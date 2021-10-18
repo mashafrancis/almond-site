@@ -1,7 +1,7 @@
-import Ecommerce from 'views/Ecommerce';
+import StoreView from 'views/StoreView';
 
 const StorePage = (): JSX.Element => {
-	return <Ecommerce />;
+	return <StoreView />;
 };
 
 export default StorePage;

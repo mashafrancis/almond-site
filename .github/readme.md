@@ -14,7 +14,7 @@
 
     Musings sphere to share amazing ideas and articles with the rest of the world.
 
-[![Almond](../public/images/readme.svg)](https://almond-re-staging.herokuapp.com/)
+[![Almond](../public/img/readme.svg)](https://almond-re-staging.herokuapp.com/)
 
 #### Simple but complicated musings
 

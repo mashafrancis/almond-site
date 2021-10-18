@@ -1,6 +1,6 @@
 export { default as Home } from './Home';
 export { default as IndexView } from './IndexView';
-export { default as Ecommerce } from './Ecommerce';
+export { default as StoreView } from './StoreView';
 export { default as CompanyTerms } from './CompanyTerms';
 export { default as BlogSearch } from './BlogSearch';
 export { default as BlogNewsroom } from './BlogNewsroom';

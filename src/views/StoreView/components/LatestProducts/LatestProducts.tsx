@@ -12,38 +12,32 @@ import { useTheme } from '@mui/material/styles';
 
 const mock = [
 	{
-		media: 'https://assets.maccarianagency.com/backgrounds/img37.png',
-		title: 'Music player',
-		price: '$320',
+		media:
+			'https://storage.googleapis.com/static.almondhydroponics.com/static/images/single-nft-hydroponic-system.png',
+		title: 'Hydroponics system',
+		price: 'Ksh450',
 	},
 	{
-		media: 'https://assets.maccarianagency.com/backgrounds/img38.png',
-		title: 'Headphones',
-		price: '$450',
+		media:
+			'https://storage.googleapis.com/static.almondhydroponics.com/static/images/single-nft-hydroponic-system.png',
+		title: 'Hydroponics system',
+		price: 'Ksh450',
 	},
 	{
-		media: 'https://assets.maccarianagency.com/backgrounds/img39.png',
-		title: 'Wireless headpohones',
-		price: '$280',
+		media:
+			'https://storage.googleapis.com/static.almondhydroponics.com/static/images/single-nft-hydroponic-system.png',
+		title: 'Hydroponics system',
+		price: 'Ksh450',
 	},
 	{
-		media: 'https://assets.maccarianagency.com/backgrounds/img40.png',
-		title: 'Bluetooth headphones',
-		price: '$300',
-	},
-	{
-		media: 'https://assets.maccarianagency.com/backgrounds/img41.png',
-		title: 'Headphones',
-		price: '$280',
-	},
-	{
-		media: 'https://assets.maccarianagency.com/backgrounds/img42.png',
-		title: 'Music player',
-		price: '$340',
+		media:
+			'https://storage.googleapis.com/static.almondhydroponics.com/static/images/single-nft-hydroponic-system.png',
+		title: 'Hydroponics system',
+		price: 'Ksh450',
 	},
 ];
 
-const Products = (): JSX.Element => {
+const LatestProducts = (): JSX.Element => {
 	const theme = useTheme();
 
 	return (
@@ -69,7 +63,7 @@ const Products = (): JSX.Element => {
 						fontWeight: 700,
 					}}
 				>
-					Featured products
+					The latest products
 				</Typography>
 				<Typography
 					variant="h6"
@@ -92,7 +86,7 @@ const Products = (): JSX.Element => {
 						item
 						xs={12}
 						sm={6}
-						md={4}
+						md={3}
 						key={i}
 						data-aos={'fade-up'}
 						data-aos-delay={i * 100}
@@ -199,7 +193,7 @@ const Products = (): JSX.Element => {
 											{item.price}
 										</Typography>
 										<Button
-											variant={'outlined'}
+											variant={'contained'}
 											startIcon={
 												<Box
 													component={'svg'}
@@ -209,12 +203,8 @@ const Products = (): JSX.Element => {
 													width={20}
 													height={20}
 												>
-													<path
-														fillRule="evenodd"
-														d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
-														clipRule="evenodd"
-													/>
-													<path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z" />
+													<path d="M0 0h24v24H0V0z" fill="none" />
+													<path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 3c0 .55.45 1 1 1h1l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h11c.55 0 1-.45 1-1s-.45-1-1-1H7l1.1-2h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.37-.66-.11-1.48-.87-1.48H5.21l-.67-1.43c-.16-.35-.52-.57-.9-.57H2c-.55 0-1 .45-1 1zm16 15c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
 												</Box>
 											}
 										>
@@ -231,4 +221,4 @@ const Products = (): JSX.Element => {
 	);
 };
 
-export default Products;
+export default LatestProducts;

@@ -15,7 +15,7 @@ const FeaturedProducts = (): JSX.Element => {
 							color="text.primary"
 							sx={{ fontWeight: 700, color: '#222B45' }}
 						>
-							Experience your music like never before.
+							Are you looking forwards to grow your own food?
 						</Typography>
 					</Box>
 					<Box marginBottom={3}>
@@ -25,8 +25,8 @@ const FeaturedProducts = (): JSX.Element => {
 							color="text.primary"
 							sx={{ color: '#222B45' }}
 						>
-							If we're no longer the right solution for you, we'll allow you to
-							export and take your data at anytime for any reason.
+							All options include Almond Device, 60 free plants, plant
+							nutrients and growing accessories.
 						</Typography>
 					</Box>
 					<Box
@@ -36,18 +36,20 @@ const FeaturedProducts = (): JSX.Element => {
 						size="large"
 						height={54}
 					>
-						Discover the offer
+						Discover our offer
 					</Box>
 				</Grid>
 			</Grid>
 			<Box
 				component={'img'}
-				src={'https://assets.maccarianagency.com/backgrounds/img33.png'}
+				src={
+					'https://storage.googleapis.com/static.almondhydroponics.com/static/images/nft-hydroponic-system.png'
+				}
 				sx={{
-					maxWidth: 390,
+					maxWidth: 650,
 					height: 'auto',
 					position: 'absolute',
-					bottom: '-164px',
+					bottom: '-134px',
 					right: 0,
 					display: { xs: 'none', sm: 'block' },
 				}}

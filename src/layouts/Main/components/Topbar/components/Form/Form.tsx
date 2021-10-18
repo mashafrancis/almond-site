@@ -42,14 +42,6 @@ const Form = ({ handleAuthModal }: Props): JSX.Element => {
 		useFormState({
 			onSubmit: async ({ email, password }) => {
 				await dispatch(loginAccount({ email, password }));
-				console.log(
-					'Class: , Function: onSubmit, Line 42 errors():',
-					auth.errors
-				);
-				console.log(
-					'Class: , Function: onSubmit, Line 43 auth.errors():',
-					isObjectEmpty(auth.errors)
-				);
 				if (isObjectEmpty(errors)) {
 					handleAuthModal();
 				}
