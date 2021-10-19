@@ -16,7 +16,7 @@
 
 [![Almond](../public/img/readme.png)](https://almond-re-staging.herokuapp.com/)
 
-#### Simple but complicated musings
+#### Simple but complicated almond
 
 </div>
 
@@ -36,22 +36,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 6. Create a `.env` file in the root directory of the application. Example of the content of a `.env` file is shown in the `.env.example`
 7. Setup local development server.
 
-- In your terminal, execute the following command:
-  ```bash
-    sudo nano /etc/hosts
-  ```
-  Otherwise, you can open your hosts file in your editor of choice.
-- Add the following line to your `hosts` file:
-
-  ```bash
-    127.0.0.1 musings-sphere.com
-  ```
-
 - Save changes and quit the editor.
 
 ### Development server
 
-Run `yarn start:dev` for a dev server. Navigate to `http://froyo.almond.com:3000/`. The app will automatically reload if you change any of the source files.
+Run `yarn dev` for a dev server. The app will automatically reload if you change any of the source files.
 
 ### Build
 
@@ -59,7 +48,7 @@ Run `yarn build` to build the project. The build artifacts will be stored in the
 
 ## Running unit tests
 
-Run `yarn test` to execute the unit tests. This is achieved through the use of jest package which is used to test javascript code .
+Run `yarn test:unit` to execute the unit tests. This is achieved through the use of jest package which is used to test javascript code .
 
 ## Running end-to-end tests
 
