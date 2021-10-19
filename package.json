@@ -17,7 +17,8 @@
     "prepare": "husky install",
     "commit": "cz",
     "commit:signed": "cz -S",
-    "clear-all": "rimraf ./.cache ./.next ./node_modules"
+    "clear-all": "rimraf ./.cache ./.next ./node_modules",
+    "test": "snyk test"
   },
   "dependencies": {
     "@emotion/cache": "^11.5.0",
@@ -59,7 +60,7 @@
     "nextjs-cors": "^2.0.0",
     "nprogress": "^0.2.0",
     "react": "^17.0.2",
-    "react-chartjs-2": "^3.1.0",
+    "react-chartjs-2": "^3.1.1",
     "react-countup": "^6.0.0",
     "react-dom": "^17.0.2",
     "react-ga": "^3.3.0",
@@ -103,7 +104,7 @@
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
     "babel-eslint": "^10.1.0",
-    "babel-jest": "^27.3.0",
+    "babel-jest": "^27.3.1",
     "babel-plugin-styled-components": "^1.13.3",
     "cross-env": "^7.0.3",
     "eslint": "^8.0.1",
@@ -117,12 +118,13 @@
     "eslint-plugin-testing-library": "^4.12.4",
     "globby": "^12.0.2",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.3.0",
+    "jest": "^27.3.1",
     "prettier": "^2.4.1",
     "prettier-eslint": "^13.0.0",
     "prettier-eslint-cli": "^5.0.1",
     "react-test-renderer": "^17.0.2",
     "rimraf": "^3.0.2",
+    "snyk": "^1.741.0",
     "typescript": "^4.4.4"
   }
 }

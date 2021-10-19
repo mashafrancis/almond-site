@@ -3,10 +3,10 @@
 ## almond
 
 ![CI](https://github.com/musings-sphere/musings-fe/workflows/CI/badge.svg)
-[![CircleCI](https://circleci.com/gh/musings-sphere/musings-fe/tree/main.svg?style=svg)](https://circleci.com/gh/musings-sphere/musings-fe/tree/main)
-[![Maintainability](https://api.codeclimate.com/v1/badges/af282436504ed75c2bf2/maintainability)](https://codeclimate.com/github/musings-sphere/musings-fe/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/af282436504ed75c2bf2/test_coverage)](https://codeclimate.com/github/musings-sphere/musings-fe/test_coverage)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/bc890f32-244f-448c-81af-a988aebc1fac/deploy-status)](https://app.netlify.com/sites/naughty-tereshkova-0355f1/deploys)
+[![CircleCI](https://circleci.com/gh/almond-hydroponics/almond/tree/main.svg?style=svg)](https://circleci.com/gh/almond-hydroponics/almond/tree/main)
+[![Maintainability](https://api.codeclimate.com/v1/badges/815286efd0a5afd00b51/maintainability)](https://codeclimate.com/github/almond-hydroponics/almond/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/815286efd0a5afd00b51/test_coverage)](https://codeclimate.com/github/almond-hydroponics/almond/test_coverage)
+[![Known Vulnerabilities](https://snyk.io/test/github/almond-hydroponics/almond/badge.svg)](https://snyk.io/test/github/almond-hydroponics/almond?style=flat-square)
 
 </div>
 
@@ -14,7 +14,7 @@
 
     Musings sphere to share amazing ideas and articles with the rest of the world.
 
-[![Almond](../public/img/readme.svg)](https://almond-re-staging.herokuapp.com/)
+[![Almond](../public/img/readme.png)](https://almond-re-staging.herokuapp.com/)
 
 #### Simple but complicated musings
 
