@@ -40,12 +40,12 @@ describe('User module actions', () => {
 			const expectedActions = [
 				{
 					type: GET_USER_DETAILS_REQUEST,
-					isLoading: true,
+					isFetchingDetails: true,
 				},
 				{
 					type: GET_USER_DETAILS_SUCCESS,
 					userDetails: userDetails.data,
-					isLoading: false,
+					isFetchingDetails: false,
 				},
 			];
 			const http = axiosMock('/me', mockResponse);
@@ -65,7 +65,7 @@ describe('User module actions', () => {
 			const expectedActions = [
 				{
 					type: GET_USER_DETAILS_REQUEST,
-					isLoading: true,
+					isFetchingDetails: true,
 				},
 				{
 					snack: {
@@ -83,7 +83,7 @@ describe('User module actions', () => {
 						},
 					},
 					type: GET_USER_DETAILS_FAILURE,
-					isLoading: false,
+					isFetchingDetails: false,
 				},
 			];
 			const http = axiosMock('/me', mockErrorResponse, false);

@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import renderer from 'react-test-renderer';
 // components
 import Logo from './index';
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import getTheme from '../../../theme';
 
 describe.skip('Logo component', () => {

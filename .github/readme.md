@@ -3,10 +3,10 @@
 ## almond
 
 ![CI](https://github.com/musings-sphere/musings-fe/workflows/CI/badge.svg)
-[![CircleCI](https://circleci.com/gh/musings-sphere/musings-fe/tree/main.svg?style=svg)](https://circleci.com/gh/musings-sphere/musings-fe/tree/main)
-[![Maintainability](https://api.codeclimate.com/v1/badges/af282436504ed75c2bf2/maintainability)](https://codeclimate.com/github/musings-sphere/musings-fe/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/af282436504ed75c2bf2/test_coverage)](https://codeclimate.com/github/musings-sphere/musings-fe/test_coverage)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/bc890f32-244f-448c-81af-a988aebc1fac/deploy-status)](https://app.netlify.com/sites/naughty-tereshkova-0355f1/deploys)
+[![CircleCI](https://circleci.com/gh/almond-hydroponics/almond/tree/main.svg?style=svg)](https://circleci.com/gh/almond-hydroponics/almond/tree/main)
+[![Maintainability](https://api.codeclimate.com/v1/badges/815286efd0a5afd00b51/maintainability)](https://codeclimate.com/github/almond-hydroponics/almond/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/815286efd0a5afd00b51/test_coverage)](https://codeclimate.com/github/almond-hydroponics/almond/test_coverage)
+[![Known Vulnerabilities](https://snyk.io/test/github/almond-hydroponics/almond/badge.svg)](https://snyk.io/test/github/almond-hydroponics/almond?style=flat-square)
 
 </div>
 
@@ -14,9 +14,9 @@
 
     Musings sphere to share amazing ideas and articles with the rest of the world.
 
-[![Almond](../public/img/readme.svg)](https://almond-re-staging.herokuapp.com/)
+[![Almond](../public/img/readme.png)](https://almond-re-staging.herokuapp.com/)
 
-#### Simple but complicated musings
+#### Simple but complicated almond
 
 </div>
 
@@ -36,22 +36,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 6. Create a `.env` file in the root directory of the application. Example of the content of a `.env` file is shown in the `.env.example`
 7. Setup local development server.
 
-- In your terminal, execute the following command:
-  ```bash
-    sudo nano /etc/hosts
-  ```
-  Otherwise, you can open your hosts file in your editor of choice.
-- Add the following line to your `hosts` file:
-
-  ```bash
-    127.0.0.1 musings-sphere.com
-  ```
-
 - Save changes and quit the editor.
 
 ### Development server
 
-Run `yarn start:dev` for a dev server. Navigate to `http://froyo.almond.com:3000/`. The app will automatically reload if you change any of the source files.
+Run `yarn dev` for a dev server. The app will automatically reload if you change any of the source files.
 
 ### Build
 
@@ -59,7 +48,7 @@ Run `yarn build` to build the project. The build artifacts will be stored in the
 
 ## Running unit tests
 
-Run `yarn test` to execute the unit tests. This is achieved through the use of jest package which is used to test javascript code .
+Run `yarn test:unit` to execute the unit tests. This is achieved through the use of jest package which is used to test javascript code .
 
 ## Running end-to-end tests
 

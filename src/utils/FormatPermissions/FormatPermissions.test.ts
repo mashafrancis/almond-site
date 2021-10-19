@@ -1,9 +1,8 @@
 // helpers
 import formatPermissions from './index';
-
 // fixtures
 import { noAccessPermissions } from './fixtures';
-import { userRoles } from '../../pages/UserRolesPage/fixtures';
+import {userRoles} from "@modules/userRoles/fixtures";
 
 describe('The formatPermissions function', () => {
 	it('should return object with all resource permissions true if user has full access', () => {

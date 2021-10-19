@@ -3,7 +3,6 @@ import Cookies from 'js-cookie';
 // helpers
 import authService from '@utils/auth';
 import { token } from '../testHelpers';
-import mock = jest.mock;
 
 describe('AuthService object', () => {
 	beforeEach(() => {
@@ -11,13 +10,13 @@ describe('AuthService object', () => {
 	});
 	describe('IsAuthenticated function', () => {
 		it('should return true if a user token has not expired', () => {
-			Cookies.set('jwt-token', token);
+			Cookies.set('accessToken', token);
 
 			expect(authService.isAuthenticated()).toBeTruthy();
 		});
 
 		it('should return false when a user token has expired', () => {
-			Cookies.remove('jwt-token');
+			Cookies.remove('accessToken');
 
 			expect(authService.isAuthenticated()).toBeFalsy();
 		});
