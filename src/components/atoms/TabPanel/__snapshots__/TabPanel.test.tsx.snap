@@ -8,7 +8,7 @@ exports[`TabPanel component should render correctly 1`] = `
     role="tabpanel"
   >
     <div
-      class="MuiBox-root MuiBox-root-2 makeStyles-box-1"
+      class="tab-panel MuiBox-root css-cu9xnh"
       data-testid="tab-panel"
     >
       <div />

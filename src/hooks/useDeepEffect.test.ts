@@ -5,14 +5,14 @@ import useDeepCompareEffect, {
 } from '@hooks/useDeepEffect';
 
 describe('useDeepCompareEffect', () => {
-	test('useDeepCompareEffect throws an error if using it with an empty array', () => {
+	it('should throw an error if using it with an empty array', () => {
 		const { result } = renderHook(() => useDeepCompareEffect(() => {}, []));
 		expect(result.error).toMatchInlineSnapshot(
 			`[Error: useDeepCompareEffect should not be used with no dependencies. Use React.useEffect instead.]`
 		);
 	});
 
-	test('useDeepCompareEffect throws an error if using it with an array of only primitive values', () => {
+	it('should throw an error if using it with an array of only primitive values', () => {
 		const { result } = renderHook(() =>
 			useDeepCompareEffect(() => {}, [true, 1, 'string'])
 		);
@@ -21,7 +21,7 @@ describe('useDeepCompareEffect', () => {
 		);
 	});
 
-	test("useDeepCompareEffectNoCheck don't throw an error if using it with an array of only primitive values", () => {
+	it("useDeepCompareEffectNoCheck should not throw an error if using it with an array of only primitive values", () => {
 		const errorMock = jest
 			.spyOn(console, 'error')
 			.mockImplementation(() => {});
@@ -34,7 +34,7 @@ describe('useDeepCompareEffect', () => {
 		errorMock.mockRestore();
 	});
 
-	test('in production mode there are no errors thrown', () => {
+	it('should throw no errors in production mode', () => {
 		const env = process.env.NODE_ENV;
 		// @ts-ignore
 		process.env.NODE_ENV = 'production';
@@ -44,7 +44,7 @@ describe('useDeepCompareEffect', () => {
 		process.env.NODE_ENV = env;
 	});
 
-	test('useDeepCompareEffect handles changing values as expected', () => {
+	it('should handle changing values as expected', () => {
 		const callback = jest.fn();
 		let deps = [1, { a: 'b' }, true];
 		const { rerender } = renderHook(() =>
@@ -92,7 +92,7 @@ describe('useDeepCompareEffect', () => {
 	// this may be useful in the future, but we don't support it today so I thought
 	// it'd be good to include as a test as it would be a breaking change if we
 	// did add support. I'm inclined to not support this. Manipulation is not good.
-	test('useDeepCompareEffect does NOT work with manipulation', () => {
+	it('should NOT work with manipulation', () => {
 		const callback = jest.fn();
 		const deps = [{ a: 'b' }];
 		const { rerender } = renderHook(() =>
@@ -106,7 +106,7 @@ describe('useDeepCompareEffect', () => {
 		expect(callback).toHaveBeenCalledTimes(0);
 	});
 
-	test('useDeepCompareEffect works with deep object similarities/differences', () => {
+	it('should work with deep object similarities/differences', () => {
 		const callback = jest.fn();
 		let deps: Array<Record<string, unknown>> = [{ a: { b: { c: 'd' } } }];
 		const { rerender } = renderHook(() =>
@@ -134,7 +134,7 @@ describe('useDeepCompareEffect', () => {
 		callback.mockClear();
 	});
 
-	test('useDeepCompareEffect works with getDerivedStateFromProps', () => {
+	it('should work with getDerivedStateFromProps', () => {
 		const callback = jest.fn();
 		const { rerender } = renderHook(
 			({ a }: { a: number }) => {

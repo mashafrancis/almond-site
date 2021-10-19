@@ -1,7 +1,7 @@
-import Home from 'views/Home';
+import IndexView from "views/IndexView";
 
 const HomePage = (): JSX.Element => {
-	return <Home />;
+	return <IndexView />;
 };
 
 export default HomePage;

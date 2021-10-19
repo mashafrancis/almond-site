@@ -12,7 +12,7 @@
     "moduleResolution": "node",
     "noEmit": true,
     "noUnusedLocals": true,
-//    "noUnusedParameters": true,
+    //    "noUnusedParameters": true,
     "noImplicitAny": false,
     "noImplicitThis": true,
     "strictNullChecks": true,
@@ -25,17 +25,28 @@
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    //    "isolatedModules": true,
     "noFallthroughCasesInSwitch": true,
     "outDir": "./dist",
     "baseUrl": "src",
     "paths": {
-      "@components/*": ["components/*"],
-      "@utils/*": ["utils/*"],
-      "@modules/*": ["store/modules/*"],
-      "@hooks/*": ["hooks/*"],
-      "@context/*": ["context/*"]
-    }
+      "@components/*": [
+        "components/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@modules/*": [
+        "store/modules/*"
+      ],
+      "@hooks/*": [
+        "hooks/*"
+      ],
+      "@context/*": [
+        "context/*"
+      ]
+    },
+    "isolatedModules": true
   },
   "include": [
     "next-env.d.ts",

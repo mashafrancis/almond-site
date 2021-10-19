@@ -1,7 +1,7 @@
 defaults: &defaults
   docker:
     - image: cimg/node:16.8.0
-  working_directory: ~/musings
+  working_directory: ~/almond
 
 # Aliases
 cmd_download_cc_test_reporter: &cmd_download_cc_test_reporter
@@ -14,7 +14,7 @@ cmd_download_cc_test_reporter: &cmd_download_cc_test_reporter
 
 cmd_attach_workspace: &cmd_attach_workspace
   attach_workspace:
-    at: ~/musings
+    at: ~/almond
 
 cmd_attach_cc_workspace: &cmd_attach_cc_workspace
   attach_workspace:

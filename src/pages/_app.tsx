@@ -7,7 +7,7 @@ import { CacheProvider } from '@emotion/react';
 import { Provider } from 'react-redux';
 import { useEffect } from 'react';
 import NProgress from 'nprogress';
-import store, { wrapper } from '../store';
+import store from '../store';
 // components
 import Page from '../components/Page';
 import createEmotionCache from '../createEmotionCache';
@@ -94,4 +94,4 @@ function App({
 	);
 }
 
-export default wrapper.withRedux(App);
+export default App;

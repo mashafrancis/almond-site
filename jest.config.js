@@ -36,7 +36,8 @@ module.exports = {
 		'@modules/(.*)$': '<rootDir>/src/store/modules/$1',
 		'@components/(.*)$': '<rootDir>src/components/$1',
 		'@pages/(.*)$': '<rootDir>src/pages/$1',
-		'@placeholders/(.*)$': '<rootDir>src/placeholders/$1',
+		'@context/(.*)$': '<rootDir>src/context/$1',
+    '@hooks/(.*)$': '<rootDir>src/hooks/$1',
 	},
 	setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 	testPathIgnorePatterns: [

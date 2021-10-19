@@ -24,6 +24,7 @@ const TabPanel = ({
 					}}
 					p={3}
 					{...other}
+					className="tab-panel"
 					data-testid="tab-panel"
 				>
 					{children}
