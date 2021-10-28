@@ -61,7 +61,7 @@ const CustomAvatar = ({
 	}
 
 	return (
-		<>
+		<div>
 			<Tooltip title="Account settings">
 				<Avatar
 					alt={name}
@@ -138,7 +138,7 @@ const CustomAvatar = ({
 					Logout
 				</MenuItem>
 			</Menu>
-		</>
+		</div>
 	);
 };
 

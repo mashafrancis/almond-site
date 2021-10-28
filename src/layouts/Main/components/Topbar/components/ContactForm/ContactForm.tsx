@@ -104,20 +104,20 @@ const mock = [
 						y1="-5.8041"
 						x1="-5.8093"
 					>
-						<stop offset="0%" stop-color="#FFD521" />
-						<stop offset="5%" stop-color="#FFD521" />
-						<stop offset="50.1119%" stop-color="#F50000" />
-						<stop offset="95%" stop-color="#B900B4" />
-						<stop offset="95.0079%" stop-color="#B900B4" />
-						<stop offset="100%" stop-color="#B900B4" />
+						<stop offset="0%" stopColor="#FFD521" />
+						<stop offset="5%" stopColor="#FFD521" />
+						<stop offset="50.1119%" stopColor="#F50000" />
+						<stop offset="95%" stopColor="#B900B4" />
+						<stop offset="95.0079%" stopColor="#B900B4" />
+						<stop offset="100%" stopColor="#B900B4" />
 					</linearGradient>
 					<linearGradient id="b" y2=".9175" x2=".9175" y1=".0091" x1=".009">
-						<stop offset="0%" stop-color="#FFD521" />
-						<stop offset="5%" stop-color="#FFD521" />
-						<stop offset="50.1119%" stop-color="#F50000" />
-						<stop offset="95%" stop-color="#B900B4" />
-						<stop offset="95.0079%" stop-color="#B900B4" />
-						<stop offset="100%" stop-color="#B900B4" />
+						<stop offset="0%" stopColor="#FFD521" />
+						<stop offset="5%" stopColor="#FFD521" />
+						<stop offset="50.1119%" stopColor="#F50000" />
+						<stop offset="95%" stopColor="#B900B4" />
+						<stop offset="95.0079%" stopColor="#B900B4" />
+						<stop offset="100%" stopColor="#B900B4" />
 					</linearGradient>
 					<linearGradient
 						id="c"
@@ -126,12 +126,12 @@ const mock = [
 						y1="-.456"
 						x1="-.4558"
 					>
-						<stop offset="0%" stop-color="#FFD521" />
-						<stop offset="5%" stop-color="#FFD521" />
-						<stop offset="50.1119%" stop-color="#F50000" />
-						<stop offset="95%" stop-color="#B900B4" />
-						<stop offset="95.0079%" stop-color="#B900B4" />
-						<stop offset="100%" stop-color="#B900B4" />
+						<stop offset="0%" stopColor="#FFD521" />
+						<stop offset="5%" stopColor="#FFD521" />
+						<stop offset="50.1119%" stopColor="#F50000" />
+						<stop offset="95%" stopColor="#B900B4" />
+						<stop offset="95.0079%" stopColor="#B900B4" />
+						<stop offset="100%" stopColor="#B900B4" />
 					</linearGradient>
 					<linearGradient
 						gradientUnits="userSpaceOnUse"

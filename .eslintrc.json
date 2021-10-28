@@ -53,8 +53,8 @@
         "devDependencies": [
           "**/*.test.ts",
           "**/*.test.tsx",
-          "tests/setupTest.js",
-          "config/**/*"
+          "tests/**/*.ts",
+          "src/testHelpers.tsx"
         ]
       }
     ],
@@ -93,7 +93,7 @@
     "react/require-default-props": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
-    "no-tabs": ["error", { "allowIndentationTabs": true }]
+    "no-tabs": ["off", { "allowIndentationTabs": true }]
   },
   "globals": {
     "window": true,

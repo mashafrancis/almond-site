@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { Stack, Typography } from '@mui/material';
-import { useTheme } from '@mui/system';
 import Box from '@mui/material/Box';
+import { useTheme } from '@mui/material/styles';
 
 const darkLogo = 'https://static.almondhydroponics.com/static/logo.png';
 const logo = 'https://static.almondhydroponics.com/static/logo.png';

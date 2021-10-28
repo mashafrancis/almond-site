@@ -19,7 +19,7 @@ const Footer = (): JSX.Element => {
 					<Logo displayText />
 					<Box display="flex" flexWrap={'wrap'} alignItems={'center'}>
 						<Box marginLeft={3}>
-							<Link href="/">
+							<Link href="/" passHref>
 								<Button sx={{ color: '#2d3748' }} variant="text" size="small">
 									Home
 								</Button>
@@ -27,7 +27,7 @@ const Footer = (): JSX.Element => {
 						</Box>
 
 						<Box marginLeft={3}>
-							<Link href="/resources">
+							<Link href="/resources" passHref>
 								<Button sx={{ color: '#2d3748' }} variant="text" size="small">
 									Resources
 								</Button>
@@ -35,7 +35,7 @@ const Footer = (): JSX.Element => {
 						</Box>
 
 						<Box marginLeft={3}>
-							<Link href="/store">
+							<Link href="/store" passHref>
 								<Button variant="outlined" size="small">
 									Store
 								</Button>

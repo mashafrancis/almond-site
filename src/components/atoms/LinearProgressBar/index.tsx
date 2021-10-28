@@ -7,14 +7,14 @@ interface Props {
 	delay?: number;
 }
 
-const ColorLinearProgress = styled(LinearProgress)({
+const ColorLinearProgress = styled(LinearProgress)(({ theme }) => ({
 	colorPrimary: {
-		backgroundColor: '#e8f0fe',
+		backgroundColor: theme.palette.alternate.main,
 	},
 	barColorPrimary: {
-		backgroundColor: '#1967D2',
+		backgroundColor: theme.palette.primary.main,
 	},
-});
+}));
 
 const LinearProgressBar = ({ delay = 1000 }: Props): JSX.Element | null => {
 	const [completed, setCompleted] = useState<number>(0);
@@ -38,7 +38,7 @@ const LinearProgressBar = ({ delay = 1000 }: Props): JSX.Element | null => {
 		const timer = setTimeout(() => setVisibility(true), delay);
 		// cleanup function
 		return () => clearTimeout(timer);
-	}, []);
+	}, [delay]);
 
 	return visibility ? (
 		<ColorLinearProgress variant="determinate" value={completed} />
