@@ -8,7 +8,6 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 #RUN yarn set version berry
 #RUN echo "nodeLinker: node-modules" >> .yarnrc.yml
-#RUN yarn set version latest
 COPY . .
 RUN yarn install --immutable
 
