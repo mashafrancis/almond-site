@@ -21,7 +21,7 @@ describe('useDeepCompareEffect', () => {
 		);
 	});
 
-	it("useDeepCompareEffectNoCheck should not throw an error if using it with an array of only primitive values", () => {
+	it('useDeepCompareEffectNoCheck should not throw an error if using it with an array of only primitive values', () => {
 		const errorMock = jest
 			.spyOn(console, 'error')
 			.mockImplementation(() => {});

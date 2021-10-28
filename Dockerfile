@@ -5,18 +5,27 @@ FROM node:alpine AS deps
 LABEL maintainer="Francis Masha" MAINTAINER="Francis Masha <francismasha96@gmail.com>"
 LABEL application="almond"
 RUN apk add --no-cache libc6-compat
-WORKDIR /app
-COPY package.json yarn.lock ./
+ENV APP_HOME=/home/node/app
+RUN mkdir -p $APP_HOME && chown -R node:node $APP_HOME
+WORKDIR $APP_HOME
+# Set non-root user and folder
+USER node
+# Copy source code (and all other relevant files)
+COPY --chown=node:node package.json yarn.lock ./
 RUN yarn set version berry
-RUN yarn install --immutable
+RUN yarn install
 
 # Rebuild the source code only when needed
 FROM node:alpine AS builder
-WORKDIR /app
-RUN node --version
-COPY . .
-COPY --from=deps /app/node_modules ./node_modules
-RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
+ENV APP_HOME=/home/node/app
+RUN mkdir -p $APP_HOME && chown -R node:node $APP_HOME
+WORKDIR $APP_HOME
+# Set non-root user and folder
+USER node
+# Copy source code (and all other relevant files)
+COPY --chown=node:node . ./
+COPY --from=deps $APP_HOME/node_modules ./node_modules
+RUN yarn build
 
 # Production image, copy all the files and run next
 FROM node:alpine AS runner
@@ -28,10 +37,10 @@ RUN adduser -S nextjs -u 1001
 
 # You only need to copy next.config.js if you are NOT using the default configuration
 # COPY --from=builder /app/next.config.js ./
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
-COPY --from=deps /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
+COPY --from=builder $APP_HOME/public ./public
+COPY --from=builder --chown=nextjs:nodejs $APP_HOME/.next ./.next
+COPY --from=deps $APP_HOME/node_modules ./node_modules
+COPY --from=builder $APP_HOME/package.json ./package.json
 
 USER nextjs
 
