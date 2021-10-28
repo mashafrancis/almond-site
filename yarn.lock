@@ -2887,15 +2887,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jwt-decode@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "@types/jwt-decode@npm:3.1.0"
-  dependencies:
-    jwt-decode: "*"
-  checksum: 82ff0b3826e5d9da48be1f11e16fec96e56dd946995edaa100682202b9b7beb30fb04a353cbabd378d3b13a24241b48a0b662a4f181bae7f758147d92368d930
-  languageName: node
-  linkType: hard
-
 "@types/lodash@npm:^4.14.175":
   version: 4.14.175
   resolution: "@types/lodash@npm:4.14.175"
@@ -3579,7 +3570,6 @@ __metadata:
     "@testing-library/user-event": ^13.5.0
     "@types/aos": ^3.0.4
     "@types/js-cookie": ^3.0.0
-    "@types/jwt-decode": ^3.1.0
     "@types/node": ^16.11.1
     "@types/react": ^17.0.30
     "@types/react-dom": ^17.0.9
@@ -9481,7 +9471,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jwt-decode@npm:*, jwt-decode@npm:^3.1.2":
+"jwt-decode@npm:^3.1.2":
   version: 3.1.2
   resolution: "jwt-decode@npm:3.1.2"
   checksum: 20a4b072d44ce3479f42d0d2c8d3dabeb353081ba4982e40b83a779f2459a70be26441be6c160bfc8c3c6eadf9f6380a036fbb06ac5406b5674e35d8c4205eeb
