@@ -6,7 +6,7 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import createEmotionServer from '@emotion/server/create-instance';
 
-const APP_NAME = 'next-pwa example';
+const APP_NAME = 'almond hydroponics';
 const APP_DESCRIPTION = 'Almond Hydroponics - Growing your plants smart.';
 
 const getCache = () => {

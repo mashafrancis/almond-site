@@ -1,5 +1,11 @@
 {
   "name": "almond",
+  "description": "Almond website for the hydroponics farm",
+  "author": "Francis Masha",
+  "email": "francismasha96@gmail.com",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
   "packageManager": "yarn@3.0.2",
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
@@ -93,7 +99,6 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/aos": "^3.0.4",
     "@types/js-cookie": "^3.0.0",
-    "@types/jwt-decode": "^3.1.0",
     "@types/node": "^16.11.1",
     "@types/react": "^17.0.30",
     "@types/react-dom": "^17.0.9",
