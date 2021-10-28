@@ -25,6 +25,8 @@ const securityHeaders = [
 ];
 
 module.exports = withPWA({
+  swcMinify: true,
+  reactStrictMode: true,
   pwa: {
     dest: 'public',
     disable: process.env.NODE_ENV === 'development',
@@ -37,6 +39,11 @@ module.exports = withPWA({
 		// disableStaticImages: true,
 		domains: ['static.almondhydroponics.com', 'assets.maccarianagency.com'],
 	},
+  eslint: {
+    // Warning: If set to true, this allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
 	async headers() {
 		return [
 			{

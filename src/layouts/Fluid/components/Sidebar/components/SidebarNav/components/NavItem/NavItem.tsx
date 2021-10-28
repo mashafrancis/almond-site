@@ -38,7 +38,7 @@ const NavItem = ({ items }: Props): JSX.Element => {
 					<Box display="block">
 						{item.pages.map((p) => (
 							<Box marginTop={1} key={fancyId()}>
-								<Link href={p.href}>
+								<Link href={p.href} passHref>
 									<Button
 										sx={{
 											fontWeight: 400,

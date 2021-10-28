@@ -26,7 +26,7 @@ const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
 			) : (
 				<>
 					<Box marginLeft={3}>
-						<Link href="/login">
+						<Link href="/login" passHref>
 							<Button variant="outlined" size="small">
 								Login
 							</Button>
@@ -34,7 +34,7 @@ const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
 					</Box>
 
 					<Box marginLeft={3}>
-						<Link href="/register">
+						<Link href="/register" passHref>
 							<Button variant="contained" color="primary" size="small">
 								Get started
 							</Button>
@@ -58,7 +58,7 @@ const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
 			<Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
 				<Logo displayText />
 				<Box marginLeft={3}>
-					<Link href="/resources">
+					<Link href="/resources" passHref>
 						<Button sx={{ color: '#2d3748' }} variant="text">
 							Resources
 						</Button>
@@ -66,7 +66,7 @@ const Topbar = ({ onSidebarOpen }: Props): JSX.Element => {
 				</Box>
 
 				<Box marginLeft={3}>
-					<Link href="/store">
+					<Link href="/store" passHref>
 						<Button sx={{ color: '#2d3748' }} variant="text">
 							Store
 						</Button>

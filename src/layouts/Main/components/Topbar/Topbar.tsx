@@ -68,7 +68,7 @@ const Topbar = ({ onSidebarOpen, handleContactModal }: Props): JSX.Element => {
 			<Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
 				<Logo displayText />
 				<Box marginLeft={3}>
-					<Link href="/resources">
+					<Link href="/resources" passHref>
 						<Button
 							sx={{
 								color: theme.palette.text.primary,
@@ -84,7 +84,7 @@ const Topbar = ({ onSidebarOpen, handleContactModal }: Props): JSX.Element => {
 				</Box>
 
 				<Box marginLeft={3}>
-					<Link href="/store">
+					<Link href="/store" passHref>
 						<Button
 							sx={{
 								color: theme.palette.text.primary,
@@ -100,7 +100,7 @@ const Topbar = ({ onSidebarOpen, handleContactModal }: Props): JSX.Element => {
 				</Box>
 
 				<Box marginLeft={3}>
-					<Link href="/blog-newsroom">
+					<Link href="/blog-newsroom" passHref>
 						<Button
 							sx={{
 								color: theme.palette.text.primary,

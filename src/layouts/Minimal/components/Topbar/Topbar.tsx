@@ -17,7 +17,10 @@ const Topbar = (): JSX.Element => {
 			justifyContent={'space-between'}
 			alignItems={'center'}
 		>
-			<Link href={router.pathname === '/account' ? '/dashboard' : '/'}>
+			<Link
+				href={router.pathname === '/account' ? '/dashboard' : '/'}
+				passHref
+			>
 				<Box sx={{ display: 'flex' }} alignItems={'center'}>
 					<IconButton
 						style={{ padding: 0, marginRight: theme.spacing(1) }}

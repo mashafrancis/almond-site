@@ -1,8 +1,7 @@
 import { useContext } from 'react';
 import { DarkModeTogglerProps } from './interfaces';
 import { ColorModeContext } from '../../Page';
-import { useTheme } from '@mui/system';
-import { alpha } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 import { Button } from '@mui/material';
 
 export const defaultProperties = {

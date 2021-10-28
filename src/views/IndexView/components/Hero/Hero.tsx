@@ -43,6 +43,7 @@ const Hero = (): JSX.Element => {
 				</Typography>
 			</Box>
 			<Link
+				passHref
 				href={
 					isAuthed
 						? `${isArrayNotNull(devices) ? '/dashboard' : '/my-device'}`

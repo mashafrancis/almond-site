@@ -55,7 +55,7 @@ const NavItem = ({ items, handleContactModal }: Props): JSX.Element => {
 						justifyContent="space-between"
 						spacing={2}
 					>
-						<Link href={'/messages'}>
+						<Link href={'/messages'} passHref>
 							<Button
 								sx={{
 									fontWeight: 500,
@@ -86,7 +86,7 @@ const NavItem = ({ items, handleContactModal }: Props): JSX.Element => {
 					<Box display="block">
 						{item.pages.map((p) => (
 							<Box marginTop={1} key={fancyId()}>
-								<Link href={p.href}>
+								<Link href={p.href} passHref>
 									<Button
 										sx={{
 											fontWeight: 500,
