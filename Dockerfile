@@ -6,14 +6,15 @@ LABEL maintainer="Francis Masha" MAINTAINER="Francis Masha <francismasha96@gmail
 LABEL application="almond"
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
-COPY package.json yarn.lock ./
-RUN yarn set version berry
+#RUN yarn set version berry
+#RUN echo "nodeLinker: node-modules" >> .yarnrc.yml
+#RUN yarn set version latest
+COPY . .
 RUN yarn install --immutable
 
 # Rebuild the source code only when needed
 FROM node:alpine AS builder
 WORKDIR /app
-RUN node --version
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
@@ -28,10 +29,10 @@ RUN adduser -S nextjs -u 1001
 
 # You only need to copy next.config.js if you are NOT using the default configuration
 # COPY --from=builder /app/next.config.js ./
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
-COPY --from=deps /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
+COPY --from=builder $APP_HOME/public ./public
+COPY --from=builder --chown=nextjs:nodejs $APP_HOME/.next ./.next
+COPY --from=deps $APP_HOME/node_modules ./node_modules
+COPY --from=builder $APP_HOME/package.json ./package.json
 
 USER nextjs
 

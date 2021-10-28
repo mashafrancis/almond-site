@@ -74,7 +74,6 @@
     "react-lazy-load-image-component": "^1.5.1",
     "react-redux": "^7.2.6",
     "react-slick": "^0.28.1",
-    "react-spring": "^9.3.0",
     "react-syntax-highlighter": "^15.4.4",
     "react-typed": "^1.2.0",
     "react-visibility-sensor": "^5.1.1",
