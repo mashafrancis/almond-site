@@ -1,154 +1,71 @@
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Card from '@mui/material/Card';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
 import { useTheme } from '@mui/material/styles';
-
-import Container from 'components/Container';
+import Typed from 'react-typed';
+import {alpha, Box, Typography, Grid} from "@mui/material";
 
 const Hero = (): JSX.Element => {
 	const theme = useTheme();
+
 	return (
-		<Box
-			position={'relative'}
-			sx={{
-				backgroundImage:
-					'url("https://assets.maccarianagency.com/backgrounds/img1.jpg")',
-				backgroundSize: 'cover',
-				backgroundPosition: 'center',
-				'&:after': {
-					position: 'absolute',
-					content: '" "',
-					width: '100%',
-					height: '100%',
-					top: 0,
-					right: 0,
-					bottom: 0,
-					left: 0,
-					zIndex: 1,
-					background: '#161c2d',
-					opacity: 0.6,
-				},
-			}}
-		>
-			<Container
-				zIndex={3}
-				position={'relative'}
-				minHeight={{ xs: 300, sm: 400, md: 600 }}
-				maxHeight={600}
-				display={'flex'}
-				alignItems={'center'}
-				justifyContent={'center'}
-			>
-				<Box width={1}>
+		<Grid container spacing={4}>
+			<Grid item container alignItems={'center'} xs={12} md={6}>
+				<Box>
 					<Box marginBottom={2}>
 						<Typography
-							variant="h2"
-							align={'center'}
+							variant="h3"
+							color="text.primary"
+							gutterBottom
 							sx={{
 								fontWeight: 700,
-								color: theme.palette.common.white,
 							}}
 						>
-							Newsroom
+							almond blog for new{' '}
+							<br />
+							<Typography
+								color={'primary'}
+								component={'span'}
+								variant={'inherit'}
+								sx={{
+									background: `linear-gradient(180deg, transparent 82%, ${alpha(
+										theme.palette.secondary.main,
+										0.3,
+									)} 0%)`,
+								}}
+							>
+								<Typed
+									strings={['thoughts.', 'ideas.']}
+									typeSpeed={80}
+									loop={true}
+								/>
+							</Typography>
 						</Typography>
-					</Box>
-					<Box>
-						<Typography
-							variant="h6"
-							align={'center'}
-							sx={{
-								color: theme.palette.common.white,
-							}}
-						>
-							Latest updates and Hand-picked resources.
-						</Typography>
-					</Box>
-					<Box
-						padding={2}
-						width={1}
-						component={Card}
-						borderRadius={2}
-						boxShadow={4}
-						marginTop={4}
-					>
-						<form noValidate autoComplete="off">
-							<Box display="flex" alignItems={'center'}>
-								<Box width={1} marginRight={1}>
-									<TextField
-										sx={{
-											height: 54,
-											'& .MuiOutlinedInput-notchedOutline': {
-												border: '0 !important',
-											},
-										}}
-										variant="outlined"
-										color="primary"
-										size="medium"
-										placeholder="Search an article"
-										fullWidth
-										InputProps={{
-											startAdornment: (
-												<InputAdornment position="start">
-													<Box
-														component={'svg'}
-														xmlns="http://www.w3.org/2000/svg"
-														fill="none"
-														viewBox="0 0 24 24"
-														stroke="currentColor"
-														width={24}
-														height={24}
-														color={'primary.main'}
-													>
-														<path
-															strokeLinecap="round"
-															strokeLinejoin="round"
-															strokeWidth={2}
-															d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-														/>
-													</Box>
-												</InputAdornment>
-											),
-										}}
-									/>
-								</Box>
-								<Box>
-									<Button
-										sx={{ height: 54, minWidth: 100, whiteSpace: 'nowrap' }}
-										variant="contained"
-										color="primary"
-										size="medium"
-										fullWidth
-									>
-										Search
-									</Button>
-								</Box>
-							</Box>
-						</form>
 					</Box>
 				</Box>
-			</Container>
-			<Box
-				component={'svg'}
-				preserveAspectRatio="none"
-				xmlns="http://www.w3.org/2000/svg"
-				x="0px"
-				y="0px"
-				viewBox="0 0 1920 100.1"
-				width={1}
-				maxHeight={120}
-				bottom={0}
-				position={'absolute'}
-				zIndex={2}
-			>
-				<path
-					fill={theme.palette.background.paper}
-					d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"
-				></path>
-			</Box>
-		</Box>
+			</Grid>
+			<Grid item xs={12} md={6}>
+				<Box
+					// height={1}
+					// width={1}
+					display={'flex'}
+					justifyContent={'center'}
+					alignItems={'center'}
+				>
+					<Box maxWidth={500}>
+						<Box
+							component={'img'}
+							src={
+								'https://assets.maccarianagency.com/the-front/illustrations/mobiles.svg'
+							}
+							width={1}
+							height={1}
+							sx={{
+								filter:
+									theme.palette.mode === 'dark' ? 'brightness(0.8)' : 'none',
+							}}
+						/>
+					</Box>
+				</Box>
+			</Grid>
+		</Grid>
 	);
 };
 

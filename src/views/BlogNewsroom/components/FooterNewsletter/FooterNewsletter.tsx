@@ -13,7 +13,7 @@ const FooterNewsletter = (): JSX.Element => {
 					align={'center'}
 					gutterBottom
 				>
-					Get our stories delivered
+					Get our plant adventures delivered
 				</Typography>
 				<Typography
 					variant={'h6'}

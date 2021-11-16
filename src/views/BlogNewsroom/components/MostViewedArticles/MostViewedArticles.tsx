@@ -1,11 +1,13 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
+import Chip from "@mui/material/Chip";
+import {BookmarkAddOutlined} from "@mui/icons-material";
+import {Stack} from "@mui/material";
 
 const mock = [
 	{
@@ -19,6 +21,7 @@ const mock = [
 			avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
 		},
 		date: '10 Sep',
+		category: 'Design'
 	},
 	{
 		image: 'https://assets.maccarianagency.com/backgrounds/img22.jpg',
@@ -31,6 +34,7 @@ const mock = [
 			avatar: 'https://assets.maccarianagency.com/avatars/img2.jpg',
 		},
 		date: '02 Aug',
+		category: 'Design'
 	},
 	{
 		image: 'https://assets.maccarianagency.com/backgrounds/img23.jpg',
@@ -43,6 +47,7 @@ const mock = [
 			avatar: 'https://assets.maccarianagency.com/avatars/img3.jpg',
 		},
 		date: '05 Mar',
+		category: 'Design'
 	},
 	{
 		image: 'https://assets.maccarianagency.com/backgrounds/img24.jpg',
@@ -55,6 +60,7 @@ const mock = [
 			avatar: 'https://assets.maccarianagency.com/avatars/img1.jpg',
 		},
 		date: '10 Sep',
+		category: 'Design'
 	},
 ];
 
@@ -73,20 +79,6 @@ const MostViewedArticles = (): JSX.Element => {
 					<Typography fontWeight={700} variant={'h6'} gutterBottom>
 						Latest stories
 					</Typography>
-					<Typography color={'text.secondary'}>
-						Here’s what we’ve been up to recently.
-					</Typography>
-				</Box>
-				<Box display="flex" marginTop={{ xs: 2, md: 0 }}>
-					<Box
-						component={Button}
-						variant="outlined"
-						color="primary"
-						size="large"
-						marginLeft={2}
-					>
-						View all
-					</Box>
 				</Box>
 			</Box>
 			<Grid container spacing={4}>
@@ -119,6 +111,7 @@ const MostViewedArticles = (): JSX.Element => {
 									alt="..."
 									effect="blur"
 									sx={{
+										borderRadius: 1,
 										objectFit: 'cover',
 										maxHeight: 200,
 										filter:
@@ -134,54 +127,46 @@ const MostViewedArticles = (): JSX.Element => {
 									display: 'flex',
 									flexDirection: 'column',
 									justifyContent: 'center',
+									padding: { xs: 0, md: 1 }
 								}}
 							>
 								<Typography
 									fontWeight={700}
-									sx={{ textTransform: 'uppercase' }}
+									marginTop={{xs: 1, md: 0}}
+									// sx={{ textTransform: 'uppercase' }}
 								>
 									{item.title}
 								</Typography>
 								<Box marginY={1}>
-									<Typography
-										variant={'caption'}
-										color={'text.secondary'}
-										component={'i'}
+									<Stack
+										direction="row"
+										justifyContent="space-between"
+										alignItems="center"
+										spacing={2}
 									>
-										{item.author.name} - {item.date}
-									</Typography>
+										<div>
+											<Typography
+												variant={'caption'}
+												color={'text.secondary'}
+												// component={'i'}
+											>
+												{item.author.name} - {item.date}
+											</Typography>
+											<Chip
+												component={'a'}
+												href={''}
+												label={item.category}
+												clickable
+												sx={{ margin: 0.5, fontSize: 12 }}
+												size={'small'}
+											/>
+										</div>
+										<BookmarkAddOutlined sx={{ cursor: "pointer" }} />
+									</Stack>
 								</Box>
 								<Typography color="text.secondary">
 									{item.description}
 								</Typography>
-								<Box
-									marginTop={2}
-									display={'flex'}
-									justifyContent={'flex-end'}
-								>
-									<Button
-										endIcon={
-											<Box
-												component={'svg'}
-												xmlns="http://www.w3.org/2000/svg"
-												fill="none"
-												viewBox="0 0 24 24"
-												stroke="currentColor"
-												width={24}
-												height={24}
-											>
-												<path
-													strokeLinecap="round"
-													strokeLinejoin="round"
-													strokeWidth={2}
-													d="M17 8l4 4m0 0l-4 4m4-4H3"
-												/>
-											</Box>
-										}
-									>
-										Read More
-									</Button>
-								</Box>
 							</CardContent>
 						</Box>
 					</Grid>
