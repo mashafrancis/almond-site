@@ -100,7 +100,7 @@ const Topbar = ({ onSidebarOpen, handleContactModal }: Props): JSX.Element => {
 				</Box>
 
 				<Box marginLeft={3}>
-					<Link href="/blog-newsroom" passHref>
+					<Link href="/blog" passHref>
 						<Button
 							sx={{
 								color: theme.palette.text.primary,

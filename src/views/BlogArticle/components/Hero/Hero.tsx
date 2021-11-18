@@ -7,7 +7,13 @@ import Avatar from '@mui/material/Avatar';
 
 import Container from 'components/Container';
 
-const Hero = (): JSX.Element => {
+const Hero = ({
+	avatar,
+	fullName,
+	date,
+	title,
+	featuredImage,
+}): JSX.Element => {
 	useEffect(() => {
 		const jarallaxInit = async () => {
 			const jarallaxElems = document.querySelectorAll('.jarallax');
@@ -28,7 +34,7 @@ const Hero = (): JSX.Element => {
 			data-jarallax
 			data-speed="0.2"
 			position={'relative'}
-			minHeight={{ xs: 400, sm: 500, md: 600 }}
+			minHeight={{ xs: 300, sm: 300, md: 400 }}
 			display={'flex'}
 			alignItems={'center'}
 			id="agency__portfolio-item--js-scroll"
@@ -48,8 +54,7 @@ const Hero = (): JSX.Element => {
 					backgroundRepeat: 'no-repeat',
 					backgroundSize: 'cover',
 					backgroundPosition: 'center center',
-					backgroundImage:
-						'url(https://assets.maccarianagency.com/backgrounds/img3.jpg)',
+					backgroundImage: `url(${featuredImage})`,
 				}}
 			/>
 			<Box
@@ -70,22 +75,22 @@ const Hero = (): JSX.Element => {
 					<Typography
 						variant="h3"
 						sx={{
-							fontWeight: 400,
+							fontWeight: 500,
 							color: 'common.white',
 							marginBottom: 2,
 						}}
 					>
-						Remote work is the future, but should you go remote?
+						{title}
 					</Typography>
 					<Box display={'flex'} alignItems={'center'}>
 						<Avatar
 							sx={{ width: 60, height: 60, marginRight: 2 }}
-							src={'https://assets.maccarianagency.com/avatars/img3.jpg'}
+							src={avatar}
 						/>
 						<ListItemText
 							sx={{ margin: 0 }}
-							primary={'Jhon Anderson'}
-							secondary={'May 19, 2021'}
+							primary={fullName}
+							secondary={date}
 							primaryTypographyProps={{
 								variant: 'h6',
 								sx: { color: 'common.white' },

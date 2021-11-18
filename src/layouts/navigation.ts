@@ -12,7 +12,7 @@ const pages = [
 			},
 			{
 				title: 'Latest news',
-				href: '/blog-newsroom',
+				href: '/blog',
 			},
 		],
 	},

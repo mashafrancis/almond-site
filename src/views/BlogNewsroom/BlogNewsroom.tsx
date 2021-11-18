@@ -1,40 +1,49 @@
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import Grid from '@mui/material/Grid';
+import { alpha, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 
 import Main from 'layouts/Main';
 import Container from 'components/Container';
-import {
-	FooterNewsletter,
-	Hero,
-	MostViewedArticles,
-	Tags,
-} from './components';
+import { FooterNewsletter, Hero, MostViewedArticles } from './components';
 
-export default function BlogNewsroom({ allPosts, preview }) {
+export default function BlogNewsroom({ allPosts: { edges }, preview }) {
 	const theme = useTheme();
-	const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-		defaultMatches: true,
-	});
-
-	console.log('Class: default, Function: BlogNewsroom, Line 21 allPosts():', allPosts);
-	console.log('Class: default, Function: BlogNewsroom, Line 22 preview():', preview);
 
 	return (
 		<Main>
 			<Box
+				bgcolor={'alternate.main'}
 				sx={{
 					position: 'relative',
-					backgroundColor: '#D5E4EB',
-					// backgroundImage: `linear-gradient(120deg, ${theme.palette.alternate.dark} 0%, ${theme.palette.background.paper} 100%)`,
-					// marginTop: -13,
-					// paddingTop: 13,
+					'&::after': {
+						position: 'absolute',
+						content: '""',
+						width: '30%',
+						zIndex: 1,
+						top: 0,
+						left: '5%',
+						height: '100%',
+						backgroundSize: '16px 16px',
+						backgroundImage: `radial-gradient(${alpha(
+							theme.palette.primary.dark,
+							0.4
+						)} 20%, transparent 20%)`,
+						opacity: 0.2,
+					},
 				}}
 			>
-				<Container>
-					<Hero />
-				</Container>
+				<Box
+					sx={{
+						position: 'relative',
+						backgroundColor: '#D5E4EB',
+						// backgroundImage: `linear-gradient(120deg, ${theme.palette.alternate.dark} 0%, ${theme.palette.background.paper} 100%)`,
+						// marginTop: -13,
+						// paddingTop: 13,
+					}}
+				>
+					<Container maxWidth={{ sm: 720, md: 960 }}>
+						<Hero />
+					</Container>
+				</Box>
 			</Box>
 			{/*<Container>*/}
 			{/*	<PopularNews />*/}
@@ -56,15 +65,8 @@ export default function BlogNewsroom({ allPosts, preview }) {
 			{/*		) : null}*/}
 			{/*	</Grid>*/}
 			{/*</Container>*/}
-			<Container>
-				<Grid container spacing={isMd ? 8 : 0}>
-					<Grid item xs={12} md={8}>
-						<MostViewedArticles />
-					</Grid>
-					<Grid item xs={12} md={4}>
-						<Tags />
-					</Grid>
-				</Grid>
+			<Container maxWidth={{ sm: 720, md: 960 }}>
+				<MostViewedArticles posts={edges} />
 			</Container>
 			{/*<Container maxWidth={800}>*/}
 			{/*	<Tags />*/}
@@ -79,4 +81,4 @@ export default function BlogNewsroom({ allPosts, preview }) {
 			</Box>
 		</Main>
 	);
-};
+}

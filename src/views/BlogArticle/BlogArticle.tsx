@@ -1,43 +1,37 @@
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import useMediaQuery from '@mui/material/useMediaQuery';
-
 import Main from 'layouts/Main';
 import Container from 'components/Container';
-import {
-	Content,
-	FooterNewsletter,
-	Hero,
-	SidebarArticles,
-	SidebarNewsletter,
-	SimilarStories,
-} from './components';
+import { Content, FooterNewsletter, Hero, SimilarStories } from './components';
+import dayjs from '@utils/dayjsTime';
 
-const BlogArticle = (): JSX.Element => {
+const BlogArticle = ({ posts, post, preview }): JSX.Element => {
 	const theme = useTheme();
-	const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-		defaultMatches: true,
-	});
+
+	const avatar = post?.author?.node.avatar.url;
+	const fullName =
+		`${post?.author?.node.firstName} ${post?.author?.node.lastName}` ??
+		post?.author?.node.name;
+	const formattedDate = dayjs(post?.date).fromNow();
+	const image = post?.featuredImage.node.sourceUrl;
 
 	return (
 		<Main>
 			<Box>
-				<Hero />
-				<Container>
-					<Grid container spacing={4}>
-						<Grid item xs={12} md={8}>
-							<Content />
-						</Grid>
-						<Grid item xs={12} md={4}>
-							{isMd ? (
-								<Box marginBottom={4}>
-									<SidebarArticles />
-								</Box>
-							) : null}
-							<SidebarNewsletter />
-						</Grid>
-					</Grid>
+				<Hero
+					avatar={avatar}
+					fullName={fullName}
+					date={formattedDate}
+					title={post?.title}
+					featuredImage={image}
+				/>
+				<Container maxWidth={{ sm: 720, md: 960 }}>
+					<Content
+						content={post?.content}
+						avatar={avatar}
+						fullName={fullName}
+						date={formattedDate}
+					/>
 				</Container>
 				<Box
 					component={'svg'}
@@ -54,7 +48,7 @@ const BlogArticle = (): JSX.Element => {
 					<path
 						fill={theme.palette.alternate.main}
 						d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"
-					></path>
+					/>
 				</Box>
 			</Box>
 			<Box bgcolor={'alternate.main'}>
@@ -79,7 +73,7 @@ const BlogArticle = (): JSX.Element => {
 					<path
 						fill={theme.palette.background.paper}
 						d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"
-					></path>
+					/>
 				</Box>
 			</Box>
 		</Main>

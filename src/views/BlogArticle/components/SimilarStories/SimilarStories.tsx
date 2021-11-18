@@ -67,7 +67,7 @@ const SimilarStories = (): JSX.Element => {
 						component={Button}
 						variant="outlined"
 						color="primary"
-						size="large"
+						size="medium"
 						marginLeft={2}
 					>
 						View all
@@ -96,7 +96,7 @@ const SimilarStories = (): JSX.Element => {
 								width={1}
 								height={1}
 								borderRadius={2}
-								boxShadow={4}
+								// boxShadow={4}
 								display={'flex'}
 								flexDirection={'column'}
 								sx={{ backgroundImage: 'none' }}
