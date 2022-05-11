@@ -4,10 +4,9 @@ import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { EmotionCache } from '@emotion/utils';
 import { CacheProvider } from '@emotion/react';
-import { Provider } from 'react-redux';
 import { useEffect } from 'react';
 import NProgress from 'nprogress';
-import store from '../store';
+import { wrapper } from '@lib/store';
 // components
 import Page from '../components/Page';
 import createEmotionCache from '../createEmotionCache';
@@ -20,10 +19,28 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'aos/dist/aos.css';
 import 'assets/css/index.css';
 import 'assets/css/fonts.css';
+import ErrorBoundaryPage from '../views/ErrorBoundaryPage';
+import { ErrorBoundary } from '@components/molecules/ErrorBoundary';
+import { ApolloProvider } from '@apollo/client';
+import { useApollo } from '../apolloConfig';
+import { DefaultSeo } from 'next-seo';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { IS_DEV } from '../config/env';
 
 interface Props extends AppProps {
 	emotionCache?: EmotionCache;
 }
+
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			retry: !IS_DEV,
+			refetchIntervalInBackground: !IS_DEV,
+			refetchOnWindowFocus: !IS_DEV,
+		},
+	},
+});
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -35,6 +52,7 @@ function App({
 	emotionCache = clientSideEmotionCache,
 }: Props): JSX.Element {
 	const router = useRouter();
+	const apolloClient = useApollo(pageProps);
 
 	useEffect(() => {
 		initializeGA();
@@ -83,15 +101,26 @@ function App({
 				/>
 				<title>almond</title>
 			</Head>
-			<Provider store={store}>
-				<ComponentProvider>
-					<Page>
-						<Component {...pageProps} />
-					</Page>
-				</ComponentProvider>
-			</Provider>
+			<ErrorBoundary
+				FallbackComponent={ErrorBoundaryPage}
+				onReset={() => window.location.replace('/')}
+			>
+				<QueryClientProvider client={queryClient}>
+					<DefaultSeo
+						defaultTitle="Almond"
+						titleTemplate="%s • Almond"
+						description="🛍 A Shopping Cart built with TypeScript, Emotion, Next.js, React.js, React Query, Shopify Storefront GraphQL API, ... and Material UI."
+					/>
+					<ComponentProvider>
+						<Page>
+							<Component {...pageProps} />
+						</Page>
+					</ComponentProvider>
+					<ReactQueryDevtools initialIsOpen={false} />
+				</QueryClientProvider>
+			</ErrorBoundary>
 		</CacheProvider>
 	);
 }
 
-export default App;
+export default wrapper.withRedux(App);

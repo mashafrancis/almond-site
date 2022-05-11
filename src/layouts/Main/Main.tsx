@@ -148,9 +148,9 @@ const Main = ({ children }: Props): JSX.Element => {
 				>
 					<Toolbar>
 						<Container
-							maxWidth={1}
+							// maxWidth={1}
 							paddingY={{ xs: 1, sm: 1.5 }}
-							paddingX={{ xs: 0 }}
+							// paddingX={{ xs: 0 }}
 						>
 							<Topbar
 								onSidebarOpen={handleSidebarOpen}

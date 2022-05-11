@@ -30,6 +30,9 @@
     "outDir": "./dist",
     "baseUrl": "src",
     "paths": {
+      "@lib/*": [
+        "lib/*"
+      ],
       "@components/*": [
         "components/*"
       ],
@@ -44,6 +47,9 @@
       ],
       "@context/*": [
         "context/*"
+      ],
+      "@svg/*": [
+        "svg/*"
       ]
     },
     "isolatedModules": true,

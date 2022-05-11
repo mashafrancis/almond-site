@@ -4,7 +4,6 @@ import fancyId from '@utils/fancyId';
 import { useState, MouseEvent, useContext } from 'react';
 import { Help, Logout, Mood, OpenInNew, Settings } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
-import { logoutUser } from '@modules/user';
 import { UserContext } from '@context/UserContext';
 import { useTheme } from '@mui/material/styles';
 import { ComponentContext } from '@context/ComponentContext';
@@ -19,7 +18,6 @@ const CustomAvatar = ({
 	...rest
 }: Props): JSX.Element => {
 	const router = useRouter();
-	const dispatch = useDispatch();
 	const theme = useTheme();
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const { name, photo } = useContext(UserContext);
@@ -39,7 +37,6 @@ const CustomAvatar = ({
 
 	const logoutActiveUser = async (): Promise<void> => {
 		await window.location.replace('/');
-		dispatch(logoutUser());
 	};
 
 	const open = Boolean(anchorEl);

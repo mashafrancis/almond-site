@@ -1,41 +1,51 @@
 import { gql } from '@apollo/client';
 
-const GET_ALL_POSTS = gql`
-	query AllPosts {
-		posts(first: 20, where: { orderby: { field: DATE, order: DESC } }) {
-			edges {
-				node {
-					title
-					excerpt
-					slug
-					date
-					tags {
-						edges {
-							node {
-								id
-								name
-							}
-						}
-					}
-					featuredImage {
-						node {
-							sourceUrl
-						}
-					}
-					author {
-						node {
-							name
-							firstName
-							lastName
-							avatar {
-								url
-							}
-						}
-					}
-				}
+const LOGIN = gql`
+	mutation login($email: EmailAddress!, $password: String!) {
+		login(data: { email: $email, password: $password }) {
+			user {
+				id
+				firstName
+				lastName
+				email
+				active
+				verified
+				createdAt
+				updatedAt
+			}
+			errors {
+				field
+				message
 			}
 		}
 	}
 `;
 
-export { GET_ALL_POSTS };
+const GET_GOOGLE_AUTH_URL = gql`
+	query getGoogleAuthURL {
+		getGoogleAuthURL
+	}
+`;
+
+const GOOGLE_AUTH = gql`
+	query googleAuth($code: String!) {
+		googleAuth(input: { code: $code }) {
+			user {
+				id
+				firstName
+				lastName
+				email
+				active
+				verified
+				createdAt
+				updatedAt
+			}
+			errors {
+				field
+				message
+			}
+		}
+	}
+`;
+
+export { LOGIN, GET_GOOGLE_AUTH_URL, GOOGLE_AUTH };

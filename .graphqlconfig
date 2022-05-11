@@ -1,10 +1,10 @@
 {
-  "name": "Untitled GraphQL Schema",
+  "name": "Almond GraphQL Schema",
   "schemaPath": "schema.graphql",
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {
-        "url": "http://139.162.235.186:8000/graphql",
+        "url": "https://api.almondfroyo.com/graphql",
         "headers": {
           "user-agent": "JS GraphQL"
         },

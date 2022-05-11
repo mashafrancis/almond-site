@@ -13,6 +13,7 @@ import { Form } from '../../../Topbar/components';
 import { useState } from 'react';
 import Container from '@components/Container';
 import { Stack, Typography } from '@mui/material';
+import { AccountCircleTwoTone, ArrowBack } from '@mui/icons-material';
 
 interface Props {
 	// eslint-disable-next-line @typescript-eslint/ban-types
@@ -23,8 +24,13 @@ interface Props {
 const SidebarNav = ({ onClose, handleContactModal }: Props): JSX.Element => {
 	const router = useRouter();
 	const [openAuthModal, setAuthModalOpen] = useState<boolean>(false);
+	const [authByEmail, setAuthByEmail] = useState<boolean>(false);
 
-	const handleAuthModal = () => setAuthModalOpen((prevState) => !prevState);
+	const handleAuthModal = () => {
+		setAuthModalOpen((prevState) => !prevState);
+		authByEmail && setAuthByEmail(false);
+	};
+	const handleAuthByEmail = () => setAuthByEmail((prevState) => !prevState);
 
 	const renderAuthButtons = () => (
 		<Box>
@@ -40,12 +46,34 @@ const SidebarNav = ({ onClose, handleContactModal }: Props): JSX.Element => {
 		</Box>
 	);
 
+	const renderModalHeader = (): JSX.Element => (
+		<Stack
+			direction="row"
+			justifyContent="flex-start"
+			alignItems="center"
+			spacing={2}
+		>
+			{authByEmail ? (
+				<ArrowBack onClick={handleAuthByEmail} />
+			) : (
+				<AccountCircleTwoTone />
+			)}
+			<Typography variant="h6">Login into your account</Typography>
+		</Stack>
+	);
+
 	const renderAuthModal = (): JSX.Element => (
 		<Modal
 			isModalOpen={openAuthModal}
 			renderHeader="Login into your account"
 			renderDialogText="Choose your preferred method to authenticate into your account"
-			renderContent={<Form handleAuthModal={handleAuthModal} />}
+			renderContent={
+				<Form
+					handleAuthModal={handleAuthModal}
+					authByEmail={authByEmail}
+					handleAuthByEmail={handleAuthByEmail}
+				/>
+			}
 			onClose={handleAuthModal}
 			onDismiss={handleAuthModal}
 		/>

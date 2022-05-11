@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+// @formatter:off
 import {
 	Box,
 	Grid,
@@ -11,10 +12,8 @@ import {
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import useFormState from '@hooks/useFormState';
-import { loginAccount } from '@modules/authentication';
 import validate from 'validate.js';
 import { LoadingButton } from '@mui/lab';
-import { IRootState } from '../../../../../../store/rootReducer';
 import { useTheme } from '@mui/material/styles';
 import fancyId from '@utils/fancyId';
 
@@ -205,15 +204,10 @@ const mock = [
 const ContactForm = ({ handleContactModal }: Props): JSX.Element => {
 	const dispatch = useDispatch();
 	const theme = useTheme();
-	const auth = useSelector(
-		(globalState: IRootState) => globalState.authentication
-	);
 
 	const { values, errors, hasError, handleFormChange, handleSubmit } =
 		useFormState({
-			onSubmit: async ({ email, password }) => {
-				await dispatch(loginAccount({ email, password }));
-			},
+			onSubmit: async ({ email, password }) => {},
 			formErrors: (formValues) => validate(formValues, schema),
 		});
 
@@ -272,7 +266,7 @@ const ContactForm = ({ handleContactModal }: Props): JSX.Element => {
 								color="primary"
 								size="large"
 								// disabled={!isValid}
-								loading={auth.isLoading}
+								loading={false}
 								loadingIndicator="Submitting..."
 							>
 								Submit
