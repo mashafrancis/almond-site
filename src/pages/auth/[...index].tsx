@@ -1,5 +1,5 @@
 import { get } from 'lodash';
-import withApollo from '@lib/withApollo';
+import apollo from '@lib/apollo';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useQuery } from '@apollo/client';

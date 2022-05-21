@@ -1,7 +1,8 @@
 interface Environment {
 	// environment: string;
 	// isProduction: boolean;
-	apiUrl: string;
+	graphqlUrl: string;
+	websocketUrl: string;
 	clientUrl: string;
 	// baseDomain: string;
 	apiToken: string;
@@ -10,8 +11,9 @@ interface Environment {
 export const environment: Environment = {
 	// environment: process.env.NEXT_PUBLIC_ENVIRONMENT!,
 	// isProduction: process.env.NEXT_PUBLIC_ENVIRONMENT! === 'production',
-	apiUrl: process.env.NEXT_PUBLIC_API_URL!,
-	clientUrl: process.env.NEXT_PUBLIC_URL!,
+	graphqlUrl: process.env.NEXT_PUBLIC_ALMOND_API!,
+	websocketUrl: process.env.NEXT_PUBLIC_ALMOND_API!,
+	clientUrl: process.env.NEXT_PUBLIC_ALMOND_URL!,
 	// baseDomain: process.env.BASE_DOMAIN!,
 	apiToken: process.env.NEXT_API_TOKEN!,
 };

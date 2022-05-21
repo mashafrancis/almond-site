@@ -10,12 +10,12 @@ import {
 } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
 import { useRouter } from 'next/router';
-import { useMutation, useQuery } from '@apollo/client';
+import { dehydrate, useQuery, useMutation } from 'react-query';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormInputText } from '@components/molecules';
-import { GET_GOOGLE_AUTH_URL, LOGIN } from '../../../../../../queries';
 import { useForm } from 'react-hook-form';
+import { getGoogleAuthURL, login } from '@lib/api';
 
 interface Props {
 	handleAuthModal: () => void;
@@ -48,8 +48,8 @@ const Form = ({
 	const [isPasswordHidden, showPassword] = useState<boolean>(false);
 	const togglePassword = () => showPassword((prevState) => !prevState);
 
-	const [login, { data: userData, loading, error }] = useMutation(LOGIN);
-	const { data } = useQuery(GET_GOOGLE_AUTH_URL);
+	// const { data: userData } = useMutation(['login'], () => login());
+	const { data } = useQuery(['getGoogleAuthURL'], () => getGoogleAuthURL());
 
 	const { handleSubmit, control, reset } = useForm<IFormInput>({
 		resolver: yupResolver(schema),
@@ -57,11 +57,11 @@ const Form = ({
 	});
 
 	const onSubmit = async ({ email, password }) => {
-		await login({ variables: { email, password } });
+		await login({ email, password });
 		handleAuthModal();
 	};
 
-	const handleLogin = () => replace(data?.getGoogleAuthURL);
+	const handleLogin = () => replace(data?.getGoogleAuthURL as string);
 
 	const renderContinueWithEmail = (): JSX.Element => (
 		<form name="email-login" onSubmit={handleSubmit(onSubmit)}>
@@ -126,7 +126,7 @@ const Form = ({
 							color="primary"
 							size="large"
 							// disabled={!isValid}
-							loading={loading}
+							// loading={loading}
 							loadingIndicator="Requesting..."
 						>
 							Login

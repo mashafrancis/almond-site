@@ -11,6 +11,7 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
 	[SubKey in K]: Maybe<T[SubKey]>;
 };
+const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
 	ID: string;
@@ -34,6 +35,11 @@ export type CreateDeviceInput = {
 	name: Scalars['String'];
 };
 
+export type CreateScheduleInput = {
+	device: Scalars['String'];
+	schedule: Scalars['String'];
+};
+
 export type DeleteAccountPayload = {
 	__typename?: 'DeleteAccountPayload';
 	count?: Maybe<Scalars['Int']>;
@@ -46,16 +52,33 @@ export type DeleteDevicePayload = {
 	errors?: Maybe<Array<Maybe<ErrorPayload>>>;
 };
 
+export type DeleteSchedulePayload = {
+	__typename?: 'DeleteSchedulePayload';
+	count?: Maybe<Scalars['Int']>;
+	errors?: Maybe<Array<Maybe<ErrorPayload>>>;
+};
+
 export type Device = {
 	__typename?: 'Device';
 	active: Scalars['Boolean'];
 	createdAt: Scalars['Date'];
 	id: Scalars['ID'];
 	name: Scalars['String'];
+	schedules?: Maybe<SchedulesConnection>;
 	updatedAt: Scalars['Date'];
-	user: User;
+	user?: Maybe<User>;
 	verified: Scalars['Boolean'];
 	version: Scalars['Int'];
+};
+
+export type DeviceSchedulesArgs = {
+	after?: InputMaybe<Scalars['String']>;
+	before?: InputMaybe<Scalars['String']>;
+	filterBy?: InputMaybe<Scalars['JSONObject']>;
+	first?: InputMaybe<Scalars['Int']>;
+	last?: InputMaybe<Scalars['Int']>;
+	orderBy?: InputMaybe<Scalars['String']>;
+	q?: InputMaybe<Scalars['String']>;
 };
 
 export type DeviceEdge = {
@@ -91,8 +114,10 @@ export type LoginUserInput = {
 export type Mutation = {
 	__typename?: 'Mutation';
 	createDevice: DevicePayload;
+	createSchedule: SchedulePayload;
 	deleteAccount: DeleteAccountPayload;
 	deleteDevice: DeleteDevicePayload;
+	deleteSchedule: DeleteSchedulePayload;
 	login: UserPayload;
 	logout: Scalars['Boolean'];
 	refreshToken: UserPayload;
@@ -101,13 +126,22 @@ export type Mutation = {
 	updateEmail: UserPayload;
 	updatePassword: UserPayload;
 	updateProfile: UserPayload;
+	updateSchedule: SchedulePayload;
 };
 
 export type MutationCreateDeviceArgs = {
 	data: CreateDeviceInput;
 };
 
+export type MutationCreateScheduleArgs = {
+	data: CreateScheduleInput;
+};
+
 export type MutationDeleteDeviceArgs = {
+	id: Scalars['ID'];
+};
+
+export type MutationDeleteScheduleArgs = {
 	id: Scalars['ID'];
 };
 
@@ -136,6 +170,11 @@ export type MutationUpdateProfileArgs = {
 	data: UpdateProfileInput;
 };
 
+export type MutationUpdateScheduleArgs = {
+	data: UpdateScheduleInput;
+	id: Scalars['ID'];
+};
+
 export type PageInfo = {
 	__typename?: 'PageInfo';
 	endCursor: Scalars['String'];
@@ -153,6 +192,9 @@ export type Query = {
 	googleAuth: UserPayload;
 	me: User;
 	myDevice?: Maybe<DevicesConnection>;
+	schedule: Schedule;
+	schedules?: Maybe<SchedulesConnection>;
+	schedulesCount: Scalars['Int'];
 	user: User;
 	userCount: Scalars['Int'];
 	users?: Maybe<UsersConnection>;
@@ -191,6 +233,25 @@ export type QueryMyDeviceArgs = {
 	q?: InputMaybe<Scalars['String']>;
 };
 
+export type QueryScheduleArgs = {
+	id: Scalars['ID'];
+};
+
+export type QuerySchedulesArgs = {
+	after?: InputMaybe<Scalars['String']>;
+	before?: InputMaybe<Scalars['String']>;
+	filterBy?: InputMaybe<Scalars['JSONObject']>;
+	first?: InputMaybe<Scalars['Int']>;
+	last?: InputMaybe<Scalars['Int']>;
+	orderBy?: InputMaybe<Scalars['String']>;
+	q?: InputMaybe<Scalars['String']>;
+};
+
+export type QuerySchedulesCountArgs = {
+	filterBy?: InputMaybe<Scalars['JSONObject']>;
+	q?: InputMaybe<Scalars['String']>;
+};
+
 export type QueryUserArgs = {
 	id: Scalars['ID'];
 };
@@ -216,6 +277,36 @@ export enum Roles {
 	User = 'USER',
 }
 
+export type Schedule = {
+	__typename?: 'Schedule';
+	active: Scalars['Boolean'];
+	createdAt: Scalars['Date'];
+	device: Device;
+	id: Scalars['ID'];
+	schedule: Scalars['String'];
+	updatedAt: Scalars['Date'];
+	version: Scalars['Int'];
+};
+
+export type ScheduleEdge = {
+	__typename?: 'ScheduleEdge';
+	cursor: Scalars['String'];
+	node: Schedule;
+};
+
+export type SchedulePayload = {
+	__typename?: 'SchedulePayload';
+	errors?: Maybe<Array<Maybe<ErrorPayload>>>;
+	schedule?: Maybe<Schedule>;
+};
+
+export type SchedulesConnection = {
+	__typename?: 'SchedulesConnection';
+	edges: Array<ScheduleEdge>;
+	pageInfo: PageInfo;
+	totalCount: Scalars['Int'];
+};
+
 export type SignupUserInput = {
 	email: Scalars['EmailAddress'];
 	firstName: Scalars['String'];
@@ -230,11 +321,13 @@ export type SocialAuthInput = {
 export type Subscription = {
 	__typename?: 'Subscription';
 	deviceAdded: Device;
+	scheduleAdded: Device;
 };
 
 export type UpdateDeviceInput = {
 	active?: InputMaybe<Scalars['Boolean']>;
 	name?: InputMaybe<Scalars['String']>;
+	user?: InputMaybe<Scalars['String']>;
 	verified?: InputMaybe<Scalars['Boolean']>;
 };
 
@@ -256,6 +349,11 @@ export type UpdateProfileInput = {
 	firstName?: InputMaybe<Scalars['String']>;
 	lastName?: InputMaybe<Scalars['String']>;
 	verified?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type UpdateScheduleInput = {
+	active?: InputMaybe<Scalars['Boolean']>;
+	schedule?: InputMaybe<Scalars['String']>;
 };
 
 export type User = {
@@ -391,6 +489,38 @@ export type LoginMutationFn = Apollo.MutationFunction<
 	LoginMutation,
 	LoginMutationVariables
 >;
+
+/**
+ * __useLoginMutation__
+ *
+ * To run a mutation, you first call `useLoginMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useLoginMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [loginMutation, { data, loading, error }] = useLoginMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useLoginMutation(
+	baseOptions?: Apollo.MutationHookOptions<
+		LoginMutation,
+		LoginMutationVariables
+	>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
+	return Apollo.useMutation<LoginMutation, LoginMutationVariables>(
+		LoginDocument,
+		options
+	);
+}
+export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<
 	LoginMutation,
@@ -401,6 +531,52 @@ export const GetGoogleAuthUrlDocument = gql`
 		getGoogleAuthURL
 	}
 `;
+
+/**
+ * __useGetGoogleAuthUrlQuery__
+ *
+ * To run a query within a React component, call `useGetGoogleAuthUrlQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetGoogleAuthUrlQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetGoogleAuthUrlQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetGoogleAuthUrlQuery(
+	baseOptions?: Apollo.QueryHookOptions<
+		GetGoogleAuthUrlQuery,
+		GetGoogleAuthUrlQueryVariables
+	>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
+	return Apollo.useQuery<
+		GetGoogleAuthUrlQuery,
+		GetGoogleAuthUrlQueryVariables
+	>(GetGoogleAuthUrlDocument, options);
+}
+export function useGetGoogleAuthUrlLazyQuery(
+	baseOptions?: Apollo.LazyQueryHookOptions<
+		GetGoogleAuthUrlQuery,
+		GetGoogleAuthUrlQueryVariables
+	>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
+	return Apollo.useLazyQuery<
+		GetGoogleAuthUrlQuery,
+		GetGoogleAuthUrlQueryVariables
+	>(GetGoogleAuthUrlDocument, options);
+}
+export type GetGoogleAuthUrlQueryHookResult = ReturnType<
+	typeof useGetGoogleAuthUrlQuery
+>;
+export type GetGoogleAuthUrlLazyQueryHookResult = ReturnType<
+	typeof useGetGoogleAuthUrlLazyQuery
+>;
 export type GetGoogleAuthUrlQueryResult = Apollo.QueryResult<
 	GetGoogleAuthUrlQuery,
 	GetGoogleAuthUrlQueryVariables
@@ -425,6 +601,51 @@ export const GoogleAuthDocument = gql`
 		}
 	}
 `;
+
+/**
+ * __useGoogleAuthQuery__
+ *
+ * To run a query within a React component, call `useGoogleAuthQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGoogleAuthQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGoogleAuthQuery({
+ *   variables: {
+ *      code: // value for 'code'
+ *   },
+ * });
+ */
+export function useGoogleAuthQuery(
+	baseOptions: Apollo.QueryHookOptions<
+		GoogleAuthQuery,
+		GoogleAuthQueryVariables
+	>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
+	return Apollo.useQuery<GoogleAuthQuery, GoogleAuthQueryVariables>(
+		GoogleAuthDocument,
+		options
+	);
+}
+export function useGoogleAuthLazyQuery(
+	baseOptions?: Apollo.LazyQueryHookOptions<
+		GoogleAuthQuery,
+		GoogleAuthQueryVariables
+	>
+) {
+	const options = { ...defaultOptions, ...baseOptions };
+	return Apollo.useLazyQuery<GoogleAuthQuery, GoogleAuthQueryVariables>(
+		GoogleAuthDocument,
+		options
+	);
+}
+export type GoogleAuthQueryHookResult = ReturnType<typeof useGoogleAuthQuery>;
+export type GoogleAuthLazyQueryHookResult = ReturnType<
+	typeof useGoogleAuthLazyQuery
+>;
 export type GoogleAuthQueryResult = Apollo.QueryResult<
 	GoogleAuthQuery,
 	GoogleAuthQueryVariables

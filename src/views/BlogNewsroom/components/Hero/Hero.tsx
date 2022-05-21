@@ -8,36 +8,34 @@ const Hero = (): JSX.Element => {
 	return (
 		<Grid container spacing={4}>
 			<Grid item container alignItems={'center'} xs={12} md={8}>
-				<Box>
-					<Box marginBottom={2}>
+				<Box marginBottom={2}>
+					<Typography
+						variant="h3"
+						color="text.primary"
+						gutterBottom
+						sx={{
+							fontWeight: 700,
+						}}
+					>
+						almond blog for new <br />
 						<Typography
-							variant="h3"
-							color="text.primary"
-							gutterBottom
+							color={'primary'}
+							component={'span'}
+							variant={'inherit'}
 							sx={{
-								fontWeight: 700,
+								background: `linear-gradient(180deg, transparent 82%, ${alpha(
+									theme.palette.secondary.main,
+									0.3
+								)} 0%)`,
 							}}
 						>
-							almond blog for new <br />
-							<Typography
-								color={'primary'}
-								component={'span'}
-								variant={'inherit'}
-								sx={{
-									background: `linear-gradient(180deg, transparent 82%, ${alpha(
-										theme.palette.secondary.main,
-										0.3
-									)} 0%)`,
-								}}
-							>
-								<Typed
-									strings={['thoughts.', 'ideas.', 'innovations.']}
-									typeSpeed={80}
-									loop={true}
-								/>
-							</Typography>
+							<Typed
+								strings={['thoughts.', 'ideas.', 'innovations.']}
+								typeSpeed={80}
+								loop={true}
+							/>
 						</Typography>
-					</Box>
+					</Typography>
 				</Box>
 			</Grid>
 			{/*<Grid item xs={12} md={6}>*/}

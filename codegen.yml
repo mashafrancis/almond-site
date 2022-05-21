@@ -2,35 +2,11 @@ overwrite: true
 schema: "http://localhost:4000/graphql"
 documents: "src/graphql/**/*.gql"
 generates:
-  src/generated/graphql.tsx:
+  ./src/generated/graphql.tsx:
     plugins:
-      - "typescript"
-      - "typescript-operations"
-      - "typescript-react-apollo"
-    config:
-      reactApolloVersion: 3
-      withHooks: false
-      withHOC: false
-      withComponent: false
-      exportFragmentSpreadSubTypes: true
-      documentMode: graphQLTag
-  src/generated/page.tsx:
-    config:
-      documentMode: external
-      #      importDocumentNodeExternallyFrom: ./graphql
-      reactApolloVersion: 3
-      withHooks: true
-      contextType: 'ApolloClientContext'
-      contextTypeRequired: true
-      # withHOC: false
-      # excludePatterns: 'getComments'
-      # excludePatternsOptions: 'i'
-      # customDataIdFromObjectName: 'test'
-      # customDataIdFromObjectImport: 'abc'
-      apolloClientInstanceImport: '../withApollo'
-      apolloStateKey: '__APOLLO_STATE__'
-    preset: import-types
-    presetConfig:
-      typesPath: ./graphql
-    plugins:
-      - "graphql-codegen-apollo-next-ssr"
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+hooks:
+  afterAllFileWrite:
+    - prettier --write

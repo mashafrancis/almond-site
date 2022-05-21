@@ -1,44 +1,54 @@
+import { GetStaticPaths, GetStaticProps } from 'next';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 import BlogArticle from 'views/BlogArticle';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import {
-	getAllPostsWithSlug,
-	getPostAndMorePosts,
-} from '@utils/Wordpress/api';
+import { serialize } from 'next-mdx-remote/serialize';
 
 export default function BlogArticlePage({
-	post,
-	preview,
-	posts,
+	frontMatter,
+	mdxSource,
+	slug,
 }): JSX.Element {
 	const router = useRouter();
-	if (!router.isFallback && !post?.slug) {
+	if (!router.isFallback && !slug) {
 		return <ErrorPage statusCode={404} />;
 	}
 
-	return <BlogArticle post={post} preview={preview} posts={posts} />;
+	return <BlogArticle frontMatter={frontMatter} mdxSource={mdxSource} />;
 }
 
-export const getStaticProps: GetStaticProps = async ({
-	params,
-	preview = false,
-	previewData,
-}) => {
-	const data = await getPostAndMorePosts(params?.slug, preview, previewData);
+// @ts-expect-error
+export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
+	const markdownWithMeta = fs.readFileSync(
+		path.join('posts', slug + '.mdx'),
+		'utf-8'
+	);
+	const { data: frontMatter, content } = matter(markdownWithMeta);
+	const mdxSource = await serialize(content);
+
 	return {
 		props: {
-			preview,
-			post: data.post,
-			posts: data.posts,
+			frontMatter,
+			slug,
+			mdxSource,
 		},
 	};
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const allPosts = await getAllPostsWithSlug();
+	const files = fs.readdirSync(path.join('posts'));
+
+	const paths = files.map((filename) => ({
+		params: {
+			slug: filename.replace('.mdx', ''),
+		},
+	}));
+
 	return {
-		paths: allPosts.edges.map(({ node }) => `/blog/${node.slug}`) || [],
-		fallback: true,
+		paths,
+		fallback: false,
 	};
 };

@@ -5,7 +5,7 @@ import Main from 'layouts/Main';
 import Container from 'components/Container';
 import { FooterNewsletter, Hero, MostViewedArticles } from './components';
 
-export default function BlogNewsroom({ allPosts: { edges }, preview }) {
+export default function BlogNewsroom({ posts }) {
 	const theme = useTheme();
 
 	return (
@@ -66,7 +66,7 @@ export default function BlogNewsroom({ allPosts: { edges }, preview }) {
 			{/*	</Grid>*/}
 			{/*</Container>*/}
 			<Container maxWidth={{ sm: 720, md: 960 }}>
-				<MostViewedArticles posts={edges} />
+				<MostViewedArticles posts={posts} />
 			</Container>
 			{/*<Container maxWidth={800}>*/}
 			{/*	<Tags />*/}

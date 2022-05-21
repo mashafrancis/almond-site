@@ -26,7 +26,7 @@ const Hero = ({
 		};
 
 		jarallaxInit();
-	});
+	}, []);
 
 	return (
 		<Box
@@ -70,7 +70,11 @@ const Hero = ({
 					zIndex: 1,
 				}}
 			/>
-			<Container position={'relative'} zIndex={2}>
+			<Container
+				position={'relative'}
+				zIndex={2}
+				maxWidth={{ sm: 720, md: 960 }}
+			>
 				<Box>
 					<Typography
 						variant="h3"
@@ -82,24 +86,24 @@ const Hero = ({
 					>
 						{title}
 					</Typography>
-					<Box display={'flex'} alignItems={'center'}>
-						<Avatar
-							sx={{ width: 60, height: 60, marginRight: 2 }}
-							src={avatar}
-						/>
-						<ListItemText
-							sx={{ margin: 0 }}
-							primary={fullName}
-							secondary={date}
-							primaryTypographyProps={{
-								variant: 'h6',
-								sx: { color: 'common.white' },
-							}}
-							secondaryTypographyProps={{
-								sx: { color: alpha('#ffffff', 0.8) },
-							}}
-						/>
-					</Box>
+					{/*<Box display={'flex'} alignItems={'center'}>*/}
+					{/*	<Avatar*/}
+					{/*		sx={{ width: 60, height: 60, marginRight: 2 }}*/}
+					{/*		src={avatar}*/}
+					{/*	/>*/}
+					{/*	<ListItemText*/}
+					{/*		sx={{ margin: 0 }}*/}
+					{/*		primary={fullName}*/}
+					{/*		secondary={date}*/}
+					{/*		primaryTypographyProps={{*/}
+					{/*			variant: 'h6',*/}
+					{/*			sx: { color: 'common.white' },*/}
+					{/*		}}*/}
+					{/*		secondaryTypographyProps={{*/}
+					{/*			sx: { color: alpha('#ffffff', 0.8) },*/}
+					{/*		}}*/}
+					{/*	/>*/}
+					{/*</Box>*/}
 				</Box>
 			</Container>
 		</Box>

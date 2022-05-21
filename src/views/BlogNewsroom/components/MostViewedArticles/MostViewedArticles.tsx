@@ -1,14 +1,16 @@
 import Link from 'next/link';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Grid from '@mui/material/Grid';
-import Chip from '@mui/material/Chip';
+import {
+	Box,
+	Typography,
+	Card,
+	CardContent,
+	Grid,
+	Chip,
+	Stack,
+} from '@mui/material';
 import { BookmarkAddOutlined } from '@mui/icons-material';
-import { Stack } from '@mui/material';
 import dayjs from '@utils/dayjsTime';
 
 const MostViewedArticles = ({ posts }): JSX.Element => {
@@ -22,17 +24,17 @@ const MostViewedArticles = ({ posts }): JSX.Element => {
 				alignItems={{ xs: 'flex-start', sm: 'center' }}
 				flexDirection={{ xs: 'column', sm: 'row' }}
 				marginBottom={4}
-			></Box>
+			/>
 			<Grid container spacing={4}>
-				{posts.map((item, i) => {
-					const { title, featuredImage, date, author, excerpt, tags, slug } =
-						item?.node;
+				{posts.map((post, i) => {
+					const {
+						frontMatter: { title, description, thumbnailUrl, date, tags },
+						slug,
+					} = post;
 
-					const fullName =
-						`${author.node.firstName} ${author.node.lastName}` ??
-						author.node.name;
-					const formattedDate = dayjs(date).fromNow();
-					const tag = tags.edges[0].node.name;
+					const fullName = 'Anonymous';
+					// const formattedDate = dayjs(date).fromNow();
+					const tag = tags[0];
 
 					return (
 						<Grid item xs={12} key={i}>
@@ -60,13 +62,13 @@ const MostViewedArticles = ({ posts }): JSX.Element => {
 											component={LazyLoadImage}
 											height={1}
 											width={1}
-											src={featuredImage.node.sourceUrl}
+											src={thumbnailUrl}
 											alt="..."
 											effect="blur"
 											sx={{
 												borderRadius: 1,
-												objectFit: 'cover',
-												height: 200,
+												// objectFit: 'cover',
+												height: 150,
 												cursor: 'pointer',
 												filter:
 													theme.palette.mode === 'dark'
@@ -107,7 +109,7 @@ const MostViewedArticles = ({ posts }): JSX.Element => {
 													color={'text.secondary'}
 													// component={'i'}
 												>
-													{fullName} - {formattedDate}
+													{fullName} - {date}
 												</Typography>
 												<Chip
 													component={'a'}
@@ -118,13 +120,10 @@ const MostViewedArticles = ({ posts }): JSX.Element => {
 													size={'small'}
 												/>
 											</div>
-											<BookmarkAddOutlined sx={{ cursor: 'pointer' }} />
+											{/*<BookmarkAddOutlined sx={{ cursor: 'pointer' }} />*/}
 										</Stack>
 									</Box>
-									<Typography
-										color="text.secondary"
-										dangerouslySetInnerHTML={{ __html: excerpt }}
-									/>
+									<Typography color="text.secondary">{description}</Typography>
 								</CardContent>
 							</Box>
 						</Grid>
