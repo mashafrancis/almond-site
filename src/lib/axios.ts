@@ -3,7 +3,7 @@ import environment from './environment';
 
 // Create axios instance.
 const axiosInstance = axios.create({
-	baseURL: environment.apiUrl,
+	baseURL: environment.graphqlUrl,
 	withCredentials: true,
 });
 

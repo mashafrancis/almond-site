@@ -3,7 +3,7 @@ import jwtDecode from 'jwt-decode';
 
 const authService: any = {
 	saveToken(token: string | string[]) {
-		return Cookies.set('jwt_token', token);
+		return Cookies.set('jwt_token', <string>token);
 	},
 	getToken() {
 		return Cookies.get('jwt_token');

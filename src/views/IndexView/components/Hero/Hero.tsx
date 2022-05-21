@@ -5,13 +5,82 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useTheme } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 
 import Container from 'components/Container';
 import authService from '@utils/auth';
 import isArrayNotNull from '@utils/checkArrayEmpty';
 import { UserContext } from '@context/UserContext';
 import { useContext } from 'react';
+import Typed from 'react-typed';
+
+const images = [
+	{
+		group: [
+			{
+				cover: '/img/hydroponics.webp',
+				coverDark:
+					'https://assets.maccarianagency.com/screenshots/the-front/img1--dark.png',
+			},
+			{
+				cover:
+					'https://assets.maccarianagency.com/screenshots/the-front/img4.png',
+				coverDark:
+					'https://assets.maccarianagency.com/screenshots/the-front/img4--dark.png',
+			},
+		],
+	},
+	{
+		group: [
+			{
+				cover:
+					'https://assets.maccarianagency.com/screenshots/the-front/img13.png',
+				coverDark:
+					'https://assets.maccarianagency.com/screenshots/the-front/img13--dark.png',
+			},
+			{
+				cover:
+					'https://assets.maccarianagency.com/screenshots/the-front/img10.png',
+				coverDark:
+					'https://assets.maccarianagency.com/screenshots/the-front/img10--dark.png',
+			},
+			{
+				cover:
+					'https://assets.maccarianagency.com/screenshots/the-front/img7.png',
+				coverDark:
+					'https://assets.maccarianagency.com/screenshots/the-front/img7--dark.png',
+			},
+		],
+	},
+	{
+		group: [
+			{
+				cover:
+					'https://assets.maccarianagency.com/screenshots/the-front/img6.png',
+				coverDark:
+					'https://assets.maccarianagency.com/screenshots/the-front/img6--dark.png',
+			},
+			{
+				cover:
+					'https://assets.maccarianagency.com/screenshots/the-front/img24.png',
+				coverDark:
+					'https://assets.maccarianagency.com/screenshots/the-front/img24--dark.png',
+			},
+			{
+				cover:
+					'https://assets.maccarianagency.com/screenshots/the-front/img17.png',
+				coverDark:
+					'https://assets.maccarianagency.com/screenshots/the-front/img17--dark.png',
+			},
+			{
+				cover:
+					'https://assets.maccarianagency.com/screenshots/the-front/img12.png',
+				coverDark:
+					'https://assets.maccarianagency.com/screenshots/the-front/img12--dark.png',
+			},
+		],
+	},
+];
 
 const Hero = (): JSX.Element => {
 	const theme = useTheme();
@@ -37,7 +106,12 @@ const Hero = (): JSX.Element => {
 				</Typography>
 			</Box>
 			<Box marginBottom={3}>
-				<Typography variant="h6" component="p" color="text.secondary">
+				<Typography
+					variant="h6"
+					component="p"
+					color="text.secondary"
+					sx={{ fontWeight: 400 }}
+				>
 					Focus on the safe production of fresh food from your own home all
 					year round.
 				</Typography>
@@ -74,8 +148,8 @@ const Hero = (): JSX.Element => {
 				<Box
 					component={LazyLoadImage}
 					effect="blur"
-					src="https://storage.googleapis.com/static.almondhydroponics.com/static/images/hydroponics.webp"
-					srcSet="https://storage.googleapis.com/static.almondhydroponics.com/static/images/hydroponics.webp 2x"
+					src="/img/hydroponics.webp"
+					srcSet="/img/hydroponics.webp 2x"
 					alt="home-image"
 					height={{ xs: 'auto', md: 1 }}
 					maxHeight={{ xs: 300, md: 1 }}
@@ -89,9 +163,12 @@ const Hero = (): JSX.Element => {
 	return (
 		<Box
 			sx={{
-				width: 1,
-				height: 1,
-				overflow: 'hidden',
+				backgroundImage: `linear-gradient(to bottom, ${alpha(
+					theme.palette.background.paper,
+					0
+				)}, ${alpha(theme.palette.alternate.main, 1)} 100%)`,
+				backgroundRepeat: 'repeat-x',
+				position: 'relative',
 			}}
 		>
 			<Container paddingX={0} paddingY={0} maxWidth={{ sm: 1, md: 1236 }}>
@@ -157,7 +234,6 @@ const Hero = (): JSX.Element => {
 					</Box>
 				</Box>
 			</Container>
-			<Divider />
 		</Box>
 	);
 };

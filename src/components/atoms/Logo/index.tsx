@@ -8,9 +8,13 @@ const logo = '/logo.png';
 
 interface Props {
 	displayText?: boolean;
+	colorInvert?: boolean;
 }
 
-const Logo = ({ displayText = false }: Props): JSX.Element => {
+const Logo = ({
+	displayText = false,
+	colorInvert = false,
+}: Props): JSX.Element => {
 	const router = useRouter();
 	const {
 		palette: { mode },
@@ -30,7 +34,7 @@ const Logo = ({ displayText = false }: Props): JSX.Element => {
 				alignItems="center"
 				spacing={1}
 			>
-				<Box display={'flex'} title="almond" width={{ xs: 30, md: 30 }}>
+				<Box display={'flex'} title="almond" width={{ xs: 30, md: 36 }}>
 					<Box
 						component={'img'}
 						src={mode === 'light' ? logo : darkLogo}
@@ -42,8 +46,12 @@ const Logo = ({ displayText = false }: Props): JSX.Element => {
 				{displayText && (
 					<Typography
 						variant="h5"
-						color="textPrimary"
-						style={{ fontWeight: 600, fontSize: '1.45rem' }}
+						// color="textPrimary"
+						style={{
+							fontWeight: 600,
+							fontSize: '1.45rem',
+							color: colorInvert ? 'common.white' : 'text.primary',
+						}}
 					>
 						almond
 					</Typography>

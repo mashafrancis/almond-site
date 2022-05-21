@@ -34,10 +34,12 @@ const Hero = ({
 			data-jarallax
 			data-speed="0.2"
 			position={'relative'}
-			minHeight={{ xs: 300, sm: 300, md: 400 }}
+			minHeight={{ xs: 400, sm: 500, md: 600 }}
 			display={'flex'}
+			marginTop={-13}
+			paddingTop={13}
 			alignItems={'center'}
-			id="agency__portfolio-item--js-scroll"
+			id="almond__item--js-scroll"
 		>
 			<Box
 				className={'jarallax-img'}

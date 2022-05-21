@@ -9,6 +9,7 @@ import {
 	Grid,
 	Chip,
 	Stack,
+	Button,
 } from '@mui/material';
 import { BookmarkAddOutlined } from '@mui/icons-material';
 import dayjs from '@utils/dayjsTime';
@@ -66,9 +67,9 @@ const MostViewedArticles = ({ posts }): JSX.Element => {
 											alt="..."
 											effect="blur"
 											sx={{
-												borderRadius: 1,
-												// objectFit: 'cover',
-												height: 150,
+												borderRadius: 2,
+												objectFit: 'cover',
+												maxHeight: 200,
 												cursor: 'pointer',
 												filter:
 													theme.palette.mode === 'dark'
@@ -124,6 +125,36 @@ const MostViewedArticles = ({ posts }): JSX.Element => {
 										</Stack>
 									</Box>
 									<Typography color="text.secondary">{description}</Typography>
+									<Link href={`/blog/${slug}`}>
+										<Box
+											marginTop={2}
+											display={'flex'}
+											justifyContent={'flex-end'}
+										>
+											<Button
+												endIcon={
+													<Box
+														component={'svg'}
+														xmlns="http://www.w3.org/2000/svg"
+														fill="none"
+														viewBox="0 0 24 24"
+														stroke="currentColor"
+														width={24}
+														height={24}
+													>
+														<path
+															strokeLinecap="round"
+															strokeLinejoin="round"
+															strokeWidth={2}
+															d="M17 8l4 4m0 0l-4 4m4-4H3"
+														/>
+													</Box>
+												}
+											>
+												Read More
+											</Button>
+										</Box>
+									</Link>
 								</CardContent>
 							</Box>
 						</Grid>

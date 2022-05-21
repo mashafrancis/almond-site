@@ -5,7 +5,7 @@ import shadows from './shadows';
 import { light, dark } from './palette';
 import type {} from '@mui/x-data-grid/themeAugmentation';
 
-const getTheme = (mode: PaletteMode): Theme =>
+const getTheme = (mode: PaletteMode, themeToggler: () => void): Theme =>
 	responsiveFontSizes(
 		createTheme({
 			palette: mode === 'light' ? light : dark,
@@ -13,7 +13,7 @@ const getTheme = (mode: PaletteMode): Theme =>
 			typography: {
 				// fontFamily: 'Google Sans, Roboto, Helvetica Neue, sans-serif',
 				fontFamily: 'HarmonyOS Sans, Google Sans, Helvetica Neue, sans-serif',
-				fontSize: 12,
+				// fontSize: 12,
 				button: {
 					textTransform: 'none',
 					fontWeight: 'medium' as CSSProperties['fontWeight'],
@@ -29,8 +29,11 @@ const getTheme = (mode: PaletteMode): Theme =>
 			components: {
 				MuiButton: {
 					styleOverrides: {
-						label: {
-							fontWeight: 600,
+						root: {
+							fontWeight: 400,
+							borderRadius: 5,
+							paddingTop: 6,
+							paddingBottom: 6,
 						},
 						containedSecondary: mode === 'light' ? { color: 'white' } : {},
 					} as ComponentsOverrides['MuiButton'],
@@ -50,7 +53,32 @@ const getTheme = (mode: PaletteMode): Theme =>
 						},
 					},
 				},
+				MuiInputBase: {
+					styleOverrides: {
+						root: {
+							borderRadius: 5,
+						},
+					} as ComponentsOverrides['MuiInputBase'],
+				},
+				MuiOutlinedInput: {
+					styleOverrides: {
+						root: {
+							borderRadius: 5,
+						},
+						input: {
+							borderRadius: 5,
+						},
+					} as ComponentsOverrides['MuiOutlinedInput'],
+				},
+				MuiCard: {
+					styleOverrides: {
+						root: {
+							borderRadius: 8,
+						},
+					} as ComponentsOverrides['MuiCard'],
+				},
 			},
+			themeToggler,
 		})
 	);
 
