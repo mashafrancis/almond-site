@@ -10,12 +10,10 @@ import { wrapper } from '@lib/store';
 // components
 import Page from '../components/Page';
 import createEmotionCache from '../createEmotionCache';
-import { ComponentProvider } from '@context/ComponentContext';
-import ErrorBoundaryPage from '../views/ErrorBoundaryPage';
-import { ErrorBoundary } from '@components/molecules/ErrorBoundary';
 import { DefaultSeo } from 'next-seo';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { QueryClientProvider, Hydrate } from 'react-query';
+import { SessionProvider } from 'next-auth/react';
 import { queryClient } from '@lib/api';
 import { GoogleAnalytics } from '@utils/googleAnalytics';
 // styles
@@ -68,28 +66,18 @@ function App({
 					name="viewport"
 					content="width=device-width, initial-scale=1, shrink-to-fit=no"
 				/>
-				<title>almond</title>
+				<title>almond | Growing your plants smart</title>
 			</Head>
-			<ErrorBoundary
-				FallbackComponent={ErrorBoundaryPage}
-				onReset={() => window.location.replace('/')}
-			>
-				<QueryClientProvider client={queryClient}>
-					<Hydrate state={pageProps.dehydratedState}>
-						<DefaultSeo
-							defaultTitle="almond"
-							titleTemplate="%s • almond"
-							description="Almond Hydroponics - Growing your plants smart"
-						/>
-						<ComponentProvider>
-							<Page>
-								<Component {...pageProps} />
-							</Page>
-						</ComponentProvider>
-						<ReactQueryDevtools initialIsOpen={false} />
-					</Hydrate>
-				</QueryClientProvider>
-			</ErrorBoundary>
+			<SessionProvider session={pageProps.session}>
+				<DefaultSeo
+					defaultTitle="almond"
+					titleTemplate="%s • almond"
+					description="Almond Hydroponics - Growing your plants smart"
+				/>
+				<Page>
+					<Component {...pageProps} />
+				</Page>
+			</SessionProvider>
 		</CacheProvider>
 	);
 }

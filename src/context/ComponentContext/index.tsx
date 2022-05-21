@@ -1,11 +1,11 @@
 import { useState, createContext, SyntheticEvent, MouseEvent } from 'react';
 import { ComponentContextProps, ComponentContextState } from './interfaces';
 
-// const selectedIndex = JSON.parse(
-// 	window.localStorage.getItem('selectedIndex') as string
-// );
-
-const selectedIndex = 0;
+const selectedIndex = JSON.parse(
+	typeof window !== 'undefined'
+		? (window.localStorage.getItem('selectedIndex') as string)
+		: '0'
+);
 
 const ComponentContext = createContext({
 	isMenuOpen: false,
@@ -29,6 +29,8 @@ const ComponentContext = createContext({
 	handleCloseSnack: (e: any) => {},
 	snackMessage: '',
 	isSnackOpen: false,
+	csrfToken: '',
+	setCsrfToken: (_csrfToken: string) => {},
 });
 
 const ComponentProvider = ({
@@ -38,7 +40,12 @@ const ComponentProvider = ({
 	const [state, setState] = useState<ComponentContextState>({
 		isOpen: false,
 		isMenuOpen: false,
-		selectedIndex: 0,
+		selectedIndex:
+			JSON.parse(
+				typeof window !== 'undefined'
+					? (window.localStorage.getItem('selectedIndex') as string)
+					: '0'
+			) ?? 0,
 		// JSON.parse(window.localStorage.getItem('selectedIndex') as string) || 0,
 		isSelectDeviceModalOpen: false,
 		isActivityDrawerOpen: false,
@@ -46,6 +53,7 @@ const ComponentProvider = ({
 		activityLogsViewed: false,
 		isSnackOpen: false,
 		snackMessage: '',
+		csrfToken: '',
 	});
 
 	const setMenuOpen = (isOpen: boolean) =>
@@ -59,10 +67,10 @@ const ComponentProvider = ({
 
 	const setSelectedIndex = (selectedIndex: number) => {
 		setState((prevState) => ({ ...prevState, selectedIndex }));
-		// window.localStorage.setItem(
-		// 	'selectedIndex',
-		// 	JSON.stringify(selectedIndex)
-		// );
+		window.localStorage.setItem(
+			'selectedIndex',
+			JSON.stringify(selectedIndex)
+		);
 	};
 
 	const setDeviceModalOpen = (isModalOpen: boolean) => {
@@ -115,6 +123,9 @@ const ComponentProvider = ({
 		setState((prevState) => ({ ...prevState, isSnackOpen: false }));
 	};
 
+	const setCsrfToken = (csrfToken: string) =>
+		setState((prevState) => ({ ...prevState, csrfToken: csrfToken }));
+
 	const {
 		// eslint-disable-next-line no-shadow
 		selectedIndex,
@@ -125,6 +136,7 @@ const ComponentProvider = ({
 		activityLogsViewed,
 		isSnackOpen,
 		snackMessage,
+		csrfToken,
 	} = state;
 
 	return (
@@ -148,6 +160,8 @@ const ComponentProvider = ({
 				setOpenSnack,
 				isSnackOpen,
 				snackMessage,
+				csrfToken,
+				setCsrfToken,
 				...props,
 			}}
 		>

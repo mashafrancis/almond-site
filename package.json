@@ -25,7 +25,7 @@
     "prepare": "husky install",
     "commit": "cz",
     "commit:signed": "cz -S",
-    "clear-all": "rimraf ./.cache ./.next ./node_modules",
+    "clear-all": "rimraf ./.cache ./.next",
     "test": "snyk test"
   },
   "dependencies": {
@@ -78,6 +78,7 @@
     "mqtt": "^4.3.7",
     "mqtt-pattern": "^1.2.0",
     "next": "^12.1.6",
+    "next-auth": "^4.3.4",
     "next-images": "^1.8.4",
     "next-mdx-remote": "^4.0.3",
     "next-optimized-images": "^2.6.2",

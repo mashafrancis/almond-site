@@ -14,4 +14,5 @@ export interface ComponentContextState {
 	activityLogsViewed: boolean;
 	isSnackOpen: boolean;
 	snackMessage: string;
+	csrfToken: string;
 }

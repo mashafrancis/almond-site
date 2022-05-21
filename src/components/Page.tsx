@@ -5,6 +5,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import getTheme from 'theme';
 import AOS from 'aos';
 import { PaletteMode } from '@mui/material';
+import { ComponentProvider } from '@context/ComponentContext';
+import ErrorBoundaryPage from '../views/ErrorBoundaryPage';
+import { ErrorBoundary } from '@components/molecules/ErrorBoundary';
 import checkUserRole from '@utils/checkUserRole';
 import useEffectAsync from '@hooks/useEffectAsync';
 import authService from '@utils/auth';
@@ -70,15 +73,22 @@ export default function Page({ children }: Props): JSX.Element {
 		<StyledEngineProvider injectFirst>
 			<ColorModeContext.Provider value={colorMode}>
 				<ThemeProvider theme={theme}>
-					<style jsx>{`
-						a {
-							margin: 0 10px 0 0;
-						}
-					`}</style>
-					{/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-					<CssBaseline />
-					<Paper elevation={0}>{children}</Paper>
-					<SnackBar snack={snack} />
+					<ErrorBoundary
+						FallbackComponent={ErrorBoundaryPage}
+						onReset={() => window.location.replace('/')}
+					>
+						<ComponentProvider>
+							<style jsx>{`
+								a {
+									margin: 0 10px 0 0;
+								}
+							`}</style>
+							{/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+							<CssBaseline />
+							{<Paper elevation={0}>{children}</Paper>}
+							<SnackBar snack={snack} />
+						</ComponentProvider>
+					</ErrorBoundary>
 				</ThemeProvider>
 			</ColorModeContext.Provider>
 		</StyledEngineProvider>

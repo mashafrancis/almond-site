@@ -4,9 +4,21 @@ import Main from 'layouts/Main';
 import Container from 'components/Container';
 import { Features, Services, Hero } from './components';
 import { News } from '../StoreView/components';
+import { useContext } from 'react';
+import { ComponentContext } from '@context/ComponentContext';
 
-const IndexView = (): JSX.Element => {
+interface Props {
+	csrfToken: string;
+}
+
+const IndexView = ({ csrfToken }: Props): JSX.Element => {
 	const theme = useTheme();
+	const { setCsrfToken } = useContext(ComponentContext);
+
+	if (csrfToken !== '' || undefined) {
+		setCsrfToken(csrfToken);
+	}
+
 	return (
 		<Box sx={{ overflowX: 'hidden' }}>
 			<Main>

@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Box, Grid, TextField, Button, InputAdornment } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { GoogleIcon } from '@components/atoms';
 import {
 	AlternateEmailTwoTone,
@@ -10,12 +10,16 @@ import {
 } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
 import { useRouter } from 'next/router';
-import { dehydrate, useQuery, useMutation } from 'react-query';
+import { signIn, SignInResponse } from 'next-auth/react';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormInputText } from '@components/molecules';
 import { useForm } from 'react-hook-form';
 import { getGoogleAuthURL, login } from '@lib/api';
+import { ComponentContext } from '@context/ComponentContext';
+import { AppDispatch } from '@lib/store';
+import { useDispatch } from 'react-redux';
+import { displaySnackMessage } from '@lib/slices/snack';
 
 interface Props {
 	handleAuthModal: () => void;
@@ -43,13 +47,16 @@ const Form = ({
 	handleAuthByEmail,
 	authByEmail,
 }: Props): JSX.Element => {
-	const { replace } = useRouter();
-
+	const dispatch: AppDispatch = useDispatch();
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const [error, setError] = useState<string | null>(null);
 	const [isPasswordHidden, showPassword] = useState<boolean>(false);
 	const togglePassword = () => showPassword((prevState) => !prevState);
+	const { csrfToken } = useContext(ComponentContext);
 
-	// const { data: userData } = useMutation(['login'], () => login());
-	const { data } = useQuery(['getGoogleAuthURL'], () => getGoogleAuthURL());
+	console.log('Class: , Function: Form, Line 53 csrfToken():', csrfToken);
+
+	// const { data } = useQuery(['getGoogleAuthURL'], () => getGoogleAuthURL());
 
 	const { handleSubmit, control, reset } = useForm<IFormInput>({
 		resolver: yupResolver(schema),
@@ -57,14 +64,47 @@ const Form = ({
 	});
 
 	const onSubmit = async ({ email, password }) => {
-		await login({ email, password });
-		handleAuthModal();
+		try {
+			setIsLoading(true);
+			// @ts-expect-error
+			const response: SignInResponse = await signIn('credentials', {
+				email,
+				password,
+				redirect: false,
+			});
+
+			if (response?.error !== '') {
+				setError(response?.error as string);
+				dispatch(
+					displaySnackMessage({ message: error as string, severity: 'error' })
+				);
+			} else {
+				setError(null);
+				dispatch(
+					displaySnackMessage({
+						message: 'You have successfully logged in',
+					})
+				);
+			}
+		} catch (e) {
+			setError(e as string);
+			dispatch(
+				displaySnackMessage({
+					message: error as string,
+					severity: 'error',
+				})
+			);
+		} finally {
+			handleAuthModal();
+			setIsLoading(false);
+		}
 	};
 
-	const handleLogin = () => replace(data?.getGoogleAuthURL as string);
+	// const handleLogin = () => replace(data?.getGoogleAuthURL as string);
 
 	const renderContinueWithEmail = (): JSX.Element => (
 		<form name="email-login" onSubmit={handleSubmit(onSubmit)}>
+			<input name="csrfToken" type="hidden" defaultValue={csrfToken} />
 			<Grid container spacing={2}>
 				<Grid item xs={12}>
 					<FormInputText
@@ -126,8 +166,8 @@ const Form = ({
 							color="primary"
 							size="large"
 							// disabled={!isValid}
-							// loading={loading}
-							loadingIndicator="Requesting..."
+							loading={isLoading}
+							loadingIndicator="Please wait..."
 						>
 							Login
 						</LoadingButton>
@@ -145,7 +185,7 @@ const Form = ({
 					variant="outlined"
 					fullWidth
 					startIcon={<GoogleIcon />}
-					onClick={handleLogin}
+					// onClick={handleLogin}
 				>
 					Continue with Google
 				</Button>

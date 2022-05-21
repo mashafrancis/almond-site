@@ -62,6 +62,7 @@ const DarkModeToggler = ({
 	return (
 		<Button
 			variant={'outlined'}
+			size={'small'}
 			onClick={toggle}
 			aria-label="Dark mode toggler"
 			color={mode === 'light' ? 'primary' : 'secondary'}
