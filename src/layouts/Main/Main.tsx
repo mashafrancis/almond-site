@@ -26,6 +26,8 @@ import { ContactForm } from './components/Topbar/components';
 
 interface Props {
 	children: ReactNode;
+	colorInvert?: boolean;
+	bgcolor?: string;
 }
 
 interface AppBarOnScrollProps {
@@ -98,7 +100,11 @@ const ScrollTop = ({ window, children }: ScrollTopProps) => {
 	);
 };
 
-const Main = ({ children }: Props): JSX.Element => {
+const Main = ({
+	children,
+	colorInvert = false,
+	bgcolor = 'transparent',
+}: Props): JSX.Element => {
 	const theme = useTheme();
 	const isMd = useMediaQuery(theme.breakpoints.up('md'), {
 		defaultMatches: true,
@@ -123,6 +129,11 @@ const Main = ({ children }: Props): JSX.Element => {
 
 	const open = isMd ? false : openSidebar;
 
+	const trigger = useScrollTrigger({
+		disableHysteresis: true,
+		threshold: 38,
+	});
+
 	const renderContactModal = (): JSX.Element => (
 		<Modal
 			fullScreen={isSm}
@@ -137,29 +148,25 @@ const Main = ({ children }: Props): JSX.Element => {
 
 	return (
 		<Box>
-			<ElevationScroll isMobileView={isMd}>
-				<AppBar
-					position={'fixed'}
-					sx={{
-						backgroundColor: theme.palette.background.paper,
-						borderBottom: `1px solid ${alpha(theme.palette.divider, 0.1)}`,
-					}}
-					elevation={0}
-				>
-					<Toolbar>
-						<Container
-							// maxWidth={1}
-							paddingY={{ xs: 1, sm: 1.5 }}
-							// paddingX={{ xs: 0 }}
-						>
-							<Topbar
-								onSidebarOpen={handleSidebarOpen}
-								handleContactModal={handleContactModal}
-							/>
-						</Container>
-					</Toolbar>
-				</AppBar>
-			</ElevationScroll>
+			<AppBar
+				position={'sticky'}
+				sx={{
+					top: 0,
+					backgroundColor: trigger ? theme.palette.background.paper : bgcolor,
+					borderBottom: trigger
+						? `1px solid ${alpha(theme.palette.divider, 0.1)}`
+						: 'none',
+				}}
+				elevation={0}
+			>
+				<Container paddingY={1}>
+					<Topbar
+						onSidebarOpen={handleSidebarOpen}
+						handleContactModal={handleContactModal}
+						colorInvert={trigger ? false : colorInvert}
+					/>
+				</Container>
+			</AppBar>
 			<div id="back-to-top-anchor" />
 			<Sidebar
 				onClose={handleSidebarClose}
@@ -168,7 +175,6 @@ const Main = ({ children }: Props): JSX.Element => {
 				variant="temporary"
 			/>
 			<main>
-				<Box height={{ xs: 58, sm: 66 }} />
 				{children}
 				<Divider />
 			</main>

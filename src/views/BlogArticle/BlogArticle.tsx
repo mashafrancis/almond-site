@@ -20,7 +20,7 @@ const BlogArticle = ({
 	// const image = post?.featuredImage.node.sourceUrl;
 
 	return (
-		<Main>
+		<Main colorInvert={true}>
 			<Box>
 				<Hero
 					avatar={avatar}
@@ -38,23 +38,6 @@ const BlogArticle = ({
 					{/*	date={formattedDate}*/}
 					{/*/>*/}
 				</Container>
-				<Box
-					component={'svg'}
-					preserveAspectRatio="none"
-					xmlns="http://www.w3.org/2000/svg"
-					x="0px"
-					y="0px"
-					viewBox="0 0 1920 100.1"
-					sx={{
-						marginBottom: -1,
-						width: 1,
-					}}
-				>
-					<path
-						fill={theme.palette.alternate.main}
-						d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"
-					/>
-				</Box>
 			</Box>
 			<Box bgcolor={'alternate.main'}>
 				<Container>
@@ -63,23 +46,6 @@ const BlogArticle = ({
 				<Container>
 					<FooterNewsletter />
 				</Container>
-				<Box
-					component={'svg'}
-					preserveAspectRatio="none"
-					xmlns="http://www.w3.org/2000/svg"
-					x="0px"
-					y="0px"
-					viewBox="0 0 1920 100.1"
-					sx={{
-						marginBottom: -1,
-						width: 1,
-					}}
-				>
-					<path
-						fill={theme.palette.background.paper}
-						d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"
-					/>
-				</Box>
 			</Box>
 		</Main>
 	);

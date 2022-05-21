@@ -12,6 +12,7 @@ import {
 import { Close } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
 import { ModalProps } from '@components/atoms/Modal/interfaces';
+import { alpha } from '@mui/material/styles';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 	'& .MuDialogContent-root': {
@@ -40,8 +41,10 @@ const BootstrapDialogTitle = ({
 		sx={{
 			m: 0,
 			p: 2,
-			backgroundColor: 'rgba(66, 133, 244, 0.15)',
+			backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.1),
 			color: (theme) => theme.palette.primary.main,
+			fontSize: 16,
+			zIndex: 1400,
 		}}
 		{...other}
 	>
@@ -73,19 +76,20 @@ const Modal = ({
 	onSubmit,
 	onDismiss,
 	disabled = false,
-	renderDialogText,
+	renderDialogText = '',
 	isRequesting,
 	loadingText = 'Loading...',
+	maxWidth = 'xs',
 }: ModalProps): JSX.Element => {
 	return (
 		<BootstrapDialog
 			onClose={onClose}
-			aria-labelledby="customized-dialog-title"
+			aria-labelledby="modal-dialog-title"
 			open={isModalOpen}
 			fullScreen={fullScreen}
-			maxWidth="xs"
+			maxWidth={maxWidth}
 		>
-			<BootstrapDialogTitle id="customized-dialog-title" onClose={onClose}>
+			<BootstrapDialogTitle id="modal-dialog-title" onClose={onClose}>
 				{renderHeader}
 			</BootstrapDialogTitle>
 			<DialogContent>

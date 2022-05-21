@@ -1,12 +1,14 @@
 import Link from 'next/link';
 import { alpha, useTheme } from '@mui/material/styles';
 import { Box, Button, Stack, Typography } from '@mui/material';
+import { useSession } from 'next-auth/react';
 // components
 import { DarkModeToggler } from '@components/atoms';
 import authService from '@utils/auth';
 import CustomAvatar from '@components/molecules/CustomAvatar';
 import Logo from '@components/atoms/Logo';
 import {
+	AccountCircleOutlined,
 	AccountCircleTwoTone,
 	ArrowBack,
 	ShortTextRounded,
@@ -19,12 +21,19 @@ interface Props {
 	// eslint-disable-next-line @typescript-eslint/ban-types
 	onSidebarOpen: () => void;
 	handleContactModal: () => void;
+	colorInvert?: boolean;
 }
 
-const Topbar = ({ onSidebarOpen, handleContactModal }: Props): JSX.Element => {
+const Topbar = ({
+	onSidebarOpen,
+	handleContactModal,
+	colorInvert = false,
+}: Props): JSX.Element => {
 	const [openAuthModal, setAuthModalOpen] = useState<boolean>(false);
 	const [authByEmail, setAuthByEmail] = useState<boolean>(false);
 	const theme = useTheme();
+	const { data: session } = useSession();
+	const linkColor = colorInvert ? 'common.white' : 'text.primary';
 
 	const handleAuthModal = () => {
 		setAuthModalOpen((prevState) => !prevState);
@@ -35,15 +44,30 @@ const Topbar = ({ onSidebarOpen, handleContactModal }: Props): JSX.Element => {
 	const renderAuthButtons = () => (
 		<>
 			<Box marginLeft={3}>
-				{authService.isAuthenticated() ? (
+				{!!session ? (
 					<CustomAvatar />
 				) : (
 					<Button
 						variant="outlined"
 						color="primary"
-						size="medium"
+						size="small"
 						onClick={handleAuthModal}
-						startIcon={<AccountCircleTwoTone color="primary" />}
+						startIcon={
+							<AccountCircleOutlined
+								sx={{
+									color: colorInvert ? 'common.white' : 'primary.dark',
+									'&:hover': {
+										color: colorInvert ? 'common.white' : 'primary.dark',
+									},
+								}}
+							/>
+						}
+						sx={{
+							color: linkColor,
+							'&:hover': {
+								color: colorInvert ? 'common.white' : 'primary.dark',
+							},
+						}}
 					>
 						Account
 					</Button>
@@ -70,6 +94,7 @@ const Topbar = ({ onSidebarOpen, handleContactModal }: Props): JSX.Element => {
 
 	const renderAuthModal = (): JSX.Element => (
 		<Modal
+			maxWidth="xs"
 			isModalOpen={openAuthModal}
 			renderHeader={renderModalHeader()}
 			renderDialogText={
@@ -95,17 +120,17 @@ const Topbar = ({ onSidebarOpen, handleContactModal }: Props): JSX.Element => {
 			width={1}
 		>
 			<Box sx={{ display: { xs: 'flex', md: 'none' } }} alignItems={'center'}>
-				<Logo displayText />
+				<Logo />
 			</Box>
 			<Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-				<Logo displayText />
+				<Logo />
 				<Box marginLeft={3}>
 					<Link href="/resources" passHref>
 						<Button
 							sx={{
-								color: theme.palette.text.primary,
+								color: linkColor,
 								'&:hover': {
-									color: theme.palette.primary.dark,
+									color: colorInvert ? 'common.white' : 'primary.dark',
 								},
 							}}
 							variant="text"
@@ -119,9 +144,9 @@ const Topbar = ({ onSidebarOpen, handleContactModal }: Props): JSX.Element => {
 					<Link href="/store" passHref>
 						<Button
 							sx={{
-								color: theme.palette.text.primary,
+								color: linkColor,
 								'&:hover': {
-									color: theme.palette.primary.dark,
+									color: colorInvert ? 'common.white' : 'primary.dark',
 								},
 							}}
 							variant="text"
@@ -135,9 +160,9 @@ const Topbar = ({ onSidebarOpen, handleContactModal }: Props): JSX.Element => {
 					<Link href="/blog" passHref>
 						<Button
 							sx={{
-								color: theme.palette.text.primary,
+								color: linkColor,
 								'&:hover': {
-									color: theme.palette.primary.dark,
+									color: colorInvert ? 'common.white' : 'primary.dark',
 								},
 							}}
 							variant="text"
@@ -150,9 +175,9 @@ const Topbar = ({ onSidebarOpen, handleContactModal }: Props): JSX.Element => {
 				<Box marginLeft={3}>
 					<Button
 						sx={{
-							color: theme.palette.text.primary,
+							color: linkColor,
 							'&:hover': {
-								color: theme.palette.primary.dark,
+								color: colorInvert ? 'common.white' : 'primary.dark',
 							},
 						}}
 						variant="text"
@@ -166,8 +191,16 @@ const Topbar = ({ onSidebarOpen, handleContactModal }: Props): JSX.Element => {
 			<Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
 				<Box marginLeft={3}>
 					<DarkModeToggler
-						moonColor={theme.palette.secondary.main}
-						sunColor={theme.palette.primary.main}
+						moonColor={
+							colorInvert
+								? theme.palette.common.white
+								: theme.palette.secondary.main
+						}
+						sunColor={
+							colorInvert
+								? theme.palette.common.white
+								: theme.palette.secondary.main
+						}
 					/>
 				</Box>
 				{renderAuthButtons()}
@@ -181,16 +214,21 @@ const Topbar = ({ onSidebarOpen, handleContactModal }: Props): JSX.Element => {
 				<Button
 					onClick={() => onSidebarOpen()}
 					aria-label="Menu"
-					variant={'text'}
+					variant={'outlined'}
+					size={'small'}
 					sx={{
+						color: linkColor,
+						'&:hover': {
+							color: colorInvert ? 'common.white' : 'primary.dark',
+						},
 						borderRadius: 1,
 						minWidth: 'auto',
-						padding: 1,
+						// padding: 1,
 						marginLeft: 2,
-						borderColor: alpha(theme.palette.divider, 0.2),
+						// borderColor: alpha(theme.palette.divider, 0.2),
 					}}
 				>
-					<ShortTextRounded />
+					<ShortTextRounded fontSize={'small'} />
 				</Button>
 			</Box>
 			{renderAuthModal()}

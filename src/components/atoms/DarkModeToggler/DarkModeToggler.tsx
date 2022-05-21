@@ -1,48 +1,7 @@
-import { useContext } from 'react';
 import { DarkModeTogglerProps } from './interfaces';
-import { ColorModeContext } from '../../Page';
 import { alpha, useTheme } from '@mui/material/styles';
 import { Button } from '@mui/material';
 
-export const defaultProperties = {
-	dark: {
-		circle: {
-			r: 9,
-		},
-		mask: {
-			cx: '50%',
-			cy: '23%',
-		},
-		svg: {
-			transform: 'rotate(40deg)',
-		},
-		lines: {
-			opacity: 0,
-		},
-	},
-	light: {
-		circle: {
-			r: 5,
-		},
-		mask: {
-			cx: '100%',
-			cy: '0%',
-		},
-		svg: {
-			transform: 'rotate(90deg)',
-		},
-		lines: {
-			opacity: 1,
-		},
-	},
-	springConfig: { mass: 4, tension: 250, friction: 35 },
-};
-
-/**
- * Component to display the dark mode toggler
- *
- * @param {Object} props
- */
 const DarkModeToggler = ({
 	size = 20,
 	moonColor = 'white',
@@ -51,25 +10,19 @@ const DarkModeToggler = ({
 	...rest
 }: DarkModeTogglerProps): JSX.Element => {
 	const theme = useTheme();
+	const { themeToggler } = theme;
 	const { mode } = theme.palette;
-
-	const colorMode = useContext(ColorModeContext);
-
-	const toggle = () => {
-		colorMode.toggleColorMode();
-	};
 
 	return (
 		<Button
 			variant={'outlined'}
-			size={'small'}
-			onClick={toggle}
+			onClick={() => themeToggler()}
 			aria-label="Dark mode toggler"
 			color={mode === 'light' ? 'primary' : 'secondary'}
 			sx={{
 				borderRadius: 1,
 				minWidth: 'auto',
-				padding: 1,
+				padding: 0.5,
 				borderColor: alpha(theme.palette.divider, 0.2),
 			}}
 		>

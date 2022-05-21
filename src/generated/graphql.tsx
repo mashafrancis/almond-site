@@ -418,6 +418,7 @@ export type LoginMutation = {
 			firstName: string;
 			lastName: string;
 			email: any;
+			avatar: string;
 			active: boolean;
 			verified: boolean;
 			createdAt: any;
@@ -473,6 +474,7 @@ export const LoginDocument = gql`
 				firstName
 				lastName
 				email
+				avatar
 				active
 				verified
 				createdAt

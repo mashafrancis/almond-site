@@ -73,56 +73,52 @@ export default NextAuth({
 						variables: payload,
 					});
 
-					console.log('Class: , Function: authorize, Line 76 data():', data);
-
-					return data;
+					return data.login;
 				} catch (e) {
 					throw e;
 				}
-				// if (response.status !== 200) {
-				//   console.log('Class: , Function: authorize, Line 72 response.status():', response.status);
-				// 	throw new Error(response.statusText);
-				// }
-
-				// if (response.status === 200 && user) {
-				// 	return user;
-				// }
-
-				// return null;
 			},
 		}),
 	],
 	secret: process.env.NEXTAUTH_SECRET,
 	callbacks: {
 		// async signIn({ user, account, profile, credentials, email }) {
-		//   console.log('Class: callbacks, Function: signIn, Line 45 user():', user);
-		//   return true;
+		// 	console.log('Class: callbacks, Function: signIn, Line 45 user():', user);
+		// 	return true;
 		// },
-		// async jwt({ token, user, account }) {
-		// 	if (account && user) {
-		// 		return {
-		// 			...token,
-		// 			accessToken: user.access_token,
-		// 			refreshToken: user.refresh_token,
-		// 			expiresIn: Date.now() + +user.expires_in,
-		// 			// @ts-expect-error
-		// 			userRoles: user.user.roles,
-		// 		};
-		// 	}
-		//
-		// 	if (Date.now() < token.expiresIn) {
-		// 		return token;
-		// 	}
-		// 	return await refreshAccessToken(token);
-		// },
-
+		async jwt({ token, user, account }) {
+			if (account && user) {
+				return {
+					...token,
+					firstName: user.firstName,
+					lastName: user.lastName,
+					email: user.email,
+					avatar: user.avatar,
+					// accessToken: user.access_token,
+					// refreshToken: user.refresh_token,
+					// expiresIn: Date.now() + +user.expires_in,
+					// // @ts-expect-error
+					// userRoles: user.user.roles,
+				};
+			}
+			return token;
+			//
+			// if (Date.now() < token.expiresIn) {
+			// 	return token;
+			// }
+			// return await refreshAccessToken(token);
+		},
 		async session({ session, token }) {
+			session.user.firstName = token.firstName as string;
+			session.user.lastName = token.lastName as string;
+			session.user.email = token.email as string;
+			session.user.avatar = token.avatar as string;
 			// session.user.name = jwtDecode(token.accessToken as string)['sub'];
 			// session.user.email = jwtDecode(token.accessToken as string)['sub'];
-			session.user.accessToken = token.accessToken as string;
-			session.user.refreshToken = token.refreshToken as string;
-			session.user.accessTokenExpires = token.expiresIn as string;
-			session.user.userRoles = token.userRoles;
+			// session.user.accessToken = token.accessToken as string;
+			// session.user.refreshToken = token.refreshToken as string;
+			// session.user.accessTokenExpires = token.expiresIn as string;
+			// session.user.userRoles = token.userRoles;
 			session.error = token.error;
 
 			return session;

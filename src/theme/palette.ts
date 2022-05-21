@@ -70,9 +70,12 @@ export const dark = {
 		// contrastText: '#fff',
 	},
 	secondary: {
-		light: '#ffe98d',
-		main: '#F9B75D',
-		dark: '#c3872e',
+		light: '#bdf74c',
+		main: '#89c402',
+		dark: '#559300',
+		// light: '#ffe98d',
+		// main: '#F9B75D',
+		// dark: '#c3872e',
 		contrastText: 'rgba(0, 0, 0, 0.87)',
 	},
 	text: {

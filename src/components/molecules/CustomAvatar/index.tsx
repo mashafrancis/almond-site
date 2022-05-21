@@ -1,5 +1,6 @@
 import { Avatar, Menu, MenuItem, ListItemIcon, Tooltip } from '@mui/material';
 import { useRouter } from 'next/router';
+import { useSession, signOut } from 'next-auth/react';
 import fancyId from '@utils/fancyId';
 import { useState, MouseEvent, useContext } from 'react';
 import { Help, Logout, Mood, OpenInNew, Settings } from '@mui/icons-material';
@@ -20,7 +21,11 @@ const CustomAvatar = ({
 	const router = useRouter();
 	const theme = useTheme();
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-	const { name, photo } = useContext(UserContext);
+	const { data: session } = useSession();
+
+	const { name } = useContext(UserContext);
+	const photo =
+		'https://storage.googleapis.com/static.almondhydroponics.com/static/images/avatar_male.svg';
 
 	const handleToggleProfileMenu = (event: MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
@@ -35,8 +40,12 @@ const CustomAvatar = ({
 		toggleRoleChangeDialog();
 	};
 
-	const logoutActiveUser = async (): Promise<void> => {
-		await window.location.replace('/');
+	const logoutActiveUser = async (e): Promise<void> => {
+		e.preventDefault();
+		await signOut({
+			callbackUrl: `${window.location.origin}`,
+			redirect: false,
+		});
 	};
 
 	const open = Boolean(anchorEl);

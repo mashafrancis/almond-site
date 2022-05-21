@@ -1,11 +1,8 @@
 /* eslint-disable react/prop-types */
 import Head from 'next/head';
 import { AppProps } from 'next/app';
-import { useRouter } from 'next/router';
 import { EmotionCache } from '@emotion/utils';
 import { CacheProvider } from '@emotion/react';
-import { useEffect } from 'react';
-import NProgress from 'nprogress';
 import { wrapper } from '@lib/store';
 // components
 import Page from '../components/Page';
@@ -32,32 +29,12 @@ interface Props extends AppProps {
 const clientSideEmotionCache = createEmotionCache();
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-function App({
+const App = ({
 	Component,
 	pageProps,
 	emotionCache = clientSideEmotionCache,
-}: Props): JSX.Element {
+}: Props): JSX.Element => {
 	GoogleAnalytics.useTracker();
-	const { events } = useRouter();
-
-	useEffect(() => {
-		const handleStart = () => {
-			NProgress.start();
-		};
-		const handleStop = () => {
-			NProgress.done();
-		};
-
-		events.on('routeChangeStart', handleStart);
-		events.on('routeChangeComplete', handleStop);
-		events.on('routeChangeError', handleStop);
-
-		return () => {
-			events.off('routeChangeStart', handleStart);
-			events.off('routeChangeComplete', handleStop);
-			events.off('routeChangeError', handleStop);
-		};
-	}, [events]);
 
 	return (
 		<CacheProvider value={emotionCache}>
@@ -66,7 +43,7 @@ function App({
 					name="viewport"
 					content="width=device-width, initial-scale=1, shrink-to-fit=no"
 				/>
-				<title>almond | Growing your plants smart</title>
+				<title>almond | growing your plants smart</title>
 			</Head>
 			<SessionProvider session={pageProps.session}>
 				<DefaultSeo
@@ -80,6 +57,6 @@ function App({
 			</SessionProvider>
 		</CacheProvider>
 	);
-}
+};
 
 export default wrapper.withRedux(App);
